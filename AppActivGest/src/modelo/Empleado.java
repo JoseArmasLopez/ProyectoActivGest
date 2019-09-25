@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Empleado {
 
@@ -11,6 +12,8 @@ public class Empleado {
     private Date fechanac;
     private Date fechacontract;
     private String cargo;
+
+    private ArrayList<Actividad>actividadArrayList;
 
     public Empleado() {
     }
@@ -79,5 +82,13 @@ public class Empleado {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public ArrayList<Actividad> getActividadArrayList() {
+        return actividadArrayList;
+    }
+
+    public void setActividadArrayList(ArrayList<Actividad> actividadArrayList) {
+        this.actividadArrayList = actividadArrayList;
     }
 }
