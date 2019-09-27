@@ -21,8 +21,10 @@ public class CreateTablesSqliteHegoalde {
                 + "coste double,"
                 + "fecha date,"
                 + "horario date,"
-                + "dniempleado text references empleados(dni),"
-                + "dniusuario text references usuarios(dni)"
+                + "dniempleado text,"
+                + "dniusuario text,"
+                + "FOREIGN KEY (dniempleado) REFERENCES empleados(dni),"
+                + "FOREIGN KEY (dniusuario) REFERENCES usuarios(dni)"
                 + ")";
 
         String createEmpleados = "Create table empleados("
@@ -41,7 +43,8 @@ public class CreateTablesSqliteHegoalde {
                 + "apellido1 text,"
                 + "apellido2 text,"
                 + "edad int,"
-                + "idactividad text references actividades(numactividad)"
+                + "idactividad text," +
+                "  FOREIGN KEY (idactividad) references actividades(numactividad)"
                 + ")";
         try {
             PreparedStatement pst;
@@ -70,7 +73,6 @@ public class CreateTablesSqliteHegoalde {
                 System.out.println("*** Tabla actividades creada INCORRECTAMENTE ***");
                 System.out.println(e.getMessage());
             }
-
 
             try {
                 System.out.println("*** Creando tabla usuarios ***");
