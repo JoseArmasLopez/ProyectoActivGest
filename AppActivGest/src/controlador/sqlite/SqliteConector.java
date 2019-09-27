@@ -42,7 +42,7 @@ public class SqliteConector {
 
         Statement stmt = null;
 
-        ArrayList<Actividad>
+        ArrayList<Actividad> listaDeActividades = new ArrayList<Actividad>();
 
         try {
 
@@ -62,6 +62,10 @@ public class SqliteConector {
                 Date fech = rs.getDate("fecha");
                 String hor = rs.getString("horario");
 
+                Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
+
+                actividadArrayList().add(actividad);
+
             }
             rs.close();
             stmt.close();
@@ -72,7 +76,7 @@ public class SqliteConector {
         }
         System.out.println("Operation done successfully");
 
-        return null;
+        return actividadArrayList();
     }
 
 
