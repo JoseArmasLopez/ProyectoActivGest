@@ -1,4 +1,4 @@
-package controlador;
+package controlador.sqlite;
 
 import modelo.Actividad;
 
@@ -42,6 +42,8 @@ public class SqliteConector {
 
         Statement stmt = null;
 
+        ArrayList<Actividad>
+
         try {
 
             connect();
@@ -60,13 +62,6 @@ public class SqliteConector {
                 Date fech = rs.getDate("fecha");
                 String hor = rs.getString("horario");
 
-
-                System.out.println( "ID = " + id );
-                System.out.println( "Nombre = " + name );
-                System.out.println( "Maxpersonas = " + numeromaxinvit );
-                System.out.println( "Sala = " + address );
-                System.out.println( "SALARY = " + salary );
-                System.out.println();
             }
             rs.close();
             stmt.close();
