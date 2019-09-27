@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 
 public class SqliteConector {
 
+    public Connection getConn() {
+        return conn;
+    }
+
     private Connection conn = null;
 
     public SqliteConector() {
