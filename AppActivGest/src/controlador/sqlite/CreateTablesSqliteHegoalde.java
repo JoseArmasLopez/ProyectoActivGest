@@ -13,79 +13,79 @@ public class CreateTablesSqliteHegoalde {
 
         Connection conn = conexion.getConn();
 
-        String createCategory = "Create table Category("
-                + "id text primary key not null,"
-                + "name text not null,"
-                + "deliverday int not null,"
-                + "isdelete bit not null"
+        String createActividades = "Create table actividades("
+                + "numactividad text primary key not null,"
+                + "nombre text not null,"
+                + "numeromaximoinvitado int not null,"
+                + "nombresala text,"
+                + "coste double,"
+                + "fecha date,"
+                + "horario date,"
+                + "dniempleado text references empleados(dni),"
+                + "dniusuario text references usuarios(dni)"
                 + ")";
 
-        String createCustomer = "Create table Customer("
-                + "id text primary key not null,"
-                + "name text not null,"
-                + "email text not null,"
-                + "phone text not null,"
-                + "address text not null,"
-                + "isdelete boolean not null"
+        String createEmpleados = "Create table empleados("
+                + "dni text primary key not null,"
+                + "nombre text not null,"
+                + "apellido1 text,"
+                + "apellido2 text,"
+                + "fechacontract date,"
+                + "cargo texto"
                 + ")";
 
 
-        String createOrder = "Create table Order("
-                + "id text primary key not null,"
-                + "custid text references Category(id) no null,"
-                + "catid text references Customer(id) not null,"
-                + "orderdate date not null,"
-                + "delieverdate date not null,"
-                + "description text not null,"
-                + "requirement text not null,"
-                + "price int not null,"
-                + "image text not null,"
-                + "product text not null,"
-                + "state text not null,"
+        String createUsuarios = "Create table usuarios("
+                + "dni text primary key not null,"
+                + "nombre text not null,"
+                + "apellido1 text,"
+                + "apellido2 text,"
+                + "edad int,"
+                + "idactividad text references actividades(numactividad)"
                 + ")";
         try {
             PreparedStatement pst;
             try {
-                System.out.println("*** Create table Category");
+                System.out.println("*** Creando tabla empleados ***");
 
-                pst = conn.prepareStatement(createCategory);
+                pst = conn.prepareStatement(createEmpleados);
                 pst.executeUpdate();
                 pst.close();
 
-                System.out.println("*** Category created Successfully");
+                System.out.println("*** Tabla empleados creada correctamente ***");
             } catch (Exception e) {
-                System.out.println("*** Failed to create Category");
+                System.out.println("*** Tabla empleados creada INCORRECTAMENTE ***");
                 System.out.println(e.getMessage());
             }
 
             try {
-                System.out.println("*** Create table Customer");
+                System.out.println("*** Creando tabla actividades ***");
 
-                pst = conn.prepareStatement(createCustomer);
+                pst = conn.prepareStatement(createActividades);
                 pst.executeUpdate();
                 pst.close();
 
-                System.out.println("*** Customer created Successfully");
+                System.out.println("*** Tabla actividades creada correctamente ***");
             } catch (Exception e) {
-                System.out.println("*** Failed to create Customer");
+                System.out.println("*** Tabla actividades creada INCORRECTAMENTE ***");
                 System.out.println(e.getMessage());
             }
 
 
             try {
-                System.out.println("*** Create table Order");
+                System.out.println("*** Creando tabla usuarios ***");
 
-                pst = conn.prepareStatement(createOrder);
+                pst = conn.prepareStatement(createUsuarios);
                 pst.executeUpdate();
                 pst.close();
 
-                System.out.println("*** Order created successsfully");
+                System.out.println("*** Tabla usuarios creada correctamente ***");
             } catch (Exception e) {
-                System.out.println("*** Failed to create Order");
+                System.out.println("*** Tabla usuarios creada INCORRECTAMENTE ***");
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("*** COMPLETE CREATING TABLE PROCESS ****");
+            System.out.println("*** PROCESO DE CREACIÓN DE TABLAS FINALIZADO ****");
 
 
             conn.close();
