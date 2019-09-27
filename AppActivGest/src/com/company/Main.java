@@ -1,5 +1,5 @@
 package com.company;
-import controlador.SqliteConector;
+import controlador.sqlite.SqliteConector;
 
 public class Main {
 

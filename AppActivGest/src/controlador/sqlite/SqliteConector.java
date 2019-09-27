@@ -1,4 +1,4 @@
-package controlador;
+package controlador.sqlite;
 
 import modelo.Actividad;
 
@@ -9,6 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SqliteConector {
+
+    public Connection getConn() {
+        return conn;
+    }
 
     private Connection conn = null;
 
@@ -42,6 +46,8 @@ public class SqliteConector {
 
         Statement stmt = null;
 
+        ArrayList<Actividad> listaDeActividades = new ArrayList<Actividad>();
+
         try {
 
             connect();
@@ -60,13 +66,10 @@ public class SqliteConector {
                 Date fech = rs.getDate("fecha");
                 String hor = rs.getString("horario");
 
+                Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
 
-                System.out.println( "ID = " + id );
-                System.out.println( "Nombre = " + name );
-                System.out.println( "Maxpersonas = " + numeromaxinvit );
-                System.out.println( "Sala = " + address );
-                System.out.println( "SALARY = " + salary );
-                System.out.println();
+                actividadArrayList().add(actividad);
+
             }
             rs.close();
             stmt.close();
@@ -77,7 +80,7 @@ public class SqliteConector {
         }
         System.out.println("Operation done successfully");
 
-        return null;
+        return actividadArrayList();
     }
 
 
