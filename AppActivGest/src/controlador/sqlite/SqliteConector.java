@@ -42,46 +42,8 @@ public class SqliteConector {
         }
     }
 
-    public ArrayList<Actividad> actividadArrayList(){
 
-        Statement stmt = null;
 
-        ArrayList<Actividad> listaDeActividades = new ArrayList<Actividad>();
-
-        try {
-
-            connect();
-
-            System.out.println("Opened database successfully");
-
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM HEGOALDE" );
-
-            while ( rs.next() ) {
-                String id = rs.getString("numeroactividad");
-                String  name = rs.getString("nombre");
-                int numeromaxinvit   = rs.getInt("numeromaxinvitado");
-                String  nombresal = rs.getString("nombresala");
-                double coste = rs.getDouble("coste");
-                Date fech = rs.getDate("fecha");
-                String hor = rs.getString("horario");
-
-                Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
-
-                actividadArrayList().add(actividad);
-
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        System.out.println("Operation done successfully");
-
-        return actividadArrayList();
-    }
 
 
 
