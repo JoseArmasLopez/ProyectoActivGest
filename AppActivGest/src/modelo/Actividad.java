@@ -10,7 +10,6 @@ public class Actividad {
     private int numeromaxinvitado;
     private String nombresala;
     private double coste;
-
     private Date fecha;
     private String horario;
 
