@@ -233,7 +233,7 @@ public class SqliteConsulta {
 
 
     }
-    
+
     // Seccion getters
     public ArrayList<Actividad> getActividades() {
         return actividades;

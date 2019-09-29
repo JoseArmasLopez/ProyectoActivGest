@@ -1,5 +1,6 @@
 package com.company;
 import controlador.ControladorBbDd;
+import controlador.sqlite.MetadatoBd;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
 
@@ -17,12 +18,7 @@ public class Main {
 
         conexionBd = controladorBbDd.getConexion();
 
-        SqliteConsulta sqliteConsulta = new SqliteConsulta(conexionBd);
-
-        sqliteConsulta.actividadesHegoaldeSqlite();
-
-
-        sqliteConsulta.tablaMostrar(sqliteConsulta.getActividades());
+        MetadatoBd metadatoBd = new MetadatoBd(conexionBd);
 
 
 
