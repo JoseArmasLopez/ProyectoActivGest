@@ -6,9 +6,7 @@ import modelo.Usuario;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -149,6 +147,93 @@ public class SqliteConsulta {
 
     }
 
+    // funcion para de alta un empleado
+    public void altaNuevoEmpleado(Empleado nuevoEmpleado){
+
+        try {
+
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
+
+            PreparedStatement ps = this.connection.prepareStatement(query);
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            ps.setString(1, nuevoEmpleado.getDni());
+            ps.setString(2, nuevoEmpleado.getNombre());
+            ps.setString(3, nuevoEmpleado.getApellido1());
+            ps.setString(4, nuevoEmpleado.getApellido2());
+            ps.setString(7, nuevoEmpleado.getCargo());
+
+            int row = ps.executeUpdate();
+
+            // rows affected
+            System.out.println(row); //1
+
+            ps.close();
+
+            System.out.println("Nuevo empleado creado correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());            e.printStackTrace();
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }
+
+
+
+
+    }
+
+    // funcion para dar de alta una actividad
+    public void altaNuevaActividad(Actividad nuevaActividad){
+        try {
+
+            String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
+                    + " nombresala,coste,fecha,horario,dniempleado,dniusuario ) VALUES(?,?,?,?,?,?,?,?,?)";
+
+            java.sql.Statement statement = this.connection.createStatement();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+
+            ps.setString(1, nuevaActividad.getNumactividad());
+            ps.setString(2, nuevaActividad.getNombre());
+            ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
+            ps.setString(4, nuevaActividad.getNombresala());
+            ps.setDouble(5,nuevaActividad.getCoste());
+            ps.setTimestamp(6, (Timestamp) nuevaActividad.getFecha());
+            ps.setString(7, nuevaActividad.getHorario());
+
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Datos insertados en actividades correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error en la insercción de datos...");
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //funcion para dar de alta un nuevo usuario
+    public void altaNuevoUsuario(Usuario nuevoUsuario){
+
+
+
+    }
+    
     // Seccion getters
     public ArrayList<Actividad> getActividades() {
         return actividades;
@@ -162,6 +247,7 @@ public class SqliteConsulta {
         return usuarios;
     }
 
+    // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrar(ArrayList<Actividad> acti){
 
 
