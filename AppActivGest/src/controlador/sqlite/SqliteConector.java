@@ -1,12 +1,18 @@
-package controlador;
+package controlador.sqlite;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import modelo.Actividad;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SqliteConector {
+
+    public Connection getConn() {
+        return conn;
+    }
 
     private Connection conn = null;
 
@@ -35,4 +41,10 @@ public class SqliteConector {
             Logger.getLogger(SqliteConector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
+
+
+
+
 }

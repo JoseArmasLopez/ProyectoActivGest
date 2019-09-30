@@ -9,8 +9,7 @@ public class Actividad {
     private String nombre;
     private int numeromaxinvitado;
     private String nombresala;
-    private double coste;
-
+    private Double coste;
     private Date fecha;
     private String horario;
 
@@ -20,7 +19,7 @@ public class Actividad {
     public Actividad() {
     }
 
-    public Actividad(String numactividad, String nombre, int numeromaxinvitado, String nombresala, double coste,
+    public Actividad(String numactividad, String nombre, int numeromaxinvitado, String nombresala, Double coste,
                      Date fecha, String horario) {
         this.numactividad = numactividad;
         this.nombre = nombre;
@@ -63,11 +62,11 @@ public class Actividad {
         this.nombresala = nombresala;
     }
 
-    public double getCoste() {
+    public Double getCoste() {
         return coste;
     }
 
-    public void setCoste(double coste) {
+    public void setCoste(Double coste) {
         this.coste = coste;
     }
 
