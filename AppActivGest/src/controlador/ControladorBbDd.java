@@ -31,7 +31,19 @@ public class ControladorBbDd {
                 break;
             case "iparralde":
                 break;
-            case "ibaiondo":
+
+            case "arriaga":
+
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
+                    System.out.println("Conexión establecida con arriaga correctamente.");
+
+                }catch (Exception e) {
+                    System.err.println("No se ha podido conectar a la base de datos Arriaga\n"+e.getMessage());
+                }
+
+
                 break;
             default:
         }
