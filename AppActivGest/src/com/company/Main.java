@@ -24,12 +24,11 @@ public class Main {
 
         sqliteConsulta.actividadesHegoaldeSqlite();
 
-        for (Actividad  a:sqliteConsulta.getActividades()
-             ) {
-             System.out.println("Hola JOse: " + a.getEmpleado().getDni());
-        }
+        sqliteConsulta.usuariosHegoaldeSqlite();
 
-        sqliteConsulta.tablaMostrar(sqliteConsulta.getActividades());
+        //sqliteConsulta.tablaMostrarActividades(sqliteConsulta.getActividades());
+
+        sqliteConsulta.tablaMostrarUsuarios(sqliteConsulta.getUsuarios());
 
 
 

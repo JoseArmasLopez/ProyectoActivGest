@@ -75,9 +75,9 @@ public class SqliteConsulta {
     }
 
     // funcion que da valor al atributo usuarios con los usuarios de una actividad concreta
-    public void usuariosHegoaldeSqliteDeActividad(String idActividad) {
+    public void usuariosHegoaldeSqlite() {
 
-        this.empleados = new ArrayList<Empleado>();
+        this.usuarios = new ArrayList<Usuario>();
 
         try {
 
@@ -85,7 +85,7 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios WHERE idactividad = "+ idActividad);
+            ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2, edad FROM usuarios");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -96,7 +96,7 @@ public class SqliteConsulta {
                 String apellido2 = rs.getString("apellido2");
                 int edad = rs.getInt("edad");
 
-                Usuario usuario = new Usuario(dni, name, apellido1, apellido2,edad);
+                Usuario usuario = new Usuario(dni, name, apellido1, apellido2, edad);
 
                 this.usuarios.add(usuario);
 
@@ -255,7 +255,7 @@ public class SqliteConsulta {
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrar(ArrayList<Actividad> acti){
+    public  void tablaMostrarActividades(ArrayList<Actividad> acti){
 
         DefaultTableModel modelo = new DefaultTableModel();
         JTable tabla = new JTable(modelo);
@@ -290,6 +290,50 @@ public class SqliteConsulta {
             modelo.addRow(datos);
 
             System.out.print("hola"+act.getNombre().toString());
+        }
+
+        //datos=null;//limpia los datos de el vector de la memoria
+
+        JFrame f = new JFrame();
+        f.setBounds(10, 10, 300, 200);
+        f.getContentPane().add(new JScrollPane(tabla));
+        f.setLocationRelativeTo(null);
+
+        f.setVisible(true);
+    }
+
+    // funcion para mostrar en una tabla(javaswing) los datos
+    public  void tablaMostrarUsuarios(ArrayList<Usuario> usuarios){
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        JTable tabla = new JTable(modelo);
+
+        //creo 3 columnas con sus etiquetas
+        //estas son las columnas del JTable
+        modelo.addColumn("DNI");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO1");
+        modelo.addColumn("APELLIDO2");
+        modelo.addColumn("EDAD");
+
+
+        for (Usuario us:usuarios
+        ) {
+
+            Object [] datos=new Object[5];//Crea un vector
+
+            //para almacenar los valores del ResultSet
+            datos[0]=us.getDni();
+            datos[1]=us.getNombre();
+            datos[2]=us.getApellido1();
+            datos[3]=us.getApellido2();
+            datos[4]=us.getEdad();
+
+
+            //añado el modelo a la tabla
+            modelo.addRow(datos);
+
+            System.out.print("hola"+us.getNombre().toString());
         }
 
         //datos=null;//limpia los datos de el vector de la memoria
