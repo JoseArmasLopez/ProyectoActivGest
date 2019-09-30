@@ -26,9 +26,13 @@ public class Main {
 
         sqliteConsulta.usuariosHegoaldeSqlite();
 
-        //sqliteConsulta.tablaMostrarActividades(sqliteConsulta.getActividades());
+        sqliteConsulta.empleadosHegoaldeSqlite();
+
+        sqliteConsulta.tablaMostrarActividades(sqliteConsulta.getActividades());
 
         sqliteConsulta.tablaMostrarUsuarios(sqliteConsulta.getUsuarios());
+
+        sqliteConsulta.tablaMostrarEmpleados(sqliteConsulta.getEmpleados());
 
 
 
