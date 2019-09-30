@@ -36,7 +36,7 @@ public class SqliteConsulta {
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT numactividad, nombre,numeromaximoinvitado," +
-                    "nombresala, coste, fecha, horario FROM actividades");
+                    "nombresala, coste, fecha, horario, dniempleado FROM actividades");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -48,8 +48,15 @@ public class SqliteConsulta {
                 double coste = rs.getDouble("coste");
                 Date fech = rs.getDate("fecha");
                 String hor = rs.getString("horario");
+                String dni = rs.getString("dniempleado");
+
+                Empleado empleado = new Empleado();
+                empleado.setDni(dni);
+
+                System.out.println(empleado.getDni());
 
                 Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
+                actividad.setEmpleado(empleado);
 
                 this.actividades.add(actividad);
 
@@ -250,8 +257,6 @@ public class SqliteConsulta {
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrar(ArrayList<Actividad> acti){
 
-
-
         DefaultTableModel modelo = new DefaultTableModel();
         JTable tabla = new JTable(modelo);
 
@@ -264,12 +269,12 @@ public class SqliteConsulta {
         modelo.addColumn("COSTE");
         modelo.addColumn("FECHA");
         modelo.addColumn("HORARIO");
-
+        modelo.addColumn("EMPLEADO");
 
         for (Actividad act:acti
         ) {
 
-            Object [] datos=new Object[7];//Crea un vector
+            Object [] datos=new Object[8];//Crea un vector
 
             //para almacenar los valores del ResultSet
             datos[0]=act.getNumactividad();
@@ -278,24 +283,22 @@ public class SqliteConsulta {
             datos[3]=act.getNombresala();
             datos[4]=act.getCoste();
             datos[5]=act.getFecha();
-            datos[6]=act.getHorario();
+            datos[6]=act.getFecha();
+            datos[7]=act.getEmpleado().getDni();
 
             //añado el modelo a la tabla
             modelo.addRow(datos);
 
             System.out.print("hola"+act.getNombre().toString());
-
         }
 
-
-
-        // datos=null;//limpia los datos de el vector de la memoria
-
-
+        //datos=null;//limpia los datos de el vector de la memoria
 
         JFrame f = new JFrame();
         f.setBounds(10, 10, 300, 200);
         f.getContentPane().add(new JScrollPane(tabla));
+        f.setLocationRelativeTo(null);
+
         f.setVisible(true);
     }
 
