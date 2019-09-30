@@ -36,7 +36,7 @@ public class SqliteConsulta {
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT numactividad, nombre,numeromaximoinvitado," +
-                    "nombresala, coste, fecha, horario FROM actividades");
+                    "nombresala, coste, fecha, horario, dniempleado FROM actividades");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -48,8 +48,15 @@ public class SqliteConsulta {
                 double coste = rs.getDouble("coste");
                 Date fech = rs.getDate("fecha");
                 String hor = rs.getString("horario");
+                String dni = rs.getString("dniempleado");
+
+                Empleado empleado = new Empleado();
+                empleado.setDni(dni);
+
+                System.out.println(empleado.getDni());
 
                 Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
+                actividad.setEmpleado(empleado);
 
                 this.actividades.add(actividad);
 
@@ -68,9 +75,9 @@ public class SqliteConsulta {
     }
 
     // funcion que da valor al atributo usuarios con los usuarios de una actividad concreta
-    public void usuariosHegoaldeSqliteDeActividad(String idActividad) {
+    public void usuariosHegoaldeSqlite() {
 
-        this.empleados = new ArrayList<Empleado>();
+        this.usuarios = new ArrayList<Usuario>();
 
         try {
 
@@ -78,7 +85,7 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios WHERE idactividad = "+ idActividad);
+            ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2, edad FROM usuarios");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -89,7 +96,7 @@ public class SqliteConsulta {
                 String apellido2 = rs.getString("apellido2");
                 int edad = rs.getInt("edad");
 
-                Usuario usuario = new Usuario(dni, name, apellido1, apellido2,edad);
+                Usuario usuario = new Usuario(dni, name, apellido1, apellido2, edad);
 
                 this.usuarios.add(usuario);
 
@@ -108,7 +115,7 @@ public class SqliteConsulta {
     }
 
     // funcion que da valor al atributo usuarios con los usuarios de una actividad concreta
-    public void empleadosHegoaldeSqliteDeActividad(String dniempleado) {
+    public void empleadosHegoaldeSqlite() {
 
         this.empleados = new ArrayList<Empleado>();
 
@@ -118,7 +125,8 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM empleados WHERE idactividad = "+ dniempleado);
+            ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2, fechanac,fechacontract" +
+                    ", cargo FROM empleados");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -127,11 +135,13 @@ public class SqliteConsulta {
                 String name = rs.getString("nombre");
                 String apellido1 = rs.getString("apellido1");
                 String apellido2 = rs.getString("apellido2");
-                int edad = rs.getInt("edad");
+                Timestamp edad = rs.getTimestamp("fechanac");
+                Timestamp fechacontractact = rs.getTimestamp("fechacontract");
+                String cargo = rs.getString("cargo");
 
-                Usuario usuario = new Usuario(dni, name, apellido1, apellido2,edad);
+                Empleado empleado = new Empleado(dni,name,apellido1,apellido2,edad,fechacontractact,cargo);
 
-                this.usuarios.add(usuario);
+                this.empleados.add(empleado);
 
             }
 
@@ -248,9 +258,7 @@ public class SqliteConsulta {
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrar(ArrayList<Actividad> acti){
-
-
+    public  void tablaMostrarActividades(ArrayList<Actividad> acti){
 
         DefaultTableModel modelo = new DefaultTableModel();
         JTable tabla = new JTable(modelo);
@@ -264,12 +272,12 @@ public class SqliteConsulta {
         modelo.addColumn("COSTE");
         modelo.addColumn("FECHA");
         modelo.addColumn("HORARIO");
-
+        modelo.addColumn("EMPLEADO");
 
         for (Actividad act:acti
         ) {
 
-            Object [] datos=new Object[7];//Crea un vector
+            Object [] datos=new Object[8];//Crea un vector
 
             //para almacenar los valores del ResultSet
             datos[0]=act.getNumactividad();
@@ -278,24 +286,123 @@ public class SqliteConsulta {
             datos[3]=act.getNombresala();
             datos[4]=act.getCoste();
             datos[5]=act.getFecha();
-            datos[6]=act.getHorario();
+            datos[6]=act.getFecha();
+            datos[7]=act.getEmpleado().getDni();
 
             //añado el modelo a la tabla
             modelo.addRow(datos);
 
             System.out.print("hola"+act.getNombre().toString());
-
         }
 
-
-
-        // datos=null;//limpia los datos de el vector de la memoria
-
-
+        //datos=null;//limpia los datos de el vector de la memoria
 
         JFrame f = new JFrame();
         f.setBounds(10, 10, 300, 200);
         f.getContentPane().add(new JScrollPane(tabla));
+        f.setLocationRelativeTo(null);
+
+        f.setTitle("ACTIVIDADES HEGOALDE");
+
+        f.setVisible(true);
+    }
+
+    // funcion para mostrar en una tabla(javaswing) los datos
+    public  void tablaMostrarUsuarios(ArrayList<Usuario> usuarios){
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        JTable tabla = new JTable(modelo);
+
+        //creo 3 columnas con sus etiquetas
+        //estas son las columnas del JTable
+        modelo.addColumn("DNI");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO1");
+        modelo.addColumn("APELLIDO2");
+        modelo.addColumn("EDAD");
+
+
+        for (Usuario us:usuarios
+        ) {
+
+            Object [] datos=new Object[5];//Crea un vector
+
+            //para almacenar los valores del ResultSet
+            datos[0]=us.getDni();
+            datos[1]=us.getNombre();
+            datos[2]=us.getApellido1();
+            datos[3]=us.getApellido2();
+            datos[4]=us.getEdad();
+
+
+            //añado el modelo a la tabla
+            modelo.addRow(datos);
+
+            System.out.print("hola"+us.getNombre().toString());
+        }
+
+        //datos=null;//limpia los datos de el vector de la memoria
+
+        JFrame f = new JFrame();
+        f.setBounds(10, 10, 300, 200);
+        f.getContentPane().add(new JScrollPane(tabla));
+        f.setLocationRelativeTo(null);
+        f.setTitle("USUARIOS HEGOALDE");
+
+        f.setVisible(true);
+    }
+
+    // funcion para mostrar en una tabla(javaswing) los datos
+    public  void tablaMostrarEmpleados(ArrayList<Empleado> empleados){
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        JTable tabla = new JTable(modelo);
+
+        JButton boton = new JButton();
+        boton.setLocation(null);
+
+        //creo 3 columnas con sus etiquetas
+        //estas son las columnas del JTable
+        modelo.addColumn("DNI");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO1");
+        modelo.addColumn("APELLIDO2");
+        modelo.addColumn("NACIMIENTO");
+        modelo.addColumn("FECHA CONTRATO");
+        modelo.addColumn("CARGO");
+
+
+        for (Empleado us:empleados
+        ) {
+
+            Object [] datos=new Object[7];//Crea un vector
+
+            //para almacenar los valores del ResultSet
+            datos[0]=us.getDni();
+            datos[1]=us.getNombre();
+            datos[2]=us.getApellido1();
+            datos[3]=us.getApellido2();
+            datos[4]=us.getFechanac();
+            datos[5]=us.getFechacontract();
+            datos[6]=us.getCargo();
+
+
+            //añado el modelo a la tabla
+            modelo.addRow(datos);
+
+            System.out.print("hola"+us.getNombre().toString());
+        }
+
+        //datos=null;//limpia los datos de el vector de la memoria
+
+        JFrame f = new JFrame();
+        f.setBounds(10, 10, 300, 200);
+        f.getContentPane().add(new JScrollPane(tabla));
+        f.setLocationRelativeTo(null);
+
+        f.setTitle("EMPLEADOS HEGOALDE");
+        f.add(boton);
+
         f.setVisible(true);
     }
 

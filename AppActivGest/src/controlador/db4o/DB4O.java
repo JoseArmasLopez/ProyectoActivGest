@@ -1,4 +1,4 @@
-package AppActivGest.src.controlador;
+package controlador.db4o;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -8,6 +8,7 @@ import modelo.Empleado;
 import modelo.Usuario;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DB4O {
 
@@ -18,11 +19,9 @@ public class DB4O {
     // Abrir la base de datos
     ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDCentrosCivicos);
 
-    modelo.Empleado e1 = new modelo.Empleado("73747576A", "Maider", "Guinea", "Martinez", new Date(1978, 11, 21),
-            new Date(2012, 10, 11), "oficial de control");
+    //modelo.Empleado e1 = new modelo.Empleado("73747576A", "Maider", "Guinea", "Martinez", new Timestamp(""),
+    //        new Date(2012, 10, 11), "oficial de control");
     
-
-
 
     public static boolean guardarEmpleado(modelo.Empleado empl) {
 
