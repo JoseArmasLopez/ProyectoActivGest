@@ -59,6 +59,7 @@ public class CreateTablesSqliteHegoalde {
                 + "FOREIGN KEY (dniempleado) REFERENCES empleados(dni),"
                 + "FOREIGN KEY (dniusuario) REFERENCES usuarios(dni)"
                 + ")";
+        
 
         String createEmpleados = "Create table empleados("
                 + "dni text primary key not null,"

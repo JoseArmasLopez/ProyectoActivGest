@@ -16,9 +16,6 @@ public class CreateTablesMysqlArriaga {
         InsertarActividad(con);
         InsertarUsuarios(con);
 
-
-
-
     }
 
     private static Connection Conexion(){
@@ -60,9 +57,8 @@ public class CreateTablesMysqlArriaga {
                 "HORARIO DATE," +
                 "DNIEMPLEADO VARCHAR(255)," +
                 "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
+
         //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
-
-
         String createUsuarios = "CREATE TABLE USUARIOS(" +
                 "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +

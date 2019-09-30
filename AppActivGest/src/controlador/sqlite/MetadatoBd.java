@@ -38,35 +38,49 @@ public class MetadatoBd {
             System.out.println("Version de Driver: " + this.metadatos.getDriverVersion());
 
             //Tablas
-            ResultSet rst = this.metadatos.getTables(null, null, null, null);
+            String []tipos={"TABLE"};
+            ResultSet rst = this.metadatos.getTables(null, null, null, tipos);
+
             String tabla = "";
-    /*
+
             while (rst.next()) {
+
                 tabla = rst.getObject(3).toString();
                 System.out.println("Nombre de Tabla: " + tabla);
+
                 //primary key si existe
-                ResultSet rsp = this.metadatos.getPrimaryKeys(null, null,tabla);
+               ResultSet rsp = this.metadatos.getPrimaryKeys(null, null, tabla);
+
+                //System.out.println("hola");
+
                 if (rsp.next())
-                    System.out.println("Primary Key: " + rsp.getObject(4));
+
+                   // System.out.println("hola 2");
+
+                   // System.out.println("Primary Key: " + rsp.getObject(4));
+                    System.out.println("Primary Key: " + rsp.getString("COLUMN_NAME"));
+
                 rsp.close();
 
                 //columnas y tipos
-                rsc = metadatos.getColumns(null, null, tabla, null);
+                ResultSet rsc = metadatos.getColumns(null, null, tabla, null);
                 while (rsc.next()) {
                     System.out.println("Columna " + rsc.getString(4));
-                    System.out.println("Tipo " + rsc.getInt(5));
+                    System.out.println("Tipo " + rsc.getString(6));
+
+
                 }
 
                 rsc.close();
 
             }
-            rst.close();*/
+            rst.close();
             /*ResultSetMetaData
 
              * Obteniendo Informacion sobre una consulta con un ResultSet
 
              */
-            System.out.println("Obteniendo Informacion sobre una consulta con un ResultSet");
+            /*System.out.println("Obteniendo Informacion sobre una consulta con un ResultSet");
 
             ResultSet rs = st.executeQuery("select * from actividades");
 
@@ -86,7 +100,7 @@ public class MetadatoBd {
 
                 System.out.println("Pertenece a la tabla: " + rsmetadatos.getTableName(i) + "\n");
 
-            }
+            }*/
 
         } catch (Exception e) {
 

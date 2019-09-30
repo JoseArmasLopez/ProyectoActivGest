@@ -1,4 +1,4 @@
-package AppActivGest.src.controlador;
+package controlador.db4o;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -21,8 +21,6 @@ public class DB4O {
     modelo.Empleado e1 = new modelo.Empleado("73747576A", "Maider", "Guinea", "Martinez", new Date(1978, 11, 21),
             new Date(2012, 10, 11), "oficial de control");
     
-
-
 
     public static boolean guardarEmpleado(modelo.Empleado empl) {
 
