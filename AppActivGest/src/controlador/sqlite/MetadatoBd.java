@@ -38,9 +38,7 @@ public class MetadatoBd {
             System.out.println("Version de Driver: " + this.metadatos.getDriverVersion());
 
             //Tablas
-            ResultSet rst = null;
-            ResultSet rsc;
-            rst = this.metadatos.getTables(null, null, null, null);
+            ResultSet rst = this.metadatos.getTables(null, null, null, null);
             String tabla = "";
     /*
             while (rst.next()) {
