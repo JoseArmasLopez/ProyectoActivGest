@@ -12,9 +12,9 @@ public class CreateTablesMysqlArriaga {
         Connection con = Conexion();
         CrearTablas(con);//REVISAR LA SEGUNDA CREACION DE TABLA
 
-        InsertarEmpleados(con);
-        InsertarActividad(con);
-        InsertarUsuarios(con);
+        //InsertarEmpleados(con);
+        //InsertarActividad(con);
+        //InsertarUsuarios(con);
 
     }
 
@@ -37,24 +37,25 @@ public class CreateTablesMysqlArriaga {
 
         PreparedStatement preparedStatement = null;
 
-/* ANTIGUO
+
         String createEmpleados = "CREATE TABLE EMPLEADOS(" +
                 "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
                 "APELLIDO1 VARCHAR(255)," +
                 "APELLIDO2 VARCHAR(255)," +
-                "FECHANAC DATE," +
-                "CARGO VARCHAR(255));";
+                "FECHANAC VARCHAR (20)," +
+                "FECHACONTRACT VARCHAR(10)," +
+                "CARGO VARCHAR(255)," +
+                "NACIONALIDAD VARCHAR(20));";
 
 
         String createActividades = "CREATE TABLE ACTIVIDADES(" +
                 "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
-                "NUMEROMAXIMOINVITADO INT NOT NULL," +
-                "NOMBRESALA VARCHAR(255)," +
+                "NUMEROMAXINVITADO INT NOT NULL," +
+                "NOMBRESALA VARCHAR(20)," +
+                "CURSOACADEMICO VARCHAR (20)" +
                 "COSTE DOUBLE," +
-                "FECHA DATE," +
-                "HORARIO DATE," +
                 "DNIEMPLEADO VARCHAR(255)," +
                 "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
         //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
@@ -66,37 +67,7 @@ public class CreateTablesMysqlArriaga {
                 "APELLIDO1 VARCHAR(255)," +
                 "APELLIDO2 VARCHAR(255)," +
                 "EDAD INT," +
-                "IDACTIVIDAD VARCHAR(255)," +
-                "FOREIGN KEY (IDACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD));";
-
-*/
-
-        String createEmpleados = "CREATE TABLE EMPLEADOS(" +
-                "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "APELLIDO1 VARCHAR(255)," +
-                "APELLIDO2 VARCHAR(255)," +
-                "FECHACONTRACT VARCHAR(10)" +
-                "FECHANAC VARCHAR(10)," +
-                "CARGO VARCHAR(255));";
-
-
-        String createActividades = "CREATE TABLE ACTIVIDADES(" +
-                "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "NUMEROMAXIMOINVITADO INT NOT NULL," +
-                "COSTE DOUBLE," +
-                "DNIEMPLEADO VARCHAR(255)," +
-                "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
-        //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
-
-
-        String createUsuarios = "CREATE TABLE USUARIOS(" +
-                "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "APELLIDO1 VARCHAR(255)," +
-                "APELLIDO2 VARCHAR(255)," +
-                "EDAD INT);";
+                "PROFESION VARCHAR(20));";
 
         String createSesion = "CREATE TABLE SESION(" +
                 "IDSESION INT PRIMARY KEY NOT NULL AUTO_INCREMENT," +
