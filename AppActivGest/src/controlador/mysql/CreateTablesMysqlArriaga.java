@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class CreateTablesMysqlArriaga {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         Connection con = Conexion();
         CrearTablas(con);//REVISAR LA SEGUNDA CREACION DE TABLA
@@ -16,7 +16,7 @@ public class CreateTablesMysqlArriaga {
         InsertarActividad(con);
         InsertarUsuarios(con);
 
-    }
+    }*/
 
     private static Connection Conexion(){
         Connection con = null;
