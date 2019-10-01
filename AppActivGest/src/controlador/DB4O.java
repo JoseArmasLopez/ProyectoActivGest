@@ -1,30 +1,29 @@
-package AppActivGest.src.controlador;
+package AppActivGest.src.modelo;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
-import modelo.Actividad;
-import modelo.Empleado;
-import modelo.Usuario;
+
+
 
 import java.sql.Date;
 
 public class DB4O {
-
-    final static String BDCentrosCivicos = "DBCentrosCivicos.yap";
+/*
+    final static String BDCentrosCivicos = "DBIbaiondo.yap";
 
     private ObjectContainer rootContainer;
 
     // Abrir la base de datos
     ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDCentrosCivicos);
 
-    modelo.Empleado e1 = new modelo.Empleado("73747576A", "Maider", "Guinea", "Martinez", new Date(1978, 11, 21),
-            new Date(2012, 10, 11), "oficial de control");
-    
+    //Empleado e1 = new Empleado("73747576A", "Maider", "Guinea", "Martinez", new Date(1978, 11, 21),
+            //new Date(2012, 10, 11), "oficial de control");
 
 
 
-    public static boolean guardarEmpleado(modelo.Empleado empl) {
+
+    public static boolean guardarEmpleado(Empleado empl) {
 
         // Abrimos conexión
         ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDCentrosCivicos);
@@ -283,5 +282,7 @@ public class DB4O {
 
         return u;
     }
+    */
+
 
 }

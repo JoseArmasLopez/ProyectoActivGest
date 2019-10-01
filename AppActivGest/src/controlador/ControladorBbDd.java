@@ -29,7 +29,9 @@ public class ControladorBbDd {
                 }
 
                 break;
-            case "iparralde":
+
+            case "ibaiondo":
+
                 break;
 
             case "arriaga":

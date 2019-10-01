@@ -1,4 +1,4 @@
-package modelo;
+package AppActivGest.src.modelo;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ public class Empleado {
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private Date fechanac;
-    private Date fechacontract;
+    private String fechanac;
+    private String fechacontract;
     private String cargo;
 
     private ArrayList<Actividad>actividadArrayList;
@@ -18,7 +18,7 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombre, String apellido1, String apellido2, Date fechanac, Date fechacontract, String cargo) {
+    public Empleado(String dni, String nombre, String apellido1, String apellido2, String fechanac, String fechacontract, String cargo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -26,6 +26,7 @@ public class Empleado {
         this.fechanac = fechanac;
         this.fechacontract = fechacontract;
         this.cargo = cargo;
+
     }
 
     public String getDni() {
@@ -60,19 +61,19 @@ public class Empleado {
         this.apellido2 = apellido2;
     }
 
-    public Date getFechanac() {
+    public String getFechanac() {
         return fechanac;
     }
 
-    public void setFechanac(Date fechanac) {
+    public void setFechanac(String fechanac) {
         this.fechanac = fechanac;
     }
 
-    public Date getFechacontract() {
+    public String getFechacontract() {
         return fechacontract;
     }
 
-    public void setFechacontract(Date fechacontract) {
+    public void setFechacontract(String fechacontract) {
         this.fechacontract = fechacontract;
     }
 
@@ -84,11 +85,5 @@ public class Empleado {
         this.cargo = cargo;
     }
 
-    public ArrayList<Actividad> getActividadArrayList() {
-        return actividadArrayList;
-    }
 
-    public void setActividadArrayList(ArrayList<Actividad> actividadArrayList) {
-        this.actividadArrayList = actividadArrayList;
-    }
 }
