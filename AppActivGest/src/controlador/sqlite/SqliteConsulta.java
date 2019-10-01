@@ -19,11 +19,13 @@ public class SqliteConsulta {
     private ArrayList<Usuario> usuarios;
     private Statement stmt = null;
 
+
     // Seccion constructor
     public SqliteConsulta(Connection connection) {
         this.connection = connection;
     }
 
+/*
     // seccion funciones --------------------------->>>
 
     // funcion que devuelve todas las acctividades existentes
@@ -55,10 +57,10 @@ public class SqliteConsulta {
 
                 System.out.println(empleado.getDni());
 
-                Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
-                actividad.setEmpleado(empleado);
+                //Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
+                //actividad.setEmpleado(empleado);
 
-                this.actividades.add(actividad);
+                //this.actividades.add(actividad);
 
             }
 
@@ -139,9 +141,9 @@ public class SqliteConsulta {
                 Timestamp fechacontractact = rs.getTimestamp("fechacontract");
                 String cargo = rs.getString("cargo");
 
-                Empleado empleado = new Empleado(dni,name,apellido1,apellido2,edad,fechacontractact,cargo);
+                //Empleado empleado = new Empleado(dni,name,apellido1,apellido2,edad,fechacontractact,cargo);
 
-                this.empleados.add(empleado);
+                //this.empleados.add(empleado);
 
             }
 
@@ -285,8 +287,8 @@ public class SqliteConsulta {
             datos[2]=act.getNumeromaxinvitado();
             datos[3]=act.getNombresala();
             datos[4]=act.getCoste();
-            datos[5]=act.getFecha();
-            datos[6]=act.getFecha();
+            //datos[5]=act.getFecha();
+            //datos[6]=act.getFecha();
             datos[7]=act.getEmpleado().getDni();
 
             //añado el modelo a la tabla
@@ -404,7 +406,7 @@ public class SqliteConsulta {
         f.add(boton);
 
         f.setVisible(true);
-    }
+    }*/
 
 
 }
