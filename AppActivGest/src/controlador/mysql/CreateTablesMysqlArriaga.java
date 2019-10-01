@@ -37,7 +37,7 @@ public class CreateTablesMysqlArriaga {
 
         PreparedStatement preparedStatement = null;
 
-
+/* ANTIGUO
         String createEmpleados = "CREATE TABLE EMPLEADOS(" +
                 "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
@@ -57,8 +57,9 @@ public class CreateTablesMysqlArriaga {
                 "HORARIO DATE," +
                 "DNIEMPLEADO VARCHAR(255)," +
                 "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
-
         //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
+
+
         String createUsuarios = "CREATE TABLE USUARIOS(" +
                 "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
@@ -67,6 +68,47 @@ public class CreateTablesMysqlArriaga {
                 "EDAD INT," +
                 "IDACTIVIDAD VARCHAR(255)," +
                 "FOREIGN KEY (IDACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD));";
+
+*/
+
+        String createEmpleados = "CREATE TABLE EMPLEADOS(" +
+                "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "APELLIDO1 VARCHAR(255)," +
+                "APELLIDO2 VARCHAR(255)," +
+                "FECHANAC VARCHAR(10)," +
+                "CARGO VARCHAR(255));";
+
+
+        String createActividades = "CREATE TABLE ACTIVIDADES(" +
+                "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "NUMEROMAXIMOINVITADO INT NOT NULL," +
+                "COSTE DOUBLE," +
+                "DNIEMPLEADO VARCHAR(255)," +
+                "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
+        //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
+
+
+        String createUsuarios = "CREATE TABLE USUARIOS(" +
+                "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "APELLIDO1 VARCHAR(255)," +
+                "APELLIDO2 VARCHAR(255)," +
+                "EDAD INT);";
+
+        String createSesion = "CREATE TABLE SESION(" +
+                "IDSESION INT PRIMARY KEY NOT NULL AUTO_INCREMENT," +
+                "HORA VARCHAR(5)," +
+                "DIASEMANA VARCHAR(255)," +
+                "NUMACTIVIDAD VARCHAR(255)," +
+                "DNIUSUARIO VARCHAR(9)," +
+                "FOREIGN KEY (NUMACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD)," +
+                "FOREIGN KEY (DNIUSUARIO) REFERENCES  USUARIOS(DNI));";
+
+        //NOTAS:
+        //DOS TIPOS DE FECHA LAS DE DÍAS TENDRÁN ÉSTE FORMATO: 25-04-2019 (10 DÍGITOS)
+        //Y LAS DE HORAS TENDRÁN ÉSTE OTRO: 13:45 (5 DÍGITOS)
 
 
 
@@ -101,6 +143,17 @@ public class CreateTablesMysqlArriaga {
 
         }catch (Exception e) {
             System.err.println("No se han podido crear la tabla usuarios de Arriaga.\n"+e.getMessage());
+        }
+
+        try{
+            preparedStatement = con.prepareStatement(createSesion);
+            preparedStatement.executeUpdate();
+
+
+            System.out.println("Tabla sesión creada correctamente.");
+
+        }catch (Exception e) {
+            System.err.println("No se han podido crear la tabla sesión de Arriaga.\n"+e.getMessage());
         }
 
 
