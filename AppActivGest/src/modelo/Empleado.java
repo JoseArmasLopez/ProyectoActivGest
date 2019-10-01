@@ -10,17 +10,18 @@ public class Empleado {
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private Timestamp fechanac;
-    private Timestamp fechacontract;
+    private String fechanac;
+    private String fechacontract;
     private String cargo;
+    private String nacionalidad;
 
     private ArrayList<Actividad>actividadArrayList;
 
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombre, String apellido1, String apellido2, Timestamp fechanac, Timestamp fechacontract,
-                    String cargo) {
+    public Empleado(String dni, String nombre, String apellido1, String apellido2, String fechanac, String fechacontract,
+                    String cargo, String nacionalidad) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -28,6 +29,7 @@ public class Empleado {
         this.fechanac = fechanac;
         this.fechacontract = fechacontract;
         this.cargo = cargo;
+        this.nacionalidad = nacionalidad;
     }
 
     public String getDni() {
@@ -62,19 +64,19 @@ public class Empleado {
         this.apellido2 = apellido2;
     }
 
-    public Timestamp getFechanac() {
+    public String getFechanac() {
         return fechanac;
     }
 
-    public void setFechanac(Timestamp fechanac) {
+    public void setFechanac(String fechanac) {
         this.fechanac = fechanac;
     }
 
-    public Timestamp getFechacontract() {
+    public String getFechacontract() {
         return fechacontract;
     }
 
-    public void setFechacontract(Timestamp fechacontract) {
+    public void setFechacontract(String fechacontract) {
         this.fechacontract = fechacontract;
     }
 
@@ -84,6 +86,14 @@ public class Empleado {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
     public ArrayList<Actividad> getActividadArrayList() {
