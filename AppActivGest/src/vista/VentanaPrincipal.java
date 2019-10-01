@@ -37,6 +37,9 @@ public class VentanaPrincipal {
                 System.out.println(opcionElegida);
                 if(opcionElegida != null){
                     cbd = new ControladorBbDd(opcionElegida.toLowerCase());
+
+
+
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
