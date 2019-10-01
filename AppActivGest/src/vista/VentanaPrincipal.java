@@ -39,6 +39,10 @@ public class VentanaPrincipal {
                 if(opcionElegida != null){
                     cbd = new ControladorBbDd(opcionElegida.toLowerCase());
 
+                    //***** Yo aqui cargaria otra ventana de menú de Hegoalde donde se elegiria la
+                    //opcion de elegir en ver actividades, usuarios etc...
+
+
                     SqliteConsulta sqliteConsulta = new SqliteConsulta(cbd.getConexion());
 
                     sqliteConsulta.actividadesHegoaldeSqlite();
