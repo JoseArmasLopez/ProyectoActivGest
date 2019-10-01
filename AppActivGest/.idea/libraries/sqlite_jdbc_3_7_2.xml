@@ -2,6 +2,7 @@
   <library name="sqlite-jdbc-3.7.2">
     <CLASSES>
       <root url="file://$USER_HOME$/Downloads/sqlite-jdbc-3.7.2.jar" />
+      <root url="jar://$USER_HOME$/Downloads/db4o-8.0.276.16149-java/db4o-8.0/lib/db4o-8.0.276.16149-all-java5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

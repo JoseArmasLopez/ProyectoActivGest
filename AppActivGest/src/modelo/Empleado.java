@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Empleado {
@@ -9,8 +10,8 @@ public class Empleado {
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private Date fechanac;
-    private Date fechacontract;
+    private Timestamp fechanac;
+    private Timestamp fechacontract;
     private String cargo;
 
     private ArrayList<Actividad>actividadArrayList;
@@ -18,7 +19,8 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombre, String apellido1, String apellido2, Date fechanac, Date fechacontract, String cargo) {
+    public Empleado(String dni, String nombre, String apellido1, String apellido2, Timestamp fechanac, Timestamp fechacontract,
+                    String cargo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -60,19 +62,19 @@ public class Empleado {
         this.apellido2 = apellido2;
     }
 
-    public Date getFechanac() {
+    public Timestamp getFechanac() {
         return fechanac;
     }
 
-    public void setFechanac(Date fechanac) {
+    public void setFechanac(Timestamp fechanac) {
         this.fechanac = fechanac;
     }
 
-    public Date getFechacontract() {
+    public Timestamp getFechacontract() {
         return fechacontract;
     }
 
-    public void setFechacontract(Date fechacontract) {
+    public void setFechacontract(Timestamp fechacontract) {
         this.fechacontract = fechacontract;
     }
 

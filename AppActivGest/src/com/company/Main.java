@@ -18,7 +18,21 @@ public class Main {
 
         conexionBd = controladorBbDd.getConexion();
 
-        MetadatoBd metadatoBd = new MetadatoBd(conexionBd);
+        //MetadatoBd metadatoBd = new MetadatoBd(conexionBd);
+
+        SqliteConsulta sqliteConsulta = new SqliteConsulta(conexionBd);
+
+        sqliteConsulta.actividadesHegoaldeSqlite();
+
+        sqliteConsulta.usuariosHegoaldeSqlite();
+
+        sqliteConsulta.empleadosHegoaldeSqlite();
+
+        sqliteConsulta.tablaMostrarActividades(sqliteConsulta.getActividades());
+
+        sqliteConsulta.tablaMostrarUsuarios(sqliteConsulta.getUsuarios());
+
+        sqliteConsulta.tablaMostrarEmpleados(sqliteConsulta.getEmpleados());
 
 
 

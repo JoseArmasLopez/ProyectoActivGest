@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
     private String dni;
@@ -7,6 +9,8 @@ public class Usuario {
     private String apellido1;
     private String apellido2;
     private int edad;
+
+    private ArrayList<Actividad> actividads;
 
     public Usuario() {
     }
@@ -57,5 +61,13 @@ public class Usuario {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public ArrayList<Actividad> getActividads() {
+        return actividads;
+    }
+
+    public void setActividads(ArrayList<Actividad> actividads) {
+        this.actividads = actividads;
     }
 }
