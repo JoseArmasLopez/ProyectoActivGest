@@ -13,9 +13,9 @@ public class CreateTablesSqliteHegoalde {
 
         Connection c = conectorBd();
 
-        crearTablas(c);
+        //crearTablas(c);
 
-        //insertarEmpleados(c);
+        insertarEmpleados(c);
 
         //insertarActividades(c);
 
@@ -63,9 +63,8 @@ public class CreateTablesSqliteHegoalde {
                 "COSTE DOUBLE," +
                 "DNIEMPLEADO VARCHAR(255)," +
                 "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
+
         //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
-
-
         String createUsuarios = "CREATE TABLE USUARIOS(" +
                 "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
