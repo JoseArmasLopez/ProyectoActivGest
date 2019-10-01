@@ -13,13 +13,13 @@ public class CreateTablesSqliteHegoalde {
 
         Connection c = conectorBd();
 
-        crearTablas(c);
+        //crearTablas(c);
 
         insertarEmpleados(c);
 
-        insertarActividades(c);
+        //insertarActividades(c);
 
-        insertarUsuarios(c);
+        //insertarUsuarios(c);
 
 
     }
@@ -46,41 +46,44 @@ public class CreateTablesSqliteHegoalde {
 
     private static void crearTablas(Connection conexion) {
 
-        String createActividades = "Create table actividades("
-                + "numactividad text primary key not null,"
-                + "nombre text not null,"
-                + "numeromaximoinvitado int not null,"
-                + "nombresala text,"
-                + "coste double,"
-                + "fecha DATETIME DEFAULT CURRENT_TIMESTAMP,"
-                + "horario DATETIME DEFAULT CURRENT_TIMESTAMP,"
-                + "dniempleado text,"
-                + "dniusuario text,"
-                + "FOREIGN KEY (dniempleado) REFERENCES empleados(dni),"
-                + "FOREIGN KEY (dniusuario) REFERENCES usuarios(dni)"
-                + ")";
-        
-
-        String createEmpleados = "Create table empleados("
-                + "dni text primary key not null,"
-                + "nombre text not null,"
-                + "apellido1 text,"
-                + "apellido2 text,"
-                + "fechanac DATETIME DEFAULT CURRENT_TIMESTAMP,"
-                + "fechacontract DATETIME DEFAULT CURRENT_TIMESTAMP,"
-                + "cargo texto"
-                + ")";
+        String createEmpleados = "CREATE TABLE EMPLEADOS(" +
+                "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "APELLIDO1 VARCHAR(255)," +
+                "APELLIDO2 VARCHAR(255)," +
+                "FECHACONTRACT VARCHAR(10)," +
+                "FECHANAC VARCHAR(10)," +
+                "CARGO VARCHAR(255));";
 
 
-        String createUsuarios = "Create table usuarios("
-                + "dni text primary key not null,"
-                + "nombre text not null,"
-                + "apellido1 text,"
-                + "apellido2 text,"
-                + "edad int,"
-                + "idactividad text," +
-                "  FOREIGN KEY (idactividad) references actividades(numactividad)"
-                + ")";
+        String createActividades = "CREATE TABLE ACTIVIDADES(" +
+                "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "NUMEROMAXIMOINVITADO INT NOT NULL," +
+                "COSTE DOUBLE," +
+                "DNIEMPLEADO VARCHAR(255)," +
+                "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
+
+        //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
+        String createUsuarios = "CREATE TABLE USUARIOS(" +
+                "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
+                "NOMBRE VARCHAR(255) NOT NULL," +
+                "APELLIDO1 VARCHAR(255)," +
+                "APELLIDO2 VARCHAR(255)," +
+                "EDAD INT);";
+
+        String createSesion = "CREATE TABLE SESION(" +
+                "IDSESION INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "HORA VARCHAR(5)," +
+                "DIASEMANA VARCHAR(255)," +
+                "NUMACTIVIDAD VARCHAR(255)," +
+                "DNIUSUARIO VARCHAR(9)," +
+                "FOREIGN KEY (NUMACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD)," +
+                "FOREIGN KEY (DNIUSUARIO) REFERENCES  USUARIOS(DNI));";
+
+        //NOTAS:
+        //DOS TIPOS DE FECHA LAS DE DÍAS TENDRÁN ÉSTE FORMATO: 25-04-2019 (10 DÍGITOS)
+        //Y LAS DE HORAS TENDRÁN ÉSTE OTRO: 13:45 (5 DÍGITOS)
         try {
             PreparedStatement pst;
             try {
@@ -122,6 +125,20 @@ public class CreateTablesSqliteHegoalde {
                 System.out.println("*** Tabla usuarios creada correctamente ***");
             } catch (Exception e) {
                 System.out.println("*** Tabla usuarios creada INCORRECTAMENTE ***");
+                System.out.println(e.getMessage());
+            }
+
+            try {
+                System.out.println("*** Creando tabla sesion ***");
+
+                assert conexion != null;
+                pst = conexion.prepareStatement(createSesion);
+                pst.executeUpdate();
+                pst.close();
+
+                System.out.println("*** Tabla sesion creada correctamente ***");
+            } catch (Exception e) {
+                System.out.println("*** Tabla sesion creada INCORRECTAMENTE ***");
                 System.out.println(e.getMessage());
             }
 

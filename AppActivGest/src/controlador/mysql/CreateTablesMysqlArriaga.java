@@ -76,6 +76,7 @@ public class CreateTablesMysqlArriaga {
                 "NOMBRE VARCHAR(255) NOT NULL," +
                 "APELLIDO1 VARCHAR(255)," +
                 "APELLIDO2 VARCHAR(255)," +
+                "FECHACONTRACT VARCHAR(10)" +
                 "FECHANAC VARCHAR(10)," +
                 "CARGO VARCHAR(255));";
 

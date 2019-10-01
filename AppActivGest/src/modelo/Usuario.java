@@ -9,6 +9,7 @@ public class Usuario {
     private String apellido1;
     private String apellido2;
     private int edad;
+    private String profesion;
 
     private ArrayList<Actividad> actividads;
 
@@ -61,6 +62,14 @@ public class Usuario {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
     }
 
     public ArrayList<Actividad> getActividads() {
