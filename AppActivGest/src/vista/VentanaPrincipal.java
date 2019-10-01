@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorBbDd;
+import controlador.sqlite.SqliteConsulta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,19 @@ public class VentanaPrincipal {
                 System.out.println(opcionElegida);
                 if(opcionElegida != null){
                     cbd = new ControladorBbDd(opcionElegida.toLowerCase());
+
+                    //***** Yo aqui cargaria otra ventana de menú de Hegoalde donde se elegiria la
+                    //opcion de elegir en ver actividades, usuarios etc...
+
+
+                    SqliteConsulta sqliteConsulta = new SqliteConsulta(cbd.getConexion());
+
+                    sqliteConsulta.actividadesHegoaldeSqlite();
+
+                    sqliteConsulta.tablaMostrarActividades(sqliteConsulta.getActividades());
+
+
+
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }

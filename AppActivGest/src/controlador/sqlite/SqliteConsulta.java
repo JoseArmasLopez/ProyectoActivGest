@@ -25,7 +25,7 @@ public class SqliteConsulta {
         this.connection = connection;
     }
 
-/*
+
     // seccion funciones --------------------------->>>
 
     // funcion que devuelve todas las acctividades existentes
@@ -38,7 +38,7 @@ public class SqliteConsulta {
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT numactividad, nombre,numeromaximoinvitado," +
-                    "nombresala, coste, fecha, horario, dniempleado FROM actividades");
+                    "nombresala,cursoacademico,coste FROM actividades");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -47,20 +47,15 @@ public class SqliteConsulta {
                 String name = rs.getString("nombre");
                 int numeromaxinvit = rs.getInt("numeromaximoinvitado");
                 String nombresal = rs.getString("nombresala");
+                String cursoAcademic = rs.getString("cursoacademico");
                 double coste = rs.getDouble("coste");
-                Date fech = rs.getDate("fecha");
-                String hor = rs.getString("horario");
-                String dni = rs.getString("dniempleado");
 
-                Empleado empleado = new Empleado();
-                empleado.setDni(dni);
 
-                System.out.println(empleado.getDni());
 
-                //Actividad actividad = new Actividad(id, name, numeromaxinvit, nombresal, coste, fech, hor);
-                //actividad.setEmpleado(empleado);
+                Actividad actividad = new Actividad(id,name,numeromaxinvit,nombresal,cursoAcademic,coste);
 
-                //this.actividades.add(actividad);
+
+                this.actividades.add(actividad);
 
             }
 
@@ -205,23 +200,20 @@ public class SqliteConsulta {
         try {
 
             String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
-                    + " nombresala,coste,fecha,horario,dniempleado,dniusuario ) VALUES(?,?,?,?,?,?,?,?,?)";
+                    + " nombresala,cursoacademico,coste) VALUES(?,?,?,?,?,?)";
 
             java.sql.Statement statement = this.connection.createStatement();
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
 
             ps.setString(1, nuevaActividad.getNumactividad());
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
+            ps.setString(7, nuevaActividad.getCurosAcademico());
             ps.setDouble(5,nuevaActividad.getCoste());
-            ps.setTimestamp(6, (Timestamp) nuevaActividad.getFecha());
-            ps.setString(7, nuevaActividad.getHorario());
 
 
             ps.execute();
@@ -241,7 +233,6 @@ public class SqliteConsulta {
 
     //funcion para dar de alta un nuevo usuario
     public void altaNuevoUsuario(Usuario nuevoUsuario){
-
 
 
     }
@@ -271,25 +262,23 @@ public class SqliteConsulta {
         modelo.addColumn("NOMBRE");
         modelo.addColumn("MAXIMO");
         modelo.addColumn("SALA");
+        modelo.addColumn("CURSO ACADEMICO");
         modelo.addColumn("COSTE");
-        modelo.addColumn("FECHA");
-        modelo.addColumn("HORARIO");
-        modelo.addColumn("EMPLEADO");
+
+
 
         for (Actividad act:acti
         ) {
 
-            Object [] datos=new Object[8];//Crea un vector
+            Object [] datos=new Object[6];//Crea un vector
 
             //para almacenar los valores del ResultSet
             datos[0]=act.getNumactividad();
             datos[1]=act.getNombre();
             datos[2]=act.getNumeromaxinvitado();
             datos[3]=act.getNombresala();
-            datos[4]=act.getCoste();
-            //datos[5]=act.getFecha();
-            //datos[6]=act.getFecha();
-            datos[7]=act.getEmpleado().getDni();
+            datos[4]=act.getCurosAcademico();
+            datos[5]=act.getCoste();
 
             //añado el modelo a la tabla
             modelo.addRow(datos);
@@ -406,7 +395,7 @@ public class SqliteConsulta {
         f.add(boton);
 
         f.setVisible(true);
-    }*/
+    }
 
 
 }

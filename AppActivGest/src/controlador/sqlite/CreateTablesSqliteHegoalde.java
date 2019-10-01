@@ -9,20 +9,20 @@ import java.util.Locale;
 
 public class CreateTablesSqliteHegoalde {
 
-    /*public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException {
 
         Connection c = conectorBd();
 
-        crearTablas(c);
+        //crearTablas(c);
 
-        insertarEmpleados(c);
+        //insertarEmpleados(c);
 
         insertarActividades(c);
 
-        insertarUsuarios(c);
+        //insertarUsuarios(c);
 
 
-    }*/
+    }
 
     private static Connection conectorBd() {
 
@@ -171,7 +171,7 @@ public class CreateTablesSqliteHegoalde {
             ps.setInt(3, 10);
             ps.setString(4, "Sala padel");
             ps.setString(5, "2018/2019");
-            ps.setDouble(5, 20);
+            ps.setDouble(6, 20);
 
 
             ps.execute();
