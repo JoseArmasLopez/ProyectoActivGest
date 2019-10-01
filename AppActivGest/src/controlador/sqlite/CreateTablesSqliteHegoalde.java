@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public class CreateTablesSqliteHegoalde {
 
-    public static void main(String[] args) throws SQLException {
+    /*public static void main(String[] args) throws SQLException {
 
         Connection c = conectorBd();
 
@@ -22,7 +22,7 @@ public class CreateTablesSqliteHegoalde {
         insertarUsuarios(c);
 
 
-    }
+    }*/
 
     private static  Connection conectorBd() {
 
