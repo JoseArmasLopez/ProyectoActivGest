@@ -14,6 +14,9 @@ public class VentanaCentroCivico {
     private JLabel direJlabel;
     private JLabel telfJlabel;
     private JLabel munipJlabel;
+    private JButton atrasButton;
+
+    private VentanaTablesAcUsEm tablesAcUsEm;
 
     public VentanaCentroCivico(String centroCivico) {
 
@@ -49,25 +52,31 @@ public class VentanaCentroCivico {
         empleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                tablesAcUsEm = new VentanaTablesAcUsEm("Empleados", centroCivico);
             }
         });
         usersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                tablesAcUsEm = new VentanaTablesAcUsEm("Usuarios", centroCivico);
             }
         });
         activButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                tablesAcUsEm = new VentanaTablesAcUsEm("Actividades", centroCivico);
             }
         });
         metadatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
+            }
+        });
+        atrasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                frame.dispose();
             }
         });
     }
