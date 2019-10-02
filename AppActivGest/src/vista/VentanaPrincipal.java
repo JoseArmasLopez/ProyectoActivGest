@@ -1,7 +1,5 @@
 package vista;
 
-import controlador.ControladorBbDd;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +9,7 @@ public class VentanaPrincipal {
     private JPanel ventanaPrincipalPanel;
     private JLabel appNameLabel;
     private JLabel groupNameLabel;
-    private ControladorBbDd cbd;
+    private VentanaCentroCivico vcc;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ActivGest - Inicio");
@@ -36,7 +34,7 @@ public class VentanaPrincipal {
                 String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
                 System.out.println(opcionElegida);
                 if(opcionElegida != null){
-                    cbd = new ControladorBbDd(opcionElegida.toLowerCase());
+                    vcc = new VentanaCentroCivico(opcionElegida);
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
