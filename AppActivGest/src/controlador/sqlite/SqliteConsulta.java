@@ -2,6 +2,7 @@ package controlador.sqlite;
 
 import modelo.Actividad;
 import modelo.Empleado;
+import modelo.Sesion;
 import modelo.Usuario;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class SqliteConsulta {
     private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
     private ArrayList<Empleado> empleados;
     private ArrayList<Usuario> usuarios;
+    private ArrayList<Sesion> sesionesUsuario;
     private Statement stmt = null;
 
 
@@ -25,10 +27,23 @@ public class SqliteConsulta {
         this.connection = connection;
     }
 
+    // Seccion getters
+    public ArrayList<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
 
     // seccion funciones --------------------------->>>
 
-    // funcion que devuelve todas las acctividades existentes
+    // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
 
         try {
@@ -71,7 +86,45 @@ public class SqliteConsulta {
 
     }
 
-    // funcion que da valor al atributo usuarios con los usuarios de una actividad concreta
+    // funcion que da valor al atributo sesionesUsuario (sesiones de un usuario)
+    public void sesionesHegoaldeSqliteDeUnUsuario(Usuario usuario){
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT  hora, diasemana from " +
+                    "sesiones where dniusuario =  "+ usuario.getDni());
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                String hora = rs.getString("hora");
+                String dia = rs.getString("diasemana");
+
+                Sesion sesion = new Sesion(hora, dia);
+
+
+                this.usuarios.add(usuario);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Operación realizada con éxito");
+
+
+    }
+
+    // funcion que da valor al atributo usuarios con lo que se obtiene todos los usuarios
     public void usuariosHegoaldeSqlite() {
 
         this.usuarios = new ArrayList<Usuario>();
@@ -82,7 +135,7 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2, edad FROM usuarios");
+            ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2,edad, profesion FROM usuarios");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -92,8 +145,9 @@ public class SqliteConsulta {
                 String apellido1 = rs.getString("apellido1");
                 String apellido2 = rs.getString("apellido2");
                 int edad = rs.getInt("edad");
+                String profesion = rs.getString("profesion");
 
-                Usuario usuario = new Usuario(dni, name, apellido1, apellido2, edad);
+                Usuario usuario = new Usuario(dni, name, apellido1, apellido2, edad, profesion);
 
                 this.usuarios.add(usuario);
 
@@ -111,7 +165,7 @@ public class SqliteConsulta {
 
     }
 
-    // funcion que da valor al atributo usuarios con los usuarios de una actividad concreta
+    // funcion que da valor al atributo empleados con lo que se obtiene todos los empleados
     public void empleadosHegoaldeSqlite() {
 
         this.empleados = new ArrayList<Empleado>();
@@ -123,7 +177,7 @@ public class SqliteConsulta {
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT dni, nombre, apellido1, apellido2, fechanac,fechacontract" +
-                    ", cargo FROM empleados");
+                    ", nacionalidad, cargo FROM empleados");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -132,13 +186,14 @@ public class SqliteConsulta {
                 String name = rs.getString("nombre");
                 String apellido1 = rs.getString("apellido1");
                 String apellido2 = rs.getString("apellido2");
-                Timestamp edad = rs.getTimestamp("fechanac");
-                Timestamp fechacontractact = rs.getTimestamp("fechacontract");
+                String edad = rs.getString("fechanac");
+                String fechacontractact = rs.getString("fechacontract");
+                String nacionalidad = rs.getString("nacionalidad");
                 String cargo = rs.getString("cargo");
 
-                //Empleado empleado = new Empleado(dni,name,apellido1,apellido2,edad,fechacontractact,cargo);
+                Empleado empleado = new Empleado(dni,name,apellido1,apellido2,edad,fechacontractact,nacionalidad,cargo);
 
-                //this.empleados.add(empleado);
+                this.empleados.add(empleado);
 
             }
 
@@ -154,6 +209,45 @@ public class SqliteConsulta {
 
     }
 
+    // funcion para consultar las actividades de un empleado
+    public void actividadesDeUnEmpleado(Empleado empleado){
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT  nombre from " +
+                    "actividades where dniempleado =  "+ empleado.getDni());
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                String name = rs.getString("nombre");
+
+                Actividad actividad = new Actividad();
+                actividad.setNombre(name);
+                actividad.setEmpleado(empleado);
+
+
+                this.actividades.add(actividad);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Operación realizada con éxito");
+
+
+    }
+
     // funcion para de alta un empleado
     public void altaNuevoEmpleado(Empleado nuevoEmpleado){
 
@@ -163,13 +257,14 @@ public class SqliteConsulta {
 
             PreparedStatement ps = this.connection.prepareStatement(query);
 
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-            ps.setString(1, nuevoEmpleado.getDni());
-            ps.setString(2, nuevoEmpleado.getNombre());
-            ps.setString(3, nuevoEmpleado.getApellido1());
-            ps.setString(4, nuevoEmpleado.getApellido2());
-            ps.setString(7, nuevoEmpleado.getCargo());
+            ps.setString(1,nuevoEmpleado.getDni());
+            ps.setString(2,nuevoEmpleado.getNombre());
+            ps.setString(3,nuevoEmpleado.getApellido1());
+            ps.setString(4,nuevoEmpleado.getApellido2());
+            ps.setString(5, nuevoEmpleado.getFechacontract());
+            ps.setString(6,nuevoEmpleado.getFechanac());
+            ps.setString(7,nuevoEmpleado.getNacionalidad());
+            ps.setString(8, nuevoEmpleado.getCargo());
 
             int row = ps.executeUpdate();
 
@@ -237,18 +332,6 @@ public class SqliteConsulta {
 
     }
 
-    // Seccion getters
-    public ArrayList<Actividad> getActividades() {
-        return actividades;
-    }
-
-    public ArrayList<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
 
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrarActividades(ArrayList<Actividad> acti){
@@ -299,7 +382,7 @@ public class SqliteConsulta {
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrarUsuarios(ArrayList<Usuario> usuarios){
+    public  void tablaActividadesDeUnUsuario(ArrayList<Usuario> usuarios){
 
         DefaultTableModel modelo = new DefaultTableModel();
         JTable tabla = new JTable(modelo);
@@ -311,6 +394,7 @@ public class SqliteConsulta {
         modelo.addColumn("APELLIDO1");
         modelo.addColumn("APELLIDO2");
         modelo.addColumn("EDAD");
+        modelo.addColumn("PROFESION");
 
 
         for (Usuario us:usuarios
@@ -324,6 +408,7 @@ public class SqliteConsulta {
             datos[2]=us.getApellido1();
             datos[3]=us.getApellido2();
             datos[4]=us.getEdad();
+            datos[5]=us.getProfesion();
 
 
             //añado el modelo a la tabla
