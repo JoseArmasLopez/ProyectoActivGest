@@ -16,12 +16,13 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String dni, String nombre, String apellido1, String apellido2, int edad) {
+    public Usuario(String dni, String nombre, String apellido1, String apellido2, int edad, String profesion) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.edad = edad;
+        this.profesion = profesion;
     }
 
     public String getDni() {

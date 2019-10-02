@@ -60,7 +60,7 @@ public class MysqlConsultas {
 
      */
 
-
+    /*
     public ArrayList<Usuario> leerUsuariosArriaga(){
 
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -96,5 +96,5 @@ public class MysqlConsultas {
 
 
         return usuarios;
-    }
+    }*/
 }
