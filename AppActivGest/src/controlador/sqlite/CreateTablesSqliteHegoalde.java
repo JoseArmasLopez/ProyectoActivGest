@@ -13,13 +13,13 @@ public class CreateTablesSqliteHegoalde {
 
         Connection c = conectorBd();
 
-        //crearTablas(c);
+        crearTablas(c);
 
-        //insertarEmpleados(c);
+        insertarEmpleados(c);
 
         insertarActividades(c);
 
-        //insertarUsuarios(c);
+        insertarUsuarios(c);
 
 
     }
@@ -53,6 +53,7 @@ public class CreateTablesSqliteHegoalde {
                 "APELLIDO2 VARCHAR(255)," +
                 "FECHACONTRACT VARCHAR(10)," +
                 "FECHANAC VARCHAR(10)," +
+                "NACIONALIDAD VARCHAR(20)," +
                 "CARGO VARCHAR(255));";
 
 
@@ -223,7 +224,7 @@ public class CreateTablesSqliteHegoalde {
 
         try {
 
-            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = con.prepareStatement(query);
 
@@ -233,7 +234,8 @@ public class CreateTablesSqliteHegoalde {
             ps.setString(4, "Pérez ");
             ps.setString(5, "01/10/2019");
             ps.setString(6, "04/02/1980");
-            ps.setString(7, "Conserje");
+            ps.setString(7,"Española");
+            ps.setString(8, "Conserje");
 
             int row = ps.executeUpdate();
 
