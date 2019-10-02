@@ -13,13 +13,13 @@ public class CreateTablesSqliteHegoalde {
 
         Connection c = conectorBd();
 
-        //crearTablas(c);
+        crearTablas(c);
 
-        //insertarEmpleados(c);
+        insertarEmpleados(c);
 
         insertarActividades(c);
 
-        //insertarUsuarios(c);
+        insertarUsuarios(c);
 
 
     }
@@ -224,7 +224,7 @@ public class CreateTablesSqliteHegoalde {
 
         try {
 
-            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = con.prepareStatement(query);
 

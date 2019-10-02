@@ -329,9 +329,34 @@ public class SqliteConsulta {
     //funcion para dar de alta un nuevo usuario
     public void altaNuevoUsuario(Usuario nuevoUsuario){
 
+        try {
+
+            String query = "INSERT INTO usuarios VALUES(?,?,?,?,?,?)";
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.setString(1, "44686144L");
+            ps.setString(2, "Jose");
+            ps.setString(3, "Armas");
+            ps.setString(4, "López ");
+            ps.setInt(5, 39);
+            ps.setString(6, "conserje");
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Datos insertados  en usuarios correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error en la insercción de datos...");
+            e.printStackTrace();
+        }
+
 
     }
-
 
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrarActividades(ArrayList<Actividad> acti){
