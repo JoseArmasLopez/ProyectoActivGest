@@ -41,7 +41,7 @@ public class SqliteConsulta {
     }
 
 
-    // seccion funciones --------------------------->>>
+    // *****************   seccion funciones de consultas *********************************************
 
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
@@ -358,6 +358,110 @@ public class SqliteConsulta {
 
     }
 
+    // funcion para eliminar una actividad
+    public void eliminarActividad(String id) {
+        try {
+
+            String query = "DELETE * from actividades where numactividad = " + id;
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Actividad eliminada correctamente");
+            JOptionPane.showInputDialog("Actividad eliminada");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+    }
+
+    // funcion para eliminar un empleado
+    public void eliminarEmpleado(String id) {
+        try {
+
+            String query = "DELETE * from empleados where dniempleado = " + id;
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Empleado eliminado correctamente");
+            JOptionPane.showInputDialog("Empleado eliminado");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+    }
+
+    // funcion para eliminar un usuario
+    public void eliminarUsuario(String id) {
+        try {
+
+            String query = "DELETE * from usuarios where dniusuario = " + id;
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Usuario eliminado correctamente");
+            JOptionPane.showInputDialog("Usuario eliminado");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+    }
+
+    // ***** update table *************
+
+
+    // funcion que actualiza una actividad
+    public void actualizarActividad ( Actividad actividad){
+
+        try {
+
+            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+"nombre = "
+                    +actividad.getNombre()+"numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + "nombresala = "+
+             actividad.getNombresala() +" cursoacademico = "+actividad.getCurosAcademico() + "coste = "+actividad.getCoste()+
+                    "dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Actividad actualizada correctamente");
+            JOptionPane.showInputDialog("Actividad actualizada correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    //************* seccion funciones de tablas *************************************************
+
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrarActividades(ArrayList<Actividad> acti){
 
@@ -506,6 +610,12 @@ public class SqliteConsulta {
 
         f.setVisible(true);
     }
+
+
+
+
+
+
 
 
 }
