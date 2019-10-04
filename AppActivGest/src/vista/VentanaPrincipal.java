@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaPrincipal {
+
     private JComboBox comboCentrosCivicos;
     private JPanel ventanaPrincipalPanel;
     private JLabel appNameLabel;

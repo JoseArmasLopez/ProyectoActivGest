@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hegoalde.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hegoalde.db-journal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/MysqlConsultas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/MysqlConsultas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/CreateTablesSqliteHegoalde.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/CreateTablesSqliteHegoalde.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/mysql/MysqlConsultas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/mysql/MysqlConsultas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/CreateTablesSqliteHegoalde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/CreateTablesSqliteHegoalde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +24,10 @@
   <component name="ProjectId" id="1RKhEngtrXKLwKrsa5IXSyIKAFK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="300" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/db4o-8.0.276.16149-java/db4o-8.0/lib/db4o-8.0.276.16149-all-java5.jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/repasoejerekaitz" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -51,7 +44,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CreateTablesSqliteHegoalde">
+  <component name="RunManager" selected="Application.VentanaPrincipal">
     <configuration name="CreateTablesMysqlArriaga" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="controlador.mysql.CreateTablesMysqlArriaga" />
       <module name="AppActivGest" />
@@ -103,8 +96,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CreateTablesSqliteHegoalde" />
         <item itemvalue="Application.VentanaPrincipal" />
+        <item itemvalue="Application.CreateTablesSqliteHegoalde" />
         <item itemvalue="Application.CreateTablesMysqlArriaga" />
         <item itemvalue="Application.Main" />
       </list>

@@ -1,10 +1,14 @@
 package vista;
 
+import controlador.ControladorBbDd;
+import controlador.sqlite.SqliteConsulta;
+import modelo.TablaModelo;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaTablesAcUsEm {
+public class VentanaTablesAcUsEm extends JFrame{
     private JPanel ventanaTablesAcUsEmJpanel;
     private JTable tableAcUsEm;
     private JButton nuevaButton;
@@ -22,10 +26,31 @@ public class VentanaTablesAcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        if ( tipo.equalsIgnoreCase("hegoalde") && cc.equalsIgnoreCase("actividades")){
+
+            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+            controladorBbDd.getConexion();
+
+            SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
+
+            sqliteConsulta.actividadesHegoaldeSqlite();
+
+            TablaModelo modelo = new TablaModelo(sqliteConsulta.getActividades());
+
+            tableAcUsEm.setModel(modelo);
+
+            frame.getContentPane().add(tableAcUsEm);
+
+
+        }
+
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, "---", cc);
+
+
             }
         });
         atrasButton.addActionListener(new ActionListener() {
