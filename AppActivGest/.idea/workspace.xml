@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/modelo/TablaModelo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +29,8 @@
   <component name="ProjectId" id="1RKhEngtrXKLwKrsa5IXSyIKAFK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="300" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/repasoejerekaitz" />
     <property name="project.structure.last.edited" value="Libraries" />

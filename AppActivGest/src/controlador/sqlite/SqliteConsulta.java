@@ -1,9 +1,6 @@
 package controlador.sqlite;
 
-import modelo.Actividad;
-import modelo.Empleado;
-import modelo.Sesion;
-import modelo.Usuario;
+import modelo.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -462,51 +459,23 @@ public class SqliteConsulta {
     //************* seccion funciones de tablas *************************************************
 
     // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrarActividades(ArrayList<Actividad> acti){
-
-        DefaultTableModel modelo = new DefaultTableModel();
-        JTable tabla = new JTable(modelo);
-
-        //creo 3 columnas con sus etiquetas
-        //estas son las columnas del JTable
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("MAXIMO");
-        modelo.addColumn("SALA");
-        modelo.addColumn("CURSO ACADEMICO");
-        modelo.addColumn("COSTE");
+    public  void tablaMostrarActividades(ArrayList<Actividad> acti, JTable tabla){
 
 
 
-        for (Actividad act:acti
-        ) {
-
-            Object [] datos=new Object[6];//Crea un vector
-
-            //para almacenar los valores del ResultSet
-            datos[0]=act.getNumactividad();
-            datos[1]=act.getNombre();
-            datos[2]=act.getNumeromaxinvitado();
-            datos[3]=act.getNombresala();
-            datos[4]=act.getCurosAcademico();
-            datos[5]=act.getCoste();
-
-            //añado el modelo a la tabla
-            modelo.addRow(datos);
-
-            System.out.print("hola"+act.getNombre().toString());
-        }
 
 
 
-        JFrame f = new JFrame();
-        f.setBounds(10, 10, 300, 200);
-        f.getContentPane().add(new JScrollPane(tabla));
-        f.setLocationRelativeTo(null);
 
-        f.setTitle("ACTIVIDADES HEGOALDE");
 
-        f.setVisible(true);
+
+
+
+
+
+
+
+
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos
