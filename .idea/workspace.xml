@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7b6a9ac8-c745-45c3-b877-ba1fec3c11e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppActivGest/src/controlador/sqlite/SqliteConsulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppActivGest/src/controlador/sqlite/SqliteConsulta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppActivGest/src/vista/VentanaCRUD_AcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppActivGest/src/vista/VentanaCRUD_AcUsEm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppActivGest/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppActivGest/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +32,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="74" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/db4o-8.0.276.16149-java/db4o-8.0/lib/db4o-8.0.276.16149-all-java5.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />

@@ -46,7 +46,7 @@ public class SqliteConsulta {
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
 
-        /*try {
+        try {
 
             System.out.println("Base de datos abierta con éxito");
 
@@ -82,7 +82,7 @@ public class SqliteConsulta {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        System.out.println("Operación realizada con éxito");
 
     }
 
@@ -127,7 +127,7 @@ public class SqliteConsulta {
     // funcion que da valor al atributo usuarios con lo que se obtiene todos los usuarios
     public void usuariosHegoaldeSqlite() {
 
-        /*this.usuarios = new ArrayList<Usuario>();
+        this.usuarios = new ArrayList<Usuario>();
 
         try {
 
@@ -161,14 +161,14 @@ public class SqliteConsulta {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        System.out.println("Operación realizada con éxito");
 
     }
 
     // funcion que da valor al atributo empleados con lo que se obtiene todos los empleados
     public void empleadosHegoaldeSqlite() {
 
-        /*this.empleados = new ArrayList<Empleado>();
+        this.empleados = new ArrayList<Empleado>();
 
         try {
 
@@ -205,7 +205,7 @@ public class SqliteConsulta {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        System.out.println("Operación realizada con éxito");
 
     }
 
@@ -251,7 +251,7 @@ public class SqliteConsulta {
     // funcion para de alta un empleado
     public void altaNuevoEmpleado(Empleado nuevoEmpleado){
 
-        /*try {
+        try {
 
             String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
 
@@ -283,7 +283,7 @@ public class SqliteConsulta {
 
             e.printStackTrace();
 
-        }*/
+        }
 
 
 
@@ -292,7 +292,7 @@ public class SqliteConsulta {
 
     // funcion para dar de alta una actividad
     public void altaNuevaActividad(Actividad nuevaActividad){
-        /*try {
+        try {
 
             String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
                     + " nombresala,cursoacademico,coste) VALUES(?,?,?,?,?,?)";
@@ -321,7 +321,7 @@ public class SqliteConsulta {
 
             System.out.println("Error en la insercción de datos...");
             e.printStackTrace();
-        }*/
+        }
 
 
     }
@@ -429,7 +429,6 @@ public class SqliteConsulta {
 
     // ***** update table *************
 
-
     // funcion que actualiza una actividad
     public void actualizarActividad ( Actividad actividad){
 
@@ -465,7 +464,7 @@ public class SqliteConsulta {
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaMostrarActividades(ArrayList<Actividad> acti){
 
-        /*DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel();
         JTable tabla = new JTable(modelo);
 
         //creo 3 columnas con sus etiquetas
@@ -498,7 +497,7 @@ public class SqliteConsulta {
             System.out.print("hola"+act.getNombre().toString());
         }
 
-        //datos=null;//limpia los datos de el vector de la memoria
+
 
         JFrame f = new JFrame();
         f.setBounds(10, 10, 300, 200);
@@ -507,7 +506,7 @@ public class SqliteConsulta {
 
         f.setTitle("ACTIVIDADES HEGOALDE");
 
-        f.setVisible(true);*/
+        f.setVisible(true);
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos

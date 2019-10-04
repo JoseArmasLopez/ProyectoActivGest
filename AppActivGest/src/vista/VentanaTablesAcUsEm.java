@@ -22,10 +22,15 @@ public class VentanaTablesAcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+
+
+
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, "---", cc);
+
+
             }
         });
         atrasButton.addActionListener(new ActionListener() {

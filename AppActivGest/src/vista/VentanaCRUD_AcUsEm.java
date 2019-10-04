@@ -36,7 +36,7 @@ public class VentanaCRUD_AcUsEm {
         frame.setVisible(true);
 
         switch (tipo.toLowerCase()){
-            case "empleados":
+            case "actividades":
                 jLabel1.setText("Nº Actividad");
                 jLabel2.setText("Nombre");
                 jLabel3.setText("Usuarios máximos");
@@ -52,7 +52,7 @@ public class VentanaCRUD_AcUsEm {
                 jLabel5.setText("Edad");
                 jLabel6.setText("Profesión");
                 break;
-            case "actividades":
+            case "empleados": // ¿faltaría nacionalidad y segundo apellido ?
                 jLabel1.setText("DNI empleado");
                 jLabel2.setText("Nombre");
                 jLabel3.setText("Apellido 1");
