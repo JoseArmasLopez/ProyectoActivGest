@@ -38,17 +38,12 @@ public class VentanaTablesAcUsEm extends JFrame{
 
             TablaModelo modelo = new TablaModelo(sqliteConsulta.getActividades());
 
-            tableAcUsEm = new JTable();
-
             tableAcUsEm.setModel(modelo);
+
+            frame.getContentPane().add(tableAcUsEm);
 
 
         }
-
-
-
-
-
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
