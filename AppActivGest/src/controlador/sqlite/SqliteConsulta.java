@@ -431,10 +431,10 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+"nombre = "
-                    +actividad.getNombre()+"numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + "nombresala = "+
-             actividad.getNombresala() +" cursoacademico = "+actividad.getCurosAcademico() + "coste = "+actividad.getCoste()+
-                    "dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+",nombre = "
+                    +actividad.getNombre()+",numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + ",nombresala = "+
+             actividad.getNombresala() +",cursoacademico = "+actividad.getCurosAcademico() + ",coste = "+actividad.getCoste()+
+                    ",dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
@@ -444,6 +444,66 @@ public class SqliteConsulta {
 
             System.out.println("Actividad actualizada correctamente");
             JOptionPane.showInputDialog("Actividad actualizada correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    // funcion que actualiza un usuario
+    public void actualizarUsuario ( Usuario usuario){
+
+        try {
+
+            String query = "UPDATE usuarios set dni = "+ usuario.getDni()+",nombre = "
+                    +usuario.getNombre()+",apellido1 = "+ usuario.getApellido1() + ",apellido2 = "+
+                    usuario.getApellido2() +",edad = "+usuario.getEdad() + ",profesion = "+usuario.getProfesion()+
+                    "where dni = "+usuario.getDni();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Usuario actualizado correctamente");
+            JOptionPane.showInputDialog("Usuario actualizado correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    // funcion que actualiza un empleado
+    public void actualizarEmpleado ( Empleado empleado){
+
+        try {
+
+            String query = "UPDATE empleados set dni = "+ empleado.getDni()+",nombre = "
+                    +empleado.getNombre()+",apellido1 = "+ empleado.getApellido1() + ",apellido2 = "+
+                    empleado.getApellido2() +" ,fechacontract = "+empleado.getFechacontract() + ",fechanac = "+empleado.getFechanac()+
+                    ",nacionalidad = " + empleado.getNacionalidad()+" ,cargo = "+empleado.getCargo() +" where dni = " + empleado.getDni();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Empleado actualizado correctamente");
+            JOptionPane.showInputDialog("Empleado actualizado correctamente");
 
 
         } catch (SQLException e) {
