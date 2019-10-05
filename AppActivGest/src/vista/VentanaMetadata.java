@@ -1,8 +1,14 @@
 package vista;
 
+import controlador.ControladorBbDd;
+import controlador.sqlite.MetadatoBd;
+import controlador.sqlite.SqliteConsulta;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class VentanaMetadata {
     private JTextField textFieldNombre;
@@ -28,6 +34,27 @@ public class VentanaMetadata {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+        Connection connection = controladorBbDd.getConexion();
+
+        MetadatoBd metadatoBd = new MetadatoBd(connection);
+
+        try{
+
+            textFieldNombre.setText(metadatoBd.getMetadatos().getDatabaseProductName());
+            textFieldDriver.setText(metadatoBd.getMetadatos().getDriverName());
+            textFieldURL.setText(metadatoBd.getMetadatos().getDriverVersion());
+            textFieldUsuario.setText(metadatoBd.getMetadatos().getIdentifierQuoteString());
+
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+
+
+
 
         buttonTablas.addActionListener(new ActionListener() {
             @Override
