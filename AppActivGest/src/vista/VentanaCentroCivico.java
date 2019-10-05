@@ -17,6 +17,7 @@ public class VentanaCentroCivico {
     private JButton atrasButton;
 
     private VentanaTablesAcUsEm tablesAcUsEm;
+    private VentanaMetadata vmtd;
 
     public VentanaCentroCivico(String centroCivico) {
 
@@ -70,7 +71,19 @@ public class VentanaCentroCivico {
         metadatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                String nomBBDD = "";
+                switch (centroCivico.toLowerCase()){
+                    case "arriaga":
+                        nomBBDD = "MySQL";
+                        break;
+                    case "iparralde":
+                        nomBBDD = "DB4O";
+                        break;
+                    case "hegoalde":
+                        nomBBDD = "SQLite";
+                        break;
+                }
+                vmtd = new VentanaMetadata(nomBBDD, centroCivico);
             }
         });
         atrasButton.addActionListener(new ActionListener() {
