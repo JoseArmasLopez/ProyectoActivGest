@@ -52,7 +52,7 @@ public class VentanaCRUD_AcUsEm {
                 jLabel5.setText("Edad");
                 jLabel6.setText("Profesión");
                 break;
-            case "actividades":
+            case "empleados":
                 jLabel1.setText("DNI empleado");
                 jLabel2.setText("Nombre");
                 jLabel3.setText("Apellido 1");
