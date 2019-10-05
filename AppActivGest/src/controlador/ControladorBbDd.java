@@ -3,6 +3,7 @@ package controlador;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class ControladorBbDd {
 
@@ -29,7 +30,23 @@ public class ControladorBbDd {
 
                 break;
             case "Ibaiondo":
+
+                String url = "jdbc:postgresql://localhost:5433/Ibaiondo";
+                String user = "abcde";
+                String passw = "abcde";
+                try {
+                    Class.forName("org.postgresql.Driver");
+                    this.conexion = DriverManager.getConnection(url,user,passw);
+                } catch (SQLException e) {
+                    javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+                    e.printStackTrace();
+                }
                 break;
+
+
 
             case "arriaga":
 
