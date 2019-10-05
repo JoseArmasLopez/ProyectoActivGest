@@ -26,8 +26,10 @@ public class VentanaTablesAcUsEm extends JFrame{
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
-        if (tipo.equalsIgnoreCase("actividades") && cc.equalsIgnoreCase("hegoalde")){
+
+        System.out.println(cc + tipo);
+
+        if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")){
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 

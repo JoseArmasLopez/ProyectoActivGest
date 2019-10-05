@@ -14,10 +14,9 @@ public class ControladorBbDd {
         // en caso de que el centro civico sea ....
         switch (this.centro) {
 
-            case "hegoalde":
+            case "Hegoalde":
 
                 try {
-
                     // cargo el driver para operar en sqlite y obtener conexion
                     Class.forName("org.sqlite.JDBC");
                     this.conexion = DriverManager.getConnection("jdbc:sqlite:hegoalde.db");
@@ -29,7 +28,7 @@ public class ControladorBbDd {
                 }
 
                 break;
-            case "iparralde":
+            case "Ibaiondo":
                 break;
 
             case "arriaga":

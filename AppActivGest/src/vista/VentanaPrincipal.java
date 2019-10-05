@@ -26,7 +26,7 @@ public class VentanaPrincipal {
 
     public VentanaPrincipal() {
 
-        comboCentrosCivicos.addItem("");
+        comboCentrosCivicos.addItem("Ibaiondo");
         comboCentrosCivicos.addItem("Arriaga");
         comboCentrosCivicos.addItem("Iparralde");
         comboCentrosCivicos.addItem("Hegoalde");
