@@ -12,6 +12,7 @@ public class VentanaPrincipal {
     private VentanaCentroCivico vcc;
 
     public static void main(String[] args) {
+
         JFrame frame = new JFrame("ActivGest - Inicio");
         frame.setContentPane(new VentanaPrincipal().ventanaPrincipalPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +20,7 @@ public class VentanaPrincipal {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     public VentanaPrincipal() {

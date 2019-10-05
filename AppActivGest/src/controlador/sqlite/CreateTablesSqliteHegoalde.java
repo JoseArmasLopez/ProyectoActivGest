@@ -9,22 +9,22 @@ import java.util.Locale;
 
 public class CreateTablesSqliteHegoalde {
 
-    /*public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException {
 
         Connection c = conectorBd();
 
-        //crearTablas(c);
+        crearTablas(c);
 
         insertarEmpleados(c);
 
-        //insertarActividades(c);
+        insertarActividades(c);
 
-        //insertarUsuarios(c);
+        insertarUsuarios(c);
 
 
-    }*/
+    }
 
-    private static  Connection conectorBd() {
+    private static Connection conectorBd() {
 
         String url = "jdbc:sqlite:hegoalde.db";
         Connection conexion = null;
@@ -34,11 +34,11 @@ public class CreateTablesSqliteHegoalde {
             Class.forName("org.sqlite.JDBC");
 
             conexion = DriverManager.getConnection(url);
-            if (conexion!=null) {
+            if (conexion != null) {
                 System.out.println("Conectado");
             }
-        }catch (Exception ex) {
-            System.err.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());
+        } catch (Exception ex) {
+            System.err.println("No se ha podido conectar a la base de datos\n" + ex.getMessage());
         }
 
         return conexion;
@@ -53,6 +53,7 @@ public class CreateTablesSqliteHegoalde {
                 "APELLIDO2 VARCHAR(255)," +
                 "FECHACONTRACT VARCHAR(10)," +
                 "FECHANAC VARCHAR(10)," +
+                "NACIONALIDAD VARCHAR(20)," +
                 "CARGO VARCHAR(255));";
 
 
@@ -60,6 +61,8 @@ public class CreateTablesSqliteHegoalde {
                 "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
                 "NOMBRE VARCHAR(255) NOT NULL," +
                 "NUMEROMAXIMOINVITADO INT NOT NULL," +
+                "NOMBRESALA VARCHAR(20)," +
+                "CURSOACADEMICO VARCHAR (20)," +
                 "COSTE DOUBLE," +
                 "DNIEMPLEADO VARCHAR(255)," +
                 "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
@@ -70,7 +73,8 @@ public class CreateTablesSqliteHegoalde {
                 "NOMBRE VARCHAR(255) NOT NULL," +
                 "APELLIDO1 VARCHAR(255)," +
                 "APELLIDO2 VARCHAR(255)," +
-                "EDAD INT);";
+                "EDAD INT," +
+                "PROFESION VARCHAR (20));";
 
         String createSesion = "CREATE TABLE SESION(" +
                 "IDSESION INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -145,38 +149,31 @@ public class CreateTablesSqliteHegoalde {
             System.out.println("*** PROCESO DE CREACIÓN DE TABLAS FINALIZADO ****");
 
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void insertarActividades(Connection con){
+    private static void insertarActividades(Connection con) {
 
         try {
 
             String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
-                    + " nombresala,coste,fecha,horario,dniempleado,dniusuario ) VALUES(?,?,?,?,?,?,?,?,?)";
+                    + "nombresala,cursoacademico,coste) VALUES(?,?,?,?,?,?)";
 
             java.sql.Statement statement = con.createStatement();
 
             PreparedStatement ps;
             ps = con.prepareStatement(query);
 
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
 
             ps.setString(1, "1");
             ps.setString(2, "Padel");
             ps.setInt(3, 10);
             ps.setString(4, "Sala padel");
-            ps.setString(5, "10 ");
-            ps.setTimestamp(6, timestamp);
-            ps.setString(7, "08:00 - 09:00");
-            ps.setString(8, "44686144L");
-            ps.setString(9, "Oscar");
+            ps.setString(5, "2018/2019");
+            ps.setDouble(6, 20);
+
 
             ps.execute();
             ps.close();
@@ -191,10 +188,9 @@ public class CreateTablesSqliteHegoalde {
         }
 
 
-
     }
 
-    private static void insertarUsuarios(Connection con){
+    private static void insertarUsuarios(Connection con) {
 
         try {
 
@@ -207,8 +203,8 @@ public class CreateTablesSqliteHegoalde {
             ps.setString(2, "Jose");
             ps.setString(3, "Armas");
             ps.setString(4, "López ");
-            ps.setInt(5,39);
-            ps.setString(6, "1");
+            ps.setInt(5, 39);
+            ps.setString(6, "conserje");
 
             ps.execute();
             ps.close();
@@ -224,32 +220,27 @@ public class CreateTablesSqliteHegoalde {
 
     }
 
-    private static void insertarEmpleados(Connection con){
+    private static void insertarEmpleados(Connection con) {
 
         try {
 
-            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
-
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = con.prepareStatement(query);
-
-            System.out.println(ps);
-
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
 
             ps.setString(1, "1");
             ps.setString(2, "Ander");
             ps.setString(3, "Pérez");
             ps.setString(4, "Pérez ");
-            ps.setTimestamp(5, timestamp);
-            ps.setTimestamp(6, timestamp);
-            ps.setString(7, "Conserje");
+            ps.setString(5, "01/10/2019");
+            ps.setString(6, "04/02/1980");
+            ps.setString(7,"Española");
+            ps.setString(8, "Conserje");
 
             int row = ps.executeUpdate();
 
             // rows affected
-            System.out.println(row); //1
+            //System.out.println(row); //1
 
             ps.close();
 
@@ -258,17 +249,16 @@ public class CreateTablesSqliteHegoalde {
 
         } catch (SQLException e) {
 
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());            e.printStackTrace();
-        }catch (Exception e){
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
 
             e.printStackTrace();
 
         }
 
 
-
     }
-
 
 
 }
