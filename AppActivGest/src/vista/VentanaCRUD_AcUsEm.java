@@ -3,6 +3,8 @@ package vista;
 import controlador.ControladorBbDd;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
+import modelo.Empleado;
+import modelo.Usuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +42,11 @@ public class VentanaCRUD_AcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        // variables de control de objetos
         Actividad actividad;
+        Empleado empleado;
+        Usuario usario;
+
 
         switch (tipo.toLowerCase()) {
             case "actividades":
@@ -75,33 +81,103 @@ public class VentanaCRUD_AcUsEm {
                 ventanaSesiones = new VentanaSesiones("---", cc);
             }
         });
+
         eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                if (textField1.getText().equalsIgnoreCase("")) {
+                switch (tipo){
 
-                    JOptionPane.showMessageDialog(null,"Error, introduzca el campo id");
+                    case("Actividades"):
 
-                    vaciarTextFields();
+                        if (textField1.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                            vaciarTextFields();
 
 
-                }else{
+                        } else {
 
 
-                    // creo conexion bd
-                    ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
-                    //obtengo el driver de la Bd
-                    Connection conexion = controladorBbDd.getConexion();
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
 
-                    // procedo a hacer la consulta
-                    SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
-                    sqliteConsulta.eliminarActividad(textField1.getText());
+                            sqliteConsulta.eliminarActividad(textField1.getText());
 
-                    vaciarTextFields();
+                            vaciarTextFields();
+                        }
+
+
+                        break;
+                    case("Usuarios"):
+
+                        if (textField1.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                            vaciarTextFields();
+
+
+                        } else {
+
+
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
+
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+                            sqliteConsulta.eliminarUsuario(textField1.getText());
+
+                            vaciarTextFields();
+                        }
+
+
+                        break;
+
+                    case("Empleados"):
+
+                        if (textField1.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                            vaciarTextFields();
+
+
+                        } else {
+
+
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
+
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+                            sqliteConsulta.eliminarEmpleado(textField1.getText());
+
+                            vaciarTextFields();
+                        }
+
+                        break;
+
                 }
+
+
+
+
 
 
             }
@@ -112,42 +188,122 @@ public class VentanaCRUD_AcUsEm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
+                System.out.println(tipo);
+
+                switch (tipo) {
+                    case "Actividades":
+
+                        if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                            vaciarTextFields();
 
 
-                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
-                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
-                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
-
-                    JOptionPane.showMessageDialog(null,"Error, introduzca todos los campos");
-
-                    vaciarTextFields();
+                        } else {
 
 
-                }else{
+                            // creo una nueva actividad
+                            Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
+                                    , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
+
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+                            sqliteConsulta.altaNuevaActividad(nuevaActividad);
+
+                            vaciarTextFields();
+                        }
+                        break;
+
+                    case "Usuarios":
+
+                        if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                            vaciarTextFields();
 
 
-                    // creo una nueva actividad
-                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
-                            , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+                        } else {
 
-                    // creo conexion bd
-                    ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
-                    //obtengo el driver de la Bd
-                    Connection conexion = controladorBbDd.getConexion();
+                            // creo una nueva actividad
+                            Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
+                                    , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
 
-                    // procedo a hacer la consulta
-                    SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
-                    sqliteConsulta.altaNuevaActividad(nuevaActividad);
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
 
-                    vaciarTextFields();
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+                            sqliteConsulta.altaNuevoUsuario(nuevoUsuario);
+
+                            vaciarTextFields();
+                        }
+                        break;
+                    case "Empleados":
+
+                        if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                            JOptionPane.showMessageDialog(null,"Error, introduzca todos los campos");
+
+                            vaciarTextFields();
+
+
+                        }else{
+
+
+                            // creo una nueva actividad
+                            Empleado nuevoEmpleado = new Empleado();
+                            nuevoEmpleado.setDni(textField1.getText());
+                            nuevoEmpleado.setNombre(textField2.getText());
+                            nuevoEmpleado.setApellido1(textField3.getText());
+                            nuevoEmpleado.setFechanac(textField4.getText());
+                            nuevoEmpleado.setFechacontract(textField5.getText());
+                            nuevoEmpleado.setCargo(textField6.getText());
+
+
+                            // creo conexion bd
+                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+                            //obtengo el driver de la Bd
+                            Connection conexion = controladorBbDd.getConexion();
+
+                            // procedo a hacer la consulta
+                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+                            sqliteConsulta.altaNuevoEmpleado(nuevoEmpleado);
+
+                            vaciarTextFields();
+                        }
+
+
+                        break;
                 }
 
 
             }
 
         });
+
+
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
