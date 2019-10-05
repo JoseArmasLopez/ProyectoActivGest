@@ -10,6 +10,7 @@ public class VentanaPrincipal {
     private JPanel ventanaPrincipalPanel;
     private JLabel appNameLabel;
     private JLabel groupNameLabel;
+    private JButton intranetButton;
     private VentanaCentroCivico vcc;
 
     public static void main(String[] args) {
@@ -44,5 +45,16 @@ public class VentanaPrincipal {
 
             }
         });
+
+
+        intranetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
+
+                VentanaLogin vl = new VentanaLogin();
+
+            }
+        });
+
+        }
     }
-}
+
