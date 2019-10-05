@@ -18,7 +18,6 @@ public class SqliteConsulta {
     private ArrayList<Sesion> sesionesUsuario;
     private Statement stmt = null;
 
-
     // Seccion constructor
     public SqliteConsulta(Connection connection) {
         this.connection = connection;
@@ -304,14 +303,15 @@ public class SqliteConsulta {
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
-            ps.setString(7, nuevaActividad.getCurosAcademico());
-            ps.setDouble(5,nuevaActividad.getCoste());
+            ps.setString(5, nuevaActividad.getCurosAcademico());
+            ps.setDouble(6,nuevaActividad.getCoste());
 
 
             ps.execute();
             ps.close();
 
-            System.out.println("Datos insertados en actividades correctamente");
+            //System.out.println("Datos insertados en actividades correctamente");
+            JOptionPane.showMessageDialog(null, "Creada actividad correctamente");
 
 
         } catch (SQLException e) {
@@ -359,22 +359,25 @@ public class SqliteConsulta {
     public void eliminarActividad(String id) {
         try {
 
-            String query = "DELETE * from actividades where numactividad = " + id;
+            String query = "DELETE FROM ACTIVIDADES where numactividad = " + id;
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Actividad eliminada correctamente");
-            JOptionPane.showInputDialog("Actividad eliminada");
-
-
+            if(row==0){
+                JOptionPane.showMessageDialog(null, "No se ha eliminado ningún campo");
+            }else{
+                System.out.println("Actividad eliminada correctamente");
+                JOptionPane.showMessageDialog(null, "Actividad eliminada");
+            }
+            
         } catch (SQLException e) {
 
             System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 
