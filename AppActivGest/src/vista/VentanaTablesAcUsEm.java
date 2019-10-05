@@ -5,6 +5,7 @@ import controlador.sqlite.SqliteConsulta;
 import modelo.TablaModelo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,7 +27,7 @@ public class VentanaTablesAcUsEm extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        if ( tipo.equalsIgnoreCase("hegoalde") && cc.equalsIgnoreCase("actividades")){
+
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
@@ -43,7 +44,6 @@ public class VentanaTablesAcUsEm extends JFrame{
             frame.getContentPane().add(tableAcUsEm);
 
 
-        }
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
