@@ -26,12 +26,10 @@ public class VentanaTablesAcUsEm extends JFrame{
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-
+        
+        if (tipo.equalsIgnoreCase("actividades") && cc.equalsIgnoreCase("hegoalde")){
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-            controladorBbDd.getConexion();
 
             SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
 
@@ -42,6 +40,10 @@ public class VentanaTablesAcUsEm extends JFrame{
             tableAcUsEm.setModel(modelo);
 
             frame.getContentPane().add(tableAcUsEm);
+
+        }
+
+
 
 
 
