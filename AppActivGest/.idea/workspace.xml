@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controlador/ControladorBbDd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/ControladorBbDd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hegoalde.db" beforeDir="false" afterPath="$PROJECT_DIR$/hegoalde.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/TableModels/EmpleadosTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/TableModels/EmpleadosTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

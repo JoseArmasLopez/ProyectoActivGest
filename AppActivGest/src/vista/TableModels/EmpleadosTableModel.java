@@ -16,17 +16,21 @@ public class EmpleadosTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return columnas.length;
+        return empleados.size();
     }
 
     @Override
     public int getColumnCount() {
-        return empleados.size();
+        return columnas.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Empleado e = empleados.get(rowIndex);
+
+        System.out.println(rowIndex);
+        System.out.println(columnIndex);
+
         switch (columnIndex){
             case 0:
                 return e.getDni();
