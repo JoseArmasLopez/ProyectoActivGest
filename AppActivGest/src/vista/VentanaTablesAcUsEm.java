@@ -11,22 +11,30 @@ import vista.TableModels.EmpleadosTableModel;
 import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class VentanaTablesAcUsEm extends JFrame{
+public class VentanaTablesAcUsEm  {
+
     private JPanel ventanaTablesAcUsEmJpanel;
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
+
     private List<Actividad> actividades;    // -> ¡CARGAR DESDE BASES DE DATOS!
     private List<Usuario> usuarios;     // -> ¡CARGAR DESDE BASES DE DATOS!
     private List<Empleado> empleados;   // -> ¡CARGAR DESDE BASES DE DATOS!
 
+    private TablaModelo tablaModelo;
+
+
     public VentanaTablesAcUsEm(String tipo, String cc) {
+
+
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
@@ -60,21 +68,19 @@ public class VentanaTablesAcUsEm extends JFrame{
                 break;
         }
 
-        if ( tipo.equalsIgnoreCase("hegoalde") && cc.equalsIgnoreCase("actividades")){
+        
+        if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
+
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-            controladorBbDd.getConexion();
 
             SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
 
             sqliteConsulta.actividadesHegoaldeSqlite();
 
-            TablaModelo modelo = new TablaModelo(sqliteConsulta.getActividades());
+            tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
-            tableAcUsEm.setModel(modelo);
-
-            frame.getContentPane().add(tableAcUsEm);
+            tableAcUsEm.setModel(tablaModelo);
 
 
         }
