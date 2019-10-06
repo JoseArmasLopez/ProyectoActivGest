@@ -9,15 +9,19 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaTablesAcUsEm extends JFrame{
+public class VentanaTablesAcUsEm  {
+
     private JPanel ventanaTablesAcUsEmJpanel;
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
+    private TablaModelo tablaModelo;
 
     public VentanaTablesAcUsEm(String tipo, String cc) {
+
+
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
@@ -28,22 +32,22 @@ public class VentanaTablesAcUsEm extends JFrame{
         frame.setVisible(true);
 
 
-        if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")){
 
-            /*ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+
+        if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
+
+            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
             SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
 
             sqliteConsulta.actividadesHegoaldeSqlite();
 
-            TablaModelo modelo = new TablaModelo(sqliteConsulta.getActividades());
+            tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
-            tableAcUsEm.setModel(modelo);
+            tableAcUsEm = new JTable(tablaModelo);
 
-            frame.getContentPane().add(tableAcUsEm);*/
 
         }
-
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
