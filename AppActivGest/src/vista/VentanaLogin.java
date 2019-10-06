@@ -12,45 +12,51 @@ public class VentanaLogin {
     private JButton botonCancelar;
     private JButton botonIniciarSesion;
     private JPasswordField txtPassword;
+    private JPanel panel;
 
 
     public VentanaLogin() {
 
-            botonIniciarSesion = new JButton("");
-            botonIniciarSesion.setBorderPainted(false);
-            botonIniciarSesion.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evento) {
+        JFrame frame = new JFrame("ActivGest - " + "Intranet");
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
-                    String usuario = "administrador";
-                    String contrasena = "administrador";
 
-                    String password = new String(txtPassword.getPassword());
+        botonIniciarSesion = new JButton("");
+        botonIniciarSesion.setBorderPainted(false);
+        botonIniciarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
 
-                    if (txtUsuario.getText().equals(usuario) && password.equals(contrasena)) {
+                String usuario = "administrador";
+                String contrasena = "administrador";
 
-                        // TODO Mostrar ventana
+                String password = new String(txtPassword.getPassword());
 
-                    }else {
+                if (txtUsuario.getText().equals(usuario) && password.equals(contrasena)) {
 
-                        if(!txtUsuario.getText().equals(usuario)) {
-                            JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-                        }else if(!password.equals(contrasena)){
-                            JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                    // TODO Mostrar ventana
+
+                } else {
+
+                    if (!txtUsuario.getText().equals(usuario)) {
+                        JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else if (!password.equals(contrasena)) {
+                        JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            });
+            }
+        });
 
 
+        // TODO diseño botones (iconos)
+        // botonInicioSesion.setIcon(new ImagenIcon(getClass().getResource("../");
 
 
-            // TODO diseño botones (iconos)
-            // botonInicioSesion.setIcon(new ImagenIcon(getClass().getResource("../");
-
-
-
-
-        }
+    }
 
 
 }
