@@ -25,6 +25,7 @@ public class MetadatoBd {
             //obtengo los metadatos
             this.metadatos = this.connection.getMetaData();
 
+
             // nombre del producto
             System.out.println("Nombre de Producto: " + this.metadatos.getDatabaseProductName());
 
@@ -111,5 +112,7 @@ public class MetadatoBd {
 
     }
 
-
+    public DatabaseMetaData getMetadatos() {
+        return metadatos;
+    }
 }

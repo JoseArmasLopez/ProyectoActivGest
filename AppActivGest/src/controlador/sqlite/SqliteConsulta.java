@@ -18,7 +18,6 @@ public class SqliteConsulta {
     private ArrayList<Sesion> sesionesUsuario;
     private Statement stmt = null;
 
-
     // Seccion constructor
     public SqliteConsulta(Connection connection) {
         this.connection = connection;
@@ -304,20 +303,21 @@ public class SqliteConsulta {
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
-            ps.setString(7, nuevaActividad.getCurosAcademico());
-            ps.setDouble(5,nuevaActividad.getCoste());
+            ps.setString(5, nuevaActividad.getCurosAcademico());
+            ps.setDouble(6,nuevaActividad.getCoste());
 
 
             ps.execute();
             ps.close();
 
-            System.out.println("Datos insertados en actividades correctamente");
+            //System.out.println("Datos insertados en actividades correctamente");
+            JOptionPane.showMessageDialog(null, "Creada actividad correctamente");
 
 
         } catch (SQLException e) {
 
             System.out.println("Error en la insercción de datos...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -333,17 +333,25 @@ public class SqliteConsulta {
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.setString(1, "44686144L");
-            ps.setString(2, "Jose");
-            ps.setString(3, "Armas");
-            ps.setString(4, "López ");
-            ps.setInt(5, 39);
-            ps.setString(6, "conserje");
+            ps.setString(1, nuevoUsuario.getDni());
+            ps.setString(2, nuevoUsuario.getNombre());
+            ps.setString(3, nuevoUsuario.getApellido1());
+            ps.setString(4, nuevoUsuario.getApellido2());
+            ps.setInt(5, nuevoUsuario.getEdad());
+            ps.setString(6, nuevoUsuario.getProfesion());
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Datos insertados  en usuarios correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Usuario dado de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
@@ -359,22 +367,25 @@ public class SqliteConsulta {
     public void eliminarActividad(String id) {
         try {
 
-            String query = "DELETE * from actividades where numactividad = " + id;
+            String query = "DELETE FROM ACTIVIDADES where numactividad = " + id;
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Actividad eliminada correctamente");
-            JOptionPane.showInputDialog("Actividad eliminada");
-
+            if(row==0){
+                JOptionPane.showMessageDialog(null, "No se ha eliminado ningún campo");
+            }else{
+                System.out.println("Actividad eliminada correctamente");
+                JOptionPane.showMessageDialog(null, "Actividad eliminada");
+            }
 
         } catch (SQLException e) {
 
             System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 
@@ -382,22 +393,29 @@ public class SqliteConsulta {
     public void eliminarEmpleado(String id) {
         try {
 
-            String query = "DELETE * from empleados where dniempleado = " + id;
+            String query = "DELETE FROM empleados where dniempleado = " + id;
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Empleado eliminado correctamente");
-            JOptionPane.showInputDialog("Empleado eliminado");
+            if(r == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha eliminado ningún campo de la bd");
+
+
+            }else{
+
+                JOptionPane.showMessageDialog(null, " Empleado eliminado correctamente");
+            }
+
 
 
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
-            System.out.println("Error ...");
-            e.printStackTrace();
         }
     }
 
@@ -405,22 +423,29 @@ public class SqliteConsulta {
     public void eliminarUsuario(String id) {
         try {
 
-            String query = "DELETE * from usuarios where dniusuario = " + id;
+            String query = "DELETE  FROM usuarios where DNI = " + id;
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Usuario eliminado correctamente");
-            JOptionPane.showInputDialog("Usuario eliminado");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Eliminado Usuario correctamente");
+            }
+
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+
         }
     }
 

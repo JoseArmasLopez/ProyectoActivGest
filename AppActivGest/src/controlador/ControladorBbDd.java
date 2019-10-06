@@ -7,9 +7,12 @@ import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.SQLException;
+
 
 public class ControladorBbDd {
 
@@ -23,10 +26,9 @@ public class ControladorBbDd {
         // en caso de que el centro civico sea ....
         switch (this.centro) {
 
-            case "hegoalde":
+            case "Hegoalde":
 
                 try {
-
                     // cargo el driver para operar en sqlite y obtener conexion
                     Class.forName("org.sqlite.JDBC");
                     this.conexion = DriverManager.getConnection("jdbc:sqlite:hegoalde.db");
@@ -38,8 +40,24 @@ public class ControladorBbDd {
                 }
 
                 break;
-            case "iparralde":
+            case "Ibaiondo":
+
+                String url = "jdbc:postgresql://localhost:5433/Ibaiondo";
+                String user = "abcde";
+                String passw = "abcde";
+                try {
+                    Class.forName("org.postgresql.Driver");
+                    this.conexion = DriverManager.getConnection(url,user,passw);
+                } catch (SQLException e) {
+                    javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+                    e.printStackTrace();
+                }
                 break;
+
+
 
             case "arriaga":
 
