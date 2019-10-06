@@ -72,7 +72,7 @@ public class TablaModelo implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Actividad act = actividades.get(columnIndex);
+        Actividad act = actividades.get(rowIndex);
         String titulo = null;
 
         switch (columnIndex){
