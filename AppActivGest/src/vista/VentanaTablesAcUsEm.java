@@ -20,7 +20,7 @@ public class VentanaTablesAcUsEm  {
     private TablaModelo tablaModelo;
 
     public VentanaTablesAcUsEm(String tipo, String cc) {
-        
+
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
