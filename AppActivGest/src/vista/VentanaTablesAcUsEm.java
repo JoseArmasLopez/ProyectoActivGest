@@ -44,7 +44,7 @@ public class VentanaTablesAcUsEm  {
 
             tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
-            tableAcUsEm = new JTable(tablaModelo);
+            tableAcUsEm.setModel(tablaModelo);
 
 
         }
