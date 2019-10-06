@@ -55,13 +55,13 @@ public class VentanaTablesAcUsEm  {
                 break;
             case("Iparralde"):
 
-                cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
+
                 cargarDatosEnTabla(tipo);
 
                 break;
             case("Ibaiondo"):
 
-                cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
+                
                 cargarDatosEnTabla(tipo);
 
                 break;
