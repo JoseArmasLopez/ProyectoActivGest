@@ -31,9 +31,7 @@ public class VentanaTablesAcUsEm  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
-
-
+        
         if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
@@ -44,7 +42,7 @@ public class VentanaTablesAcUsEm  {
 
             tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
-            tableAcUsEm = new JTable(tablaModelo);
+            tableAcUsEm.setModel(tablaModelo);
 
 
         }

@@ -75,10 +75,12 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -112,11 +114,12 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         System.out.println("Operación realizada con éxito");
-
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -154,10 +157,11 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -198,10 +202,11 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -236,10 +241,12 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");
+        JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
 
     }
@@ -249,7 +256,7 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.connection.prepareStatement(query);
 
@@ -263,26 +270,24 @@ public class SqliteConsulta {
             ps.setString(8, nuevoEmpleado.getCargo());
 
             int row = ps.executeUpdate();
-
-            // rows affected
-            System.out.println(row); //1
-
             ps.close();
 
-            System.out.println("Nuevo empleado creado correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Empleado dado de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());            e.printStackTrace();
-        }catch (Exception e){
-
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
         }
-
-
-
 
     }
 
@@ -307,17 +312,26 @@ public class SqliteConsulta {
             ps.setDouble(6,nuevaActividad.getCoste());
 
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            //System.out.println("Datos insertados en actividades correctamente");
-            JOptionPane.showMessageDialog(null, "Creada actividad correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actividad dada de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
             System.out.println("Error en la insercción de datos...");
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
         }
 
 
@@ -356,6 +370,8 @@ public class SqliteConsulta {
 
         } catch (SQLException e) {
 
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
             System.out.println("Error en la insercción de datos...");
             e.printStackTrace();
         }
@@ -393,7 +409,7 @@ public class SqliteConsulta {
     public void eliminarEmpleado(String id) {
         try {
 
-            String query = "DELETE FROM empleados where dniempleado = " + id;
+            String query = "DELETE FROM empleados where dni = " + id;
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
