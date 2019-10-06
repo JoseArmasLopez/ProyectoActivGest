@@ -31,9 +31,7 @@ public class VentanaTablesAcUsEm  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
-
-
+        
         if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
