@@ -15,7 +15,7 @@ public class Actividad {
     private Empleado empleado;
     private ArrayList<Usuario> usuarioArrayList;
 
-    public Actividad() {
+    public Actividad(int numactividad, String aquagym, String numeromaxinvitado, int gimnasia, String curosAcademico, double i) {
     }
 
     public Actividad(String numactividad, String nombre, int numeromaxinvitado, String nombresala, String

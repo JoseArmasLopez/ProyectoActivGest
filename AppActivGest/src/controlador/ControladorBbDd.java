@@ -1,14 +1,25 @@
 package controlador;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.SQLException;
+
 
 public class ControladorBbDd {
 
     private Connection conexion = null;
     private String centro = "";
+    protected static ObjectContainer db4o;
+    private static Properties config;
 
     public ControladorBbDd(String centro) {
         this.centro = centro;
@@ -63,6 +74,17 @@ public class ControladorBbDd {
                 break;
             default:
         }
+    }
+
+
+    public static ObjectContainer obtenerDb4o() {
+
+        String BDIparralde = config.getProperty("db4o");
+
+        ControladorBbDd.db4o = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
+
+        return db4o;
+
     }
 
     // seccion getters
