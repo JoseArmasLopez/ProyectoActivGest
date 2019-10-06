@@ -76,7 +76,6 @@ public class ControladorBbDd {
         }
     }
 
-
     public static ObjectContainer obtenerDb4o() {
 
         String BDIparralde = config.getProperty("db4o");

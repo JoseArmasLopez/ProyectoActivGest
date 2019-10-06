@@ -12,6 +12,7 @@ import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -22,6 +23,7 @@ public class VentanaTablesAcUsEm  {
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
+    private JScrollPane scrollPane;//importante tener un scrollPane para ver bien las tablas
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
 
@@ -34,8 +36,6 @@ public class VentanaTablesAcUsEm  {
 
     public VentanaTablesAcUsEm(String tipo, String cc) {
 
-
-
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +43,7 @@ public class VentanaTablesAcUsEm  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
 
         switch (tipo){
             case "Actividades":
@@ -69,6 +70,7 @@ public class VentanaTablesAcUsEm  {
         }
 
         
+
         if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
 
 
@@ -80,7 +82,10 @@ public class VentanaTablesAcUsEm  {
 
             tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
+            // ojo!!! no se puede inicializar tableAcusem porque al hacerla desde la GUI se anularía
             tableAcUsEm.setModel(tablaModelo);
+
+
 
 
         }
