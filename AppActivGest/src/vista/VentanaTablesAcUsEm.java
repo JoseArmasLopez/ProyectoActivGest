@@ -6,6 +6,7 @@ import modelo.TablaModelo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,7 @@ public class VentanaTablesAcUsEm  {
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
+    private JScrollPane scrollPane;
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
     private TablaModelo tablaModelo;
@@ -42,6 +44,8 @@ public class VentanaTablesAcUsEm  {
 
             // ojo!!! no se puede inicializar tableAcusem porque al hacerla desde la GUI se anularía
             tableAcUsEm.setModel(tablaModelo);
+
+            
 
 
         }
