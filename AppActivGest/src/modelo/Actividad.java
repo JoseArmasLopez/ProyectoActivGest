@@ -28,6 +28,9 @@ public class Actividad {
         this.coste = coste;
     }
 
+    public Actividad() {
+    }
+
     public String getNumactividad() {
         return numactividad;
     }

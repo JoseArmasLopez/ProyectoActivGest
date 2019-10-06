@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.util.List;
 
@@ -53,20 +54,28 @@ public class TablaModelo implements TableModel {
 
     @Override
     public Class<?> getColumnClass(int i) {
-        return null;
+        return String.class;
     }
 
     @Override
     public boolean isCellEditable(int i, int i1) {
-        return i1!= 0;
+
+        if(i1 == 0){
+
+            return false;
+        }else{
+
+            return true;
+        }
+
     }
 
     @Override
-    public Object getValueAt(int i, int i1) {
-        Actividad act = actividades.get(i);
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Actividad act = actividades.get(rowIndex);
         String titulo = null;
 
-        switch (i1){
+        switch (columnIndex){
 
             case 0:
                 titulo = act.getNumactividad();
@@ -96,11 +105,11 @@ public class TablaModelo implements TableModel {
     }
 
     @Override
-    public void setValueAt(Object o, int i, int i1) {
+    public void setValueAt(Object o, int fila, int columna) {
 
-        Actividad act = actividades.get(i);
+        Actividad act = actividades.get(fila);
 
-        switch (i1){
+        switch (columna){
 
             case 0:
                 act.setNumactividad(o.toString());
