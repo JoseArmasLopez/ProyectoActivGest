@@ -16,7 +16,7 @@ public class VentanaTablesAcUsEm  {
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
-    private JScrollPane scrollPane;
+    private JScrollPane scrollPane;//importante tener un scrollPane para ver bien las tablas
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
     private TablaModelo tablaModelo;
@@ -45,7 +45,7 @@ public class VentanaTablesAcUsEm  {
             // ojo!!! no se puede inicializar tableAcusem porque al hacerla desde la GUI se anularía
             tableAcUsEm.setModel(tablaModelo);
 
-            
+
 
 
         }
