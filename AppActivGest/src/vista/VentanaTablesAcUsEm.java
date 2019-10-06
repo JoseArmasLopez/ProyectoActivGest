@@ -20,9 +20,7 @@ public class VentanaTablesAcUsEm  {
     private TablaModelo tablaModelo;
 
     public VentanaTablesAcUsEm(String tipo, String cc) {
-
-
-
+        
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +29,7 @@ public class VentanaTablesAcUsEm  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        
+
         if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
 
             ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
@@ -42,6 +40,7 @@ public class VentanaTablesAcUsEm  {
 
             tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
 
+            // ojo!!! no se puede inicializar tableAcusem porque al hacerla desde la GUI se anularía
             tableAcUsEm.setModel(tablaModelo);
 
 
