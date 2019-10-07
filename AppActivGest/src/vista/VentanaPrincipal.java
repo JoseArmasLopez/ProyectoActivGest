@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaPrincipal {
+
     private JComboBox comboCentrosCivicos;
     private JPanel ventanaPrincipalPanel;
     private JLabel appNameLabel;
     private JLabel groupNameLabel;
+    private JButton intranetButton;
     private VentanaCentroCivico vcc;
 
     public static void main(String[] args) {
@@ -25,7 +27,7 @@ public class VentanaPrincipal {
 
     public VentanaPrincipal() {
 
-        comboCentrosCivicos.addItem("");
+        comboCentrosCivicos.addItem("Ibaiondo");
         comboCentrosCivicos.addItem("Arriaga");
         comboCentrosCivicos.addItem("Iparralde");
         comboCentrosCivicos.addItem("Hegoalde");
@@ -43,5 +45,16 @@ public class VentanaPrincipal {
 
             }
         });
+
+
+        intranetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evento) {
+
+                VentanaLogin vl = new VentanaLogin();
+
+            }
+        });
+
+        }
     }
-}
+

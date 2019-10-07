@@ -1,9 +1,6 @@
 package controlador.sqlite;
 
-import modelo.Actividad;
-import modelo.Empleado;
-import modelo.Sesion;
-import modelo.Usuario;
+import modelo.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +17,6 @@ public class SqliteConsulta {
     private ArrayList<Usuario> usuarios;
     private ArrayList<Sesion> sesionesUsuario;
     private Statement stmt = null;
-
 
     // Seccion constructor
     public SqliteConsulta(Connection connection) {
@@ -41,12 +37,12 @@ public class SqliteConsulta {
     }
 
 
-    // seccion funciones --------------------------->>>
+    // *****************   seccion funciones de consultas *********************************************
 
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
 
-        /*try {
+        try {
 
             System.out.println("Base de datos abierta con éxito");
 
@@ -79,10 +75,12 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -116,18 +114,19 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         System.out.println("Operación realizada con éxito");
-
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
     // funcion que da valor al atributo usuarios con lo que se obtiene todos los usuarios
     public void usuariosHegoaldeSqlite() {
 
-        /*this.usuarios = new ArrayList<Usuario>();
+        this.usuarios = new ArrayList<Usuario>();
 
         try {
 
@@ -158,17 +157,18 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
     // funcion que da valor al atributo empleados con lo que se obtiene todos los empleados
     public void empleadosHegoaldeSqlite() {
 
-        /*this.empleados = new ArrayList<Empleado>();
+        this.empleados = new ArrayList<Empleado>();
 
         try {
 
@@ -202,10 +202,11 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");*/
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
     }
 
@@ -240,10 +241,12 @@ public class SqliteConsulta {
 
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Operación realizada con éxito");
+        JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
 
 
     }
@@ -251,9 +254,9 @@ public class SqliteConsulta {
     // funcion para de alta un empleado
     public void altaNuevoEmpleado(Empleado nuevoEmpleado){
 
-        /*try {
+        try {
 
-            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.connection.prepareStatement(query);
 
@@ -267,32 +270,30 @@ public class SqliteConsulta {
             ps.setString(8, nuevoEmpleado.getCargo());
 
             int row = ps.executeUpdate();
-
-            // rows affected
-            System.out.println(row); //1
-
             ps.close();
 
-            System.out.println("Nuevo empleado creado correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Empleado dado de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());            e.printStackTrace();
-        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
-            e.printStackTrace();
-
-        }*/
-
-
-
+        }
 
     }
 
     // funcion para dar de alta una actividad
     public void altaNuevaActividad(Actividad nuevaActividad){
-        /*try {
+        try {
 
             String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
                     + " nombresala,cursoacademico,coste) VALUES(?,?,?,?,?,?)";
@@ -307,21 +308,31 @@ public class SqliteConsulta {
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
-            ps.setString(7, nuevaActividad.getCurosAcademico());
-            ps.setDouble(5,nuevaActividad.getCoste());
+            ps.setString(5, nuevaActividad.getCurosAcademico());
+            ps.setDouble(6,nuevaActividad.getCoste());
 
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Datos insertados en actividades correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actividad dada de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
             System.out.println("Error en la insercción de datos...");
             e.printStackTrace();
-        }*/
+        }
 
 
     }
@@ -336,20 +347,30 @@ public class SqliteConsulta {
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.setString(1, "44686144L");
-            ps.setString(2, "Jose");
-            ps.setString(3, "Armas");
-            ps.setString(4, "López ");
-            ps.setInt(5, 39);
-            ps.setString(6, "conserje");
+            ps.setString(1, nuevoUsuario.getDni());
+            ps.setString(2, nuevoUsuario.getNombre());
+            ps.setString(3, nuevoUsuario.getApellido1());
+            ps.setString(4, nuevoUsuario.getApellido2());
+            ps.setInt(5, nuevoUsuario.getEdad());
+            ps.setString(6, nuevoUsuario.getProfesion());
 
-            ps.execute();
+            int row = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Datos insertados  en usuarios correctamente");
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Usuario dado de alta correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
 
             System.out.println("Error en la insercción de datos...");
             e.printStackTrace();
@@ -358,52 +379,204 @@ public class SqliteConsulta {
 
     }
 
-    // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrarActividades(ArrayList<Actividad> acti){
+    // funcion para eliminar una actividad
+    public void eliminarActividad(String id) {
+        try {
 
-        /*DefaultTableModel modelo = new DefaultTableModel();
-        JTable tabla = new JTable(modelo);
+            String query = "DELETE FROM ACTIVIDADES where numactividad = " + id;
 
-        //creo 3 columnas con sus etiquetas
-        //estas son las columnas del JTable
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("MAXIMO");
-        modelo.addColumn("SALA");
-        modelo.addColumn("CURSO ACADEMICO");
-        modelo.addColumn("COSTE");
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            int row = ps.executeUpdate();
+            ps.close();
+
+            if(row==0){
+                JOptionPane.showMessageDialog(null, "No se ha eliminado ningún campo");
+            }else{
+                System.out.println("Actividad eliminada correctamente");
+                JOptionPane.showMessageDialog(null, "Actividad eliminada");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
+
+    // funcion para eliminar un empleado
+    public void eliminarEmpleado(String id) {
+        try {
+
+            String query = "DELETE FROM empleados where dni = " + id;
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            int r = ps.executeUpdate();
+            ps.close();
+
+            if(r == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha eliminado ningún campo de la bd");
+
+
+            }else{
+
+                JOptionPane.showMessageDialog(null, " Empleado eliminado correctamente");
+            }
 
 
 
-        for (Actividad act:acti
-        ) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
-            Object [] datos=new Object[6];//Crea un vector
+        }
+    }
 
-            //para almacenar los valores del ResultSet
-            datos[0]=act.getNumactividad();
-            datos[1]=act.getNombre();
-            datos[2]=act.getNumeromaxinvitado();
-            datos[3]=act.getNombresala();
-            datos[4]=act.getCurosAcademico();
-            datos[5]=act.getCoste();
+    // funcion para eliminar un usuario
+    public void eliminarUsuario(String id) {
+        try {
 
-            //añado el modelo a la tabla
-            modelo.addRow(datos);
+            String query = "DELETE  FROM usuarios where DNI = " + id;
 
-            System.out.print("hola"+act.getNombre().toString());
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            int r = ps.executeUpdate();
+            ps.close();
+
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Eliminado Usuario correctamente");
+            }
+
+
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+
+        }
+    }
+
+    // ***** update table *************
+
+    // funcion que actualiza una actividad
+    public void actualizarActividad ( Actividad actividad){
+
+        try {
+
+            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+",nombre = "
+                    +actividad.getNombre()+",numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + ",nombresala = "+
+             actividad.getNombresala() +",cursoacademico = "+actividad.getCurosAcademico() + ",coste = "+actividad.getCoste()+
+                    ",dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Actividad actualizada correctamente");
+            JOptionPane.showInputDialog("Actividad actualizada correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
         }
 
-        //datos=null;//limpia los datos de el vector de la memoria
 
-        JFrame f = new JFrame();
-        f.setBounds(10, 10, 300, 200);
-        f.getContentPane().add(new JScrollPane(tabla));
-        f.setLocationRelativeTo(null);
 
-        f.setTitle("ACTIVIDADES HEGOALDE");
+    }
 
-        f.setVisible(true);*/
+    // funcion que actualiza un usuario
+    public void actualizarUsuario ( Usuario usuario){
+
+        try {
+
+            String query = "UPDATE usuarios set dni = "+ usuario.getDni()+",nombre = "
+                    +usuario.getNombre()+",apellido1 = "+ usuario.getApellido1() + ",apellido2 = "+
+                    usuario.getApellido2() +",edad = "+usuario.getEdad() + ",profesion = "+usuario.getProfesion()+
+                    "where dni = "+usuario.getDni();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Usuario actualizado correctamente");
+            JOptionPane.showInputDialog("Usuario actualizado correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    // funcion que actualiza un empleado
+    public void actualizarEmpleado ( Empleado empleado){
+
+        try {
+
+            String query = "UPDATE empleados set dni = "+ empleado.getDni()+",nombre = "
+                    +empleado.getNombre()+",apellido1 = "+ empleado.getApellido1() + ",apellido2 = "+
+                    empleado.getApellido2() +" ,fechacontract = "+empleado.getFechacontract() + ",fechanac = "+empleado.getFechanac()+
+                    ",nacionalidad = " + empleado.getNacionalidad()+" ,cargo = "+empleado.getCargo() +" where dni = " + empleado.getDni();
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.execute();
+            ps.close();
+
+            System.out.println("Empleado actualizado correctamente");
+            JOptionPane.showInputDialog("Empleado actualizado correctamente");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error ...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    //************* seccion funciones de tablas *************************************************
+
+    // funcion para mostrar en una tabla(javaswing) los datos
+    public  void tablaMostrarActividades(ArrayList<Actividad> acti, JTable tabla){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     // funcion para mostrar en una tabla(javaswing) los datos
@@ -506,6 +679,12 @@ public class SqliteConsulta {
 
         f.setVisible(true);
     }
+
+
+
+
+
+
 
 
 }
