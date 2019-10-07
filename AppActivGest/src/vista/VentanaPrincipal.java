@@ -13,20 +13,19 @@ public class VentanaPrincipal {
     private JButton intranetButton;
     private VentanaCentroCivico vcc;
 
-    public static void main(String[] args) {
+    private boolean isUser;
 
-        JFrame frame = new JFrame("ActivGest - Inicio");
-        frame.setContentPane(new VentanaPrincipal().ventanaPrincipalPanel);
+    public VentanaPrincipal() {
+
+        JFrame frame = new JFrame("ActivGest - Elegir CC");
+        frame.setContentPane(ventanaPrincipalPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-    }
-
-    public VentanaPrincipal() {
-
+        comboCentrosCivicos.addItem("");
         comboCentrosCivicos.addItem("Ibaiondo");
         comboCentrosCivicos.addItem("Arriaga");
         comboCentrosCivicos.addItem("Iparralde");
@@ -38,11 +37,10 @@ public class VentanaPrincipal {
                 String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
                 System.out.println(opcionElegida);
                 if(opcionElegida != null){
-                    vcc = new VentanaCentroCivico(opcionElegida);
+                    vcc = new VentanaCentroCivico(opcionElegida); //TODO: IMPLEMENTAR CON LOGIN USUARIO
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
-
             }
         });
 
@@ -56,5 +54,13 @@ public class VentanaPrincipal {
         });
 
         }
+
+    public boolean isUser() {
+        return isUser;
     }
+
+    public void setUser(boolean user) {
+        isUser = user;
+    }
+}
 

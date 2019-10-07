@@ -23,7 +23,7 @@ public class VentanaTablesAcUsEm  {
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
-    private JScrollPane scrollPane;//importante tener un scrollPane para ver bien las tablas
+    private JScrollPane scrollPane; //importante tener un scrollPane para ver bien las tablas
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
 
@@ -43,7 +43,6 @@ public class VentanaTablesAcUsEm  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
 
         switch (cc){
 
@@ -65,11 +64,11 @@ public class VentanaTablesAcUsEm  {
                 cargarDatosEnTabla(tipo);
 
                 break;
+
+            case "":    //para gestionar cuando se hace login como usuario
+                //TODO: Cargar actividades del centro cívico elegido
+                break;
         }
-
-
-
-
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
