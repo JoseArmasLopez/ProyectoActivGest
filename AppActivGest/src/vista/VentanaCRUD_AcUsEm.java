@@ -221,6 +221,7 @@ public class VentanaCRUD_AcUsEm {
                             sqliteConsulta.altaNuevaActividad(nuevaActividad);
 
                             vaciarTextFields();
+
                         }
                         break;
 

@@ -44,7 +44,6 @@ public class VentanaTablesAcUsEm  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
         switch (cc){
 
             case("Hegoalde"):
@@ -56,13 +55,20 @@ public class VentanaTablesAcUsEm  {
             case("Iparralde"):
 
 
-                cargarDatosEnTabla(tipo);
 
+                cargarDatosEnTabla(tipo);
                 break;
             case("Ibaiondo"):
 
                 
                 cargarDatosEnTabla(tipo);
+
+                break;
+            case("Arriaga"):
+
+
+                //codigo eric
+               //cargarDatosEnTabla(tipo);
 
                 break;
         }
