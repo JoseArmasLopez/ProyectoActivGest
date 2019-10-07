@@ -57,8 +57,6 @@ public class VentanaTablesAcUsEm  {
                 break;
             case("Iparralde"):
 
-
-
                 cargarDatosEnTabla(tipo);
                 break;
 
@@ -69,10 +67,8 @@ public class VentanaTablesAcUsEm  {
                 break;
             case("Arriaga"):
 
-
                 //codigo eric
                //cargarDatosEnTabla(tipo);
-
                 break;
         }
 

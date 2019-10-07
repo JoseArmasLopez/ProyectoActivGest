@@ -48,6 +48,12 @@ public class VentanaCentroCivico {
                 telfJlabel.setText("945 16 18 80");
                 munipJlabel.setText("Vitoria - Gasteiz");
                 break;
+            case "ibaiondo":
+                nombreCCJlabel.setText("CC. Ibaiondo");
+                direJlabel.setText("Calle Ibaiondo 10");
+                telfJlabel.setText("945 16 18 80");
+                munipJlabel.setText("Vitoria - Gasteiz");
+                break;
         }
 
         empleButton.addActionListener(new ActionListener() {

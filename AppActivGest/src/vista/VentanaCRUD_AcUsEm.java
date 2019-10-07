@@ -73,6 +73,7 @@ public class VentanaCRUD_AcUsEm {
                 jLabel5.setText("Fecha contratación");
                 jLabel6.setText("Cargo");
                 break;
+
         }
 
         sesionesButton.addActionListener(new ActionListener() {

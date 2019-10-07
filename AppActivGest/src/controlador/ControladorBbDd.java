@@ -42,7 +42,7 @@ public class ControladorBbDd {
                 break;
             case "Ibaiondo":
 
-                String url = "jdbc:postgresql://localhost:5433/Ibaiondo";
+                String url = "jdbc:postgresql://0.0.0.0:5433/Ibaiondo";
                 String user = "abcde";
                 String passw = "abcde";
                 try {
