@@ -6,6 +6,7 @@ public class Sesion {
     private String diaSemana;
     private String DNIUsuario;
     private String IDActividad;
+    private int ID;//Ésta solo es para poder gestionar de manera única las sesiones.
 
     public Sesion(String hora, String diaSemana, String DNIUsuario, String IDActividad) {
         this.hora = hora;
@@ -74,5 +75,13 @@ public class Sesion {
 
     public void setIDActividad(String IDActividad) {
         this.IDActividad = IDActividad;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
