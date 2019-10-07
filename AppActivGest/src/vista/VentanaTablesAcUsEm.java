@@ -59,7 +59,7 @@ public class VentanaTablesAcUsEm  {
                 cargarDatosEnTabla(tipo);
 
                 break;
-            case("Ibaiondo"):
+            case("Arriaga"):
 
                 
                 cargarDatosEnTabla(tipo);
