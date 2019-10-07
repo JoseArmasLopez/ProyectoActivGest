@@ -48,7 +48,7 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT numactividad, nombre,numeromaximoinvitado," +
+            ResultSet rs = stmt.executeQuery("SELECT numactividad,nombre,numeromaximoinvitado," +
                     "nombresala,cursoacademico,coste FROM actividades");
 
             // accedo a las columnas de la tabla
