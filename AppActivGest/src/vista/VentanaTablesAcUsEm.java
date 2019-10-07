@@ -12,6 +12,7 @@ import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -22,6 +23,7 @@ public class VentanaTablesAcUsEm  {
     private JTable tableAcUsEm;
     private JButton nuevaButton;
     private JButton atrasButton;
+    private JScrollPane scrollPane;//importante tener un scrollPane para ver bien las tablas
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
 
@@ -34,8 +36,6 @@ public class VentanaTablesAcUsEm  {
 
     public VentanaTablesAcUsEm(String tipo, String cc) {
 
-
-
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,46 +44,32 @@ public class VentanaTablesAcUsEm  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        switch (tipo){
-            case "Actividades":
-                if(actividades.size() > 0){
-                    cargarDatosEnTabla(tipo);
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
-                }
+
+        switch (cc){
+
+            case("Hegoalde"):
+
+                cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
+                cargarDatosEnTabla(tipo);
+
                 break;
-            case "Usuarios":
-                if(usuarios.size() > 0){
-                    cargarDatosEnTabla(tipo);
-                }else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List usuario vacío!");
-                }
+            case("Iparralde"):
+
+
+                cargarDatosEnTabla(tipo);
+
                 break;
-            case "Empleados":
-                if(empleados.size() > 0){
-                    cargarDatosEnTabla(tipo);
-                }else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List empleados vacío!");
-                }
+            case("Ibaiondo"):
+
+                
+                cargarDatosEnTabla(tipo);
+
                 break;
         }
 
-        
-        if (tipo.equalsIgnoreCase("Actividades") && cc.equalsIgnoreCase("Hegoalde")) {
 
 
-            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
 
-            SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
-
-            sqliteConsulta.actividadesHegoaldeSqlite();
-
-            tablaModelo = new TablaModelo(sqliteConsulta.getActividades());
-
-            tableAcUsEm.setModel(tablaModelo);
-
-
-        }
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
@@ -104,14 +90,44 @@ public class VentanaTablesAcUsEm  {
     public void cargarDatosEnTabla(String tipo){
         switch (tipo){
             case "Actividades":
-                tableAcUsEm.setModel(new ActividadesTableModel(actividades));
+                if(actividades.size() > 0){
+                    tableAcUsEm.setModel(new ActividadesTableModel(actividades));
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
+                }
                 break;
             case "Usuarios":
-                tableAcUsEm.setModel(new UsuariosTableModel(usuarios));
+                if(usuarios.size() > 0){
+                    tableAcUsEm.setModel(new UsuariosTableModel(usuarios));
+                }else {
+                    javax.swing.JOptionPane.showMessageDialog(null, "List usuario vacío!");
+                }
                 break;
             case "Empleados":
-                tableAcUsEm.setModel(new EmpleadosTableModel(empleados));
+                if(empleados.size() > 0){
+                    tableAcUsEm.setModel(new EmpleadosTableModel(empleados));
+                }else {
+                    javax.swing.JOptionPane.showMessageDialog(null, "List empleados vacío!");
+                }
                 break;
         }
+    }
+
+    // funcion que devuelve los datos de la bd a usuarios, actividades, empleados
+    public void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc){
+
+        ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+        SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
+
+        sqliteConsulta.actividadesHegoaldeSqlite();
+        sqliteConsulta.empleadosHegoaldeSqlite();
+        sqliteConsulta.usuariosHegoaldeSqlite();
+
+        actividades = sqliteConsulta.getActividades();
+        empleados = sqliteConsulta.getEmpleados();
+        usuarios = sqliteConsulta.getUsuarios();
+
+
+
     }
 }
