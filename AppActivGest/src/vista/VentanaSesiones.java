@@ -6,6 +6,7 @@ import vista.TableModels.SesionesTableModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VentanaSesiones {
@@ -27,7 +28,9 @@ public class VentanaSesiones {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        if (sesiones.size() > 0){
+        cargarDatosEjemplo();
+
+        if (sesiones != null){
             cargarDatosEnTabla();
         }else {
             javax.swing.JOptionPane.showMessageDialog(null, "List sesiones vacío!");
@@ -42,5 +45,13 @@ public class VentanaSesiones {
     }
     public void cargarDatosEnTabla(){
         FechaHorarioRespTable.setModel(new SesionesTableModel(sesiones));
+    }
+
+    private void cargarDatosEjemplo(){
+        sesiones = new ArrayList<>();
+        sesiones.add(new Sesion("15:30", "Lunes"));
+        sesiones.add(new Sesion("10:00", "Jueves"));
+        sesiones.add(new Sesion("18:00", "Miercoles"));
+        sesiones.add(new Sesion("9:00", "Sabado"));
     }
 }
