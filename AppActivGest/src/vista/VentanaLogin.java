@@ -15,9 +15,10 @@ public class VentanaLogin {
 
     private boolean isAdmin;
     private VentanaPrincipal vp;
+    private static JFrame frame;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ActivGest - Login");
+        frame = new JFrame("ActivGest - Login");
         frame.setContentPane(new VentanaLogin().ventanaLoginJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -46,6 +47,7 @@ public class VentanaLogin {
 
                     if (txtUsuario.getText().equals(usuario) && password.equals(contrasena)) {
                         vp = new VentanaPrincipal();
+                        frame.dispose();
 
                     } else {
 
@@ -56,8 +58,9 @@ public class VentanaLogin {
                         }
                     }
                 } else {
-                    vp.setUser(true);
                     vp = new VentanaPrincipal();
+                    vp.setUser(true);
+                    frame.dispose();
                 }
             }
         });
@@ -72,8 +75,14 @@ public class VentanaLogin {
             public void actionPerformed(ActionEvent actionEvent) {
                 String opcionElegida = (String) comboBoxUserAdmin.getSelectedItem();
                 if (opcionElegida != null) {
-                    if (opcionElegida.equals("Administrador")) ;
-                    isAdmin = true;
+                    if (opcionElegida.equals("Administrador")){
+                        txtUsuario.setEditable(true);
+                        txtPassword.setEditable(true);
+                        isAdmin = true;
+                    } else if (opcionElegida.equals("Usuario")) {
+                        txtUsuario.setEditable(false);
+                        txtPassword.setEditable(false);
+                    }
                 } else {
                     ventanaLoginJpanel.revalidate();
                 }
@@ -82,6 +91,7 @@ public class VentanaLogin {
         botonCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                System.exit(-1);
             }
         });
     }

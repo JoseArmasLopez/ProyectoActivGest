@@ -14,6 +14,7 @@ public class VentanaPrincipal {
     private VentanaCentroCivico vcc;
 
     private boolean isUser;
+    private VentanaTablesAcUsEm vta;
 
     public VentanaPrincipal() {
 
@@ -37,19 +38,14 @@ public class VentanaPrincipal {
                 String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
                 System.out.println(opcionElegida);
                 if(opcionElegida != null){
-                    vcc = new VentanaCentroCivico(opcionElegida); //TODO: IMPLEMENTAR CON LOGIN USUARIO
+                    if(!isUser){
+                        vcc = new VentanaCentroCivico(opcionElegida); //TODO: IMPLEMENTAR CON LOGIN USUARIO
+                    } else {
+                        vta = new VentanaTablesAcUsEm("Actividades", opcionElegida);
+                    }
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
-            }
-        });
-
-
-        intranetButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evento) {
-
-                VentanaLogin vl = new VentanaLogin();
-
             }
         });
 
