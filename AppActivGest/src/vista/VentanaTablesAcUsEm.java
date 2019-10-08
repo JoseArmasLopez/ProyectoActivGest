@@ -171,7 +171,6 @@ public class VentanaTablesAcUsEm {
 
     // funcion que devuelve los datos de la bd a usuarios, actividades, empleados
 
-    private void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
 
     public void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
 
