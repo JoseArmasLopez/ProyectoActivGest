@@ -1,5 +1,6 @@
 package vista;
 
+import com.db4o.Db4o;
 import controlador.ControladorBbDd;
 import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
@@ -59,6 +60,7 @@ public class VentanaTablesAcUsEm  {
             case("Iparralde"):
 
 
+                cargarUsuariosActividadesEmpleadosDB4OIparralde(cc);
                 cargarDatosEnTabla(tipo);
 
                 break;
@@ -151,6 +153,14 @@ public class VentanaTablesAcUsEm  {
         empleados = mysqlConsultas.LeerEmpleadosArriaga();
         usuarios = mysqlConsultas.LeerUsuariosArriaga();
         actividades = mysqlConsultas.LeerActividadesArriaga();
+
+    }
+
+    public void cargarUsuariosActividadesEmpleadosDB4OIparralde(String cc){
+
+    
+
+
 
     }
 }

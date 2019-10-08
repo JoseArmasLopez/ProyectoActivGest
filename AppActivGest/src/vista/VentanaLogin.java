@@ -17,6 +17,11 @@ public class VentanaLogin {
 
     public VentanaLogin() {
 
+        // Poner icono ventana
+        Image icon = new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage();
+
+        panel.setBackground(Color.cyan);
+
         JFrame frame = new JFrame("ActivGest - " + "Intranet");
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +32,6 @@ public class VentanaLogin {
 
 
         botonIniciarSesion = new JButton("");
-        botonIniciarSesion.setBorderPainted(false);
         botonIniciarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
@@ -37,6 +41,7 @@ public class VentanaLogin {
                 String password = new String(txtPassword.getPassword());
 
                 if (txtUsuario.getText().equals(usuario) && password.equals(contrasena)) {
+
 
                     // TODO Mostrar ventana
 
@@ -50,6 +55,8 @@ public class VentanaLogin {
                 }
             }
         });
+
+
 
 
         // TODO diseño botones (iconos)
