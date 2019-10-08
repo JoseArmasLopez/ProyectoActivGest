@@ -50,6 +50,7 @@ public class VentanaTablesAcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+
         cargarDatosEjemplo(tipo);
 
         switch (cc) {
@@ -65,29 +66,24 @@ public class VentanaTablesAcUsEm {
                 //Crear una función dentro de esta clase para cargar los datos desde DB4O (Sheila)
                 // -> Ver ejemplo más arriba en Hegoalde (Jose)
                 cargarDatosEnTabla(tipo);
-
                 break;
 
-            case ("Ibaiondo"):
+            case ("Arriaga"):
 
-                //Crear una función dentro de esta clase para cargar los datos desde postgreESQL (?)
-                // -> Ver ejemplo más arriba en Hegoalde (Jose)
-
-
-            case("Arriaga"):
                 CargarUsuariosActividadesEmpleadosMySQLArriaga();
 
                 cargarDatosEnTabla(tipo);
 
                 break;
-            case ("Arriaga"):
 
-                //Crear una función dentro de esta clase para cargar los datos desde mysql (Erick)
-                // -> Ver ejemplo más arriba en Hegoalde (Jose)
+            case ("Ibaiondo"):
+
+                cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
                 cargarDatosEnTabla(tipo);
-
                 break;
         }
+
+
 
         nuevaButton.addActionListener(new ActionListener() {
             @Override
@@ -140,24 +136,31 @@ public class VentanaTablesAcUsEm {
         });
     }
 
+
     private void cargarDatosEnTabla(String tipo) {
         switch (tipo) {
             case "Actividades":
                 if (actividades != null) {
+
+
                     tableAcUsEm.setModel(new ActividadesTableModel(actividades));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
                 }
                 break;
             case "Usuarios":
+
                 if (usuarios != null) {
+
                     tableAcUsEm.setModel(new UsuariosTableModel(usuarios));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List usuario vacío!");
                 }
                 break;
             case "Empleados":
+
                 if (empleados != null) {
+
                     tableAcUsEm.setModel(new EmpleadosTableModel(empleados));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List empleados vacío!");
@@ -167,7 +170,11 @@ public class VentanaTablesAcUsEm {
     }
 
     // funcion que devuelve los datos de la bd a usuarios, actividades, empleados
+
     private void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
+
+    public void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
+
 
         ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
         SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
@@ -179,6 +186,7 @@ public class VentanaTablesAcUsEm {
         actividades = sqliteConsulta.getActividades();
         empleados = sqliteConsulta.getEmpleados();
         usuarios = sqliteConsulta.getUsuarios();
+
 
 
     }
@@ -208,22 +216,23 @@ public class VentanaTablesAcUsEm {
                 empleados.add(new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española"));
                 break;
         }
+
     }
 
 
-    public void CargarUsuariosActividadesEmpleadosMySQLArriaga(){
+    public void CargarUsuariosActividadesEmpleadosMySQLArriaga() {
 
         Connection con = null;
 
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
 
-        }catch (Exception e) {
-            System.err.println("No se ha podido conectar a la base de datos Arriaga\n"+e.getMessage());
+        } catch (Exception e) {
+            System.err.println("No se ha podido conectar a la base de datos Arriaga\n" + e.getMessage());
         }
 
-        MysqlConsultas  mysqlConsultas = new MysqlConsultas(con);
+        MysqlConsultas mysqlConsultas = new MysqlConsultas(con);
         empleados = mysqlConsultas.LeerEmpleadosArriaga();
         usuarios = mysqlConsultas.LeerUsuariosArriaga();
         actividades = mysqlConsultas.LeerActividadesArriaga();

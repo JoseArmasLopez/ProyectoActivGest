@@ -36,7 +36,6 @@ public class VentanaSesiones {
             javax.swing.JOptionPane.showMessageDialog(null, "List sesiones vacío!");
         }
 
-
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

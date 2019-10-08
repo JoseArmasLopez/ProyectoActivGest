@@ -42,8 +42,8 @@ public class ControladorBbDd {
                 break;
             case "Ibaiondo":
 
-                String url = "jdbc:postgresql://localhost:5433/Ibaiondo";
-                String user = "abcde";
+                String url = "jdbc:postgresql://localhost:5432/Ibaiondo";
+                String user = "postgres";
                 String passw = "abcde";
                 try {
                     Class.forName("org.postgresql.Driver");

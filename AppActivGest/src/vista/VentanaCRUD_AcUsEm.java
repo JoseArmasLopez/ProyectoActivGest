@@ -114,6 +114,7 @@ public class VentanaCRUD_AcUsEm {
                     nomAcUsEm = empleado.getNombre() + " " + empleado.getApellido1();
                 }
                 break;
+
         }
 
         sesionesButton.addActionListener(new ActionListener() {
@@ -258,6 +259,7 @@ public class VentanaCRUD_AcUsEm {
                             sqliteConsulta.altaNuevaActividad(nuevaActividad);
 
                             vaciarTextFields();
+
                         }
                         break;
 
