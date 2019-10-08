@@ -44,6 +44,15 @@ public class VentanaCRUD_AcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+
+        // creo conexion bd
+        ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+        //obtengo el driver de la Bd
+        Connection conexion = controladorBbDd.getConexion();
+        // procedo a hacer la consulta
+        SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+
         if (o != null) {
             saveButton.setText("Modificar");
         }
@@ -142,15 +151,6 @@ public class VentanaCRUD_AcUsEm {
                         } else {
 
 
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
-
                             sqliteConsulta.eliminarActividad(textField1.getText());
 
                             vaciarTextFields();
@@ -169,15 +169,6 @@ public class VentanaCRUD_AcUsEm {
 
                         } else {
 
-
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
                             sqliteConsulta.eliminarUsuario(textField1.getText());
 
@@ -198,15 +189,6 @@ public class VentanaCRUD_AcUsEm {
 
                         } else {
 
-
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
                             sqliteConsulta.eliminarEmpleado(textField1.getText());
 
@@ -247,14 +229,6 @@ public class VentanaCRUD_AcUsEm {
                             Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
                                     , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
 
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
                             sqliteConsulta.altaNuevaActividad(nuevaActividad);
 
@@ -281,14 +255,6 @@ public class VentanaCRUD_AcUsEm {
                             Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
                                     , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
 
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
                             sqliteConsulta.altaNuevoUsuario(nuevoUsuario);
 
@@ -318,15 +284,6 @@ public class VentanaCRUD_AcUsEm {
                             nuevoEmpleado.setFechacontract(textField5.getText());
                             nuevoEmpleado.setCargo(textField6.getText());
 
-
-                            // creo conexion bd
-                            ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                            //obtengo el driver de la Bd
-                            Connection conexion = controladorBbDd.getConexion();
-
-                            // procedo a hacer la consulta
-                            SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
                             sqliteConsulta.altaNuevoEmpleado(nuevoEmpleado);
 
@@ -360,6 +317,12 @@ public class VentanaCRUD_AcUsEm {
         textField4.setText("");
         textField5.setText("");
         textField6.setText("");
+
+    }
+
+    //funcion para preparar la consulta hegoalde/ibaiondo
+    public void conexionBdPrepararConsulta(){
+
 
     }
 }
