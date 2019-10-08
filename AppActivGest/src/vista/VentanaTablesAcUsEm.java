@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorBbDd;
+import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
 import modelo.Empleado;
@@ -16,6 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import java.util.List;
 
 public class VentanaTablesAcUsEm {
@@ -62,10 +67,16 @@ public class VentanaTablesAcUsEm {
                 cargarDatosEnTabla(tipo);
 
                 break;
+
             case ("Ibaiondo"):
 
                 //Crear una función dentro de esta clase para cargar los datos desde postgreESQL (?)
                 // -> Ver ejemplo más arriba en Hegoalde (Jose)
+
+
+            case("Arriaga"):
+                CargarUsuariosActividadesEmpleadosMySQLArriaga();
+
                 cargarDatosEnTabla(tipo);
 
                 break;
@@ -197,5 +208,25 @@ public class VentanaTablesAcUsEm {
                 empleados.add(new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española"));
                 break;
         }
+    }
+
+
+    public void CargarUsuariosActividadesEmpleadosMySQLArriaga(){
+
+        Connection con = null;
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
+
+        }catch (Exception e) {
+            System.err.println("No se ha podido conectar a la base de datos Arriaga\n"+e.getMessage());
+        }
+
+        MysqlConsultas  mysqlConsultas = new MysqlConsultas(con);
+        empleados = mysqlConsultas.LeerEmpleadosArriaga();
+        usuarios = mysqlConsultas.LeerUsuariosArriaga();
+        actividades = mysqlConsultas.LeerActividadesArriaga();
+
     }
 }
