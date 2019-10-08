@@ -383,10 +383,12 @@ public class SqliteConsulta {
     public void eliminarActividad(String id) {
         try {
 
-            String query = "DELETE FROM ACTIVIDADES where numactividad = " + id;
+            String query = "DELETE FROM ACTIVIDADES where numactividad = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+
+            ps.setString(1,id);
 
             int row = ps.executeUpdate();
             ps.close();
@@ -409,10 +411,11 @@ public class SqliteConsulta {
     public void eliminarEmpleado(String id) {
         try {
 
-            String query = "DELETE FROM empleados where dni = " + id;
+            String query = "DELETE FROM empleados where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+            ps.setString(1,id);
 
             int r = ps.executeUpdate();
             ps.close();
@@ -439,10 +442,11 @@ public class SqliteConsulta {
     public void eliminarUsuario(String id) {
         try {
 
-            String query = "DELETE  FROM usuarios where DNI = " + id;
+            String query = "DELETE  FROM usuarios where DNI = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+            ps.setString(1,id);
 
             int r = ps.executeUpdate();
             ps.close();
