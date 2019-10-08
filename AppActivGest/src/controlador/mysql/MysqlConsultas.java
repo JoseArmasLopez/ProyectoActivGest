@@ -633,13 +633,14 @@ public class MysqlConsultas {
     }
 
     //NECESITAMOS ID SESION EN LA CLASE.
+
     /*
     public void EliminarSesionArriaga(Sesion sesion){
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM SESION WHERE DNI = '" + sesion. + "'";
+            String query =  "DELETE FROM SESION WHERE ID = '" + sesion.id + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -656,8 +657,10 @@ public class MysqlConsultas {
         }
 
     }
+    
+     */
 
- */
+
 
 
     //ACTUALIZAR
