@@ -1,5 +1,8 @@
 package modelo;
 
+import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -31,6 +34,30 @@ public class Empleado {
         this.cargo = cargo;
         this.nacionalidad = nacionalidad;
     }
+
+    public void guardarEmpleado(String bbdd){
+        ControladorBbDd cbd = new ControladorBbDd(bbdd);
+
+
+        switch(bbdd){
+            case "postgre":
+
+                break;
+            case "sqlite":
+
+                break;
+            case "mysql":
+
+                break;
+            case "db4o":
+                DB4O.insertarEmpleado(this);
+                break;
+        }
+
+        }
+
+
+
 
     public String getDni() {
         return dni;
