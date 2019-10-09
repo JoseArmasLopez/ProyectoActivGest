@@ -16,6 +16,7 @@ public class SqliteConsulta {
     private ArrayList<Empleado> empleados;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Sesion> sesionesUsuario;
+    private ArrayList<Sesion> sesiones;
     private Statement stmt = null;
 
     // Seccion constructor
@@ -27,17 +28,15 @@ public class SqliteConsulta {
     public ArrayList<Actividad> getActividades() {
         return actividades;
     }
-
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
-
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
 
-    // *****************   seccion funciones de consultas *********************************************
+    // *****************   seccion funciones de consultas  **********************************************
 
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
@@ -106,6 +105,43 @@ public class SqliteConsulta {
 
 
                 this.usuarios.add(usuario);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
+
+    }
+
+    // funcion que devuelve las sesiones del cc
+    public void sesionesdeHegoalde(){
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT  hora, diasemana, numactividad, dniusuario from sesiones");
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                String hora = rs.getString("hora");
+                String dia = rs.getString("diasemana");
+
+                Sesion sesion = new Sesion(hora, dia);
+
+                this.sesiones.add(sesion);
 
             }
 
