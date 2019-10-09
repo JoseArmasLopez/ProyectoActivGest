@@ -86,12 +86,7 @@ public class VentanaCRUD_AcUsEm {
 
         }
 
-        sesionesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                ventanaSesiones = new VentanaSesiones(tipo, cc);
-            }
-        });
+
 
         eliminarButton.addActionListener(new ActionListener() {
             @Override

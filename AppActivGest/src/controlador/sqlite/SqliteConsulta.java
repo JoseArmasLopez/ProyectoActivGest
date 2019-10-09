@@ -16,7 +16,7 @@ public class SqliteConsulta {
     private ArrayList<Empleado> empleados;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Sesion> sesionesUsuario;
-    private ArrayList<Sesion> sesiones;
+    private ArrayList<Sesion> sesiones = new ArrayList<Sesion>();
     private Statement stmt = null;
 
     // Seccion constructor
@@ -34,9 +34,12 @@ public class SqliteConsulta {
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
+    public ArrayList<Sesion> getSesiones() {
+        return sesiones;
+    }
 
 
-    // *****************   seccion funciones de consultas  **********************************************
+// *****************   seccion funciones de consultas  **********************************************
 
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
@@ -131,15 +134,23 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT  hora, diasemana, numactividad, dniusuario from sesiones");
+
+            System.out.println();
+            ResultSet rs = stmt.executeQuery("SELECT idsesion, hora, diasemana, numactividad,dniusuario  FROM sesion");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
 
+                Integer id = rs.getInt("idsesion");
                 String hora = rs.getString("hora");
                 String dia = rs.getString("diasemana");
+                String num = rs.getString("numactividad");
+                String dni = rs.getString("dniusuario");
 
-                Sesion sesion = new Sesion(hora, dia);
+                Sesion sesion = new Sesion();
+                sesion.setHora(hora);
+                sesion.setDiaSemana(dia);
+                sesion.setIDActividad(num);
 
                 this.sesiones.add(sesion);
 
@@ -149,10 +160,9 @@ public class SqliteConsulta {
             stmt.close();
 
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+
         }
         System.out.println("Operación realizada con éxito");
         //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");

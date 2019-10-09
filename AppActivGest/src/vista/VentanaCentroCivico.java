@@ -15,9 +15,12 @@ public class VentanaCentroCivico {
     private JLabel telfJlabel;
     private JLabel munipJlabel;
     private JButton atrasButton;
+    private JButton sesionesButton;
 
     private VentanaTablesAcUsEm tablesAcUsEm;
     private VentanaMetadata vmtd;
+
+    private VentanaSesiones ventanaSesiones;
 
     public VentanaCentroCivico(String centroCivico) {
 
@@ -96,6 +99,12 @@ public class VentanaCentroCivico {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 frame.dispose();
+            }
+        });
+        sesionesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ventanaSesiones = new VentanaSesiones(centroCivico);
             }
         });
     }
