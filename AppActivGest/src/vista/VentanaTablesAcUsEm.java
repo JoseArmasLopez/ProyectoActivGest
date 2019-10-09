@@ -88,7 +88,7 @@ public class VentanaTablesAcUsEm {
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc, null);
+                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc);
 
 
             }
@@ -101,39 +101,9 @@ public class VentanaTablesAcUsEm {
         });
 
 
-        tableAcUsEm.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String clave = "";
-                switch (tipo) {
-                    case "Actividades":
-                        clave = (String) tableAcUsEm.getModel().getValueAt(tableAcUsEm.getSelectedRow(), 0);
-                        for (Actividad actividad : actividades) {
-                            if (actividad.getNumactividad().equalsIgnoreCase(clave)) {
-                                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc, actividad);
-                            }
-                        }
-                        break;
-                    case "Usuarios":
-                        clave = (String) tableAcUsEm.getModel().getValueAt(tableAcUsEm.getSelectedRow(), 0);
-                        for (Usuario usuario : usuarios) {
-                            if (usuario.getDni().equalsIgnoreCase(clave)) {
-                                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc, usuario);
-                            }
-                        }
-                        break;
-                    case "Empleados":
-                        clave = (String) tableAcUsEm.getModel().getValueAt(tableAcUsEm.getSelectedRow(), 0);
-                        for (Empleado empleado : empleados) {
-                            if (empleado.getDni().equalsIgnoreCase(clave)) {
-                                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc, empleado);
-                            }
-                        }
-                        break;
-                }
 
-            }
-        });
+
+
     }
 
 
@@ -170,8 +140,6 @@ public class VentanaTablesAcUsEm {
     }
 
     // funcion que devuelve los datos de la bd a usuarios, actividades, empleados
-
-
     public void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
 
 
