@@ -1,5 +1,7 @@
 package vista;
 
+import controlador.ControladorBbDd;
+import controlador.sqlite.SqliteConsulta;
 import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
 
@@ -11,7 +13,6 @@ import java.util.List;
 
 public class VentanaSesiones {
     private JPanel ventanaSesionesJpanel;
-    private JTable FechaHorarioRespTable;
     private JButton atrasButton;
     private JButton buttonAlta;
     private JButton buttonEliminar;
@@ -19,17 +20,40 @@ public class VentanaSesiones {
     private JScrollPane panelScroll;
     private JTable table1;
 
-    private List<Sesion> sesiones; // -> ¡CARGAR DESDE BASES DE DATOS!
+    private ArrayList<Sesion> sesiones = new ArrayList<Sesion>(); // -> ¡CARGAR DESDE BASES DE DATOS!
 
-    public VentanaSesiones(String nombreAcUsEm, String cc) {
+    public VentanaSesiones( String cc) {
 
-        JFrame frame = new JFrame("Sesiones " + nombreAcUsEm + " " + cc);
+        JFrame frame = new JFrame("Sesiones "  + cc);
         frame.setContentPane(ventanaSesionesJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        System.out.println(cc);
+
+        switch (cc){
+
+
+            case "Hegoalde":
+
+                System.out.println("1");
+
+                ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+                System.out.println("1");
+                SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
+                System.out.println("2");
+                sqliteConsulta.sesionesdeHegoalde();
+                this.sesiones = sqliteConsulta.getSesiones();
+                System.out.println(sesiones.size());
+                cargarDatosEnTabla(this.sesiones);
+
+                break;
+
+
+        }
 
         atrasButton.addActionListener(new ActionListener() {
             @Override
@@ -39,8 +63,8 @@ public class VentanaSesiones {
         });
 
     }
-    public void cargarDatosEnTabla(){
-        FechaHorarioRespTable.setModel(new SesionesTableModel(sesiones));
+    public void cargarDatosEnTabla(List<Sesion>sesionList){
+        table1.setModel(new SesionesTableModel(sesionList));
     }
 
 
