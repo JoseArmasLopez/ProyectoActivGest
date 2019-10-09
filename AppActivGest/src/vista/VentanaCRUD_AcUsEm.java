@@ -29,7 +29,7 @@ public class VentanaCRUD_AcUsEm {
     private JLabel jLabel3;
     private JLabel jLabel2;
     private JLabel jLabel1;
-    private JButton Modificar;
+    private JButton actualizarButon;
     private JButton buscarButton;
 
     private VentanaSesiones ventanaSesiones;
