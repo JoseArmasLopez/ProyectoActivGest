@@ -3,15 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hegoalde.db" beforeDir="false" afterPath="$PROJECT_DIR$/hegoalde.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/TableModels/SesionesTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/TableModels/SesionesTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppActivGest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AppActivGest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/db4o/DB4O.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/db4o/DB4O.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/ControladorBbDd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/ControladorBbDd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/db4o/DB4O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/db4o/DB4O.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaCentroCivico.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCentroCivico.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaCentroCivico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCentroCivico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,9 +32,9 @@
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="235" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="204" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/db4o-8.0.276.16149-java (1)/db4o-8.0.276.16149-java/db4o-8.0/lib/db4o-8.0.276.16149-all-java5.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />

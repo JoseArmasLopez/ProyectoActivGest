@@ -1,6 +1,8 @@
 package vista;
 
+import com.db4o.Db4o;
 import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
 import modelo.Empleado;
@@ -52,6 +54,8 @@ public class VentanaCRUD_AcUsEm {
         Connection conexion = controladorBbDd.getConexion();
         // procedo a hacer la consulta
         SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+
 
         switch (tipo.toLowerCase()) {
             case "actividades":
@@ -185,7 +189,16 @@ public class VentanaCRUD_AcUsEm {
                                     , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
 
 
-                            sqliteConsulta.altaNuevaActividad(nuevaActividad);
+                            if(cc.equalsIgnoreCase("Iparralde")){
+
+                                System.out.println(cc);
+
+                                DB4O db4O = new DB4O();
+                                db4O.insertarActividad(nuevaActividad);
+
+                            }
+
+                            //sqliteConsulta.altaNuevaActividad(nuevaActividad);
 
                             vaciarTextFields();
 

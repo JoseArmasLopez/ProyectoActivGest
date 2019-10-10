@@ -18,8 +18,7 @@ public class ControladorBbDd {
 
     private Connection conexion = null;
     private String centro = "";
-    protected static ObjectContainer db4o;
-    private static Properties config;
+
 
     public ControladorBbDd(String centro) {
         this.centro = centro;
@@ -76,15 +75,7 @@ public class ControladorBbDd {
         }
     }
 
-    public static ObjectContainer obtenerDb4o() {
 
-        String BDIparralde = config.getProperty("db4o");
-
-        ControladorBbDd.db4o = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
-
-        return db4o;
-
-    }
 
     // seccion getters
     public Connection getConexion() {
