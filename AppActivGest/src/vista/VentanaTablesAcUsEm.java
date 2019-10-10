@@ -112,7 +112,6 @@ public class VentanaTablesAcUsEm {
             case "Actividades":
                 if (actividades != null) {
 
-
                     tableAcUsEm.setModel(new ActividadesTableModel(actividades));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");

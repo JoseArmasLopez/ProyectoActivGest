@@ -13,23 +13,24 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import static controlador.ControladorBbDd.obtenerDb4o;
 
 public class DB4O {
 
     //---------------------------------------------------------------------DATOS-----------------------------------------------------------------------
+    final static String BDIparralde = "CentroCivicoIparralde.yap";
 
+    public DB4O() {
+    }
 
-
-    Actividad actividad1 = new Actividad(1,"Aquagym","gimnasia",10,"2019-2020",50.0);
-    Actividad actividad2 = new Actividad("2","Patinaje",15,"cancha","2019-2020",15.0);
-    Actividad actividad3 = new Actividad("3","Padel",10,"pista","2019-2020",35.50);
-    Actividad actividad4 = new Actividad("4","Aerobic",10,"sala2","2019-2020",26.50);
+    Actividad actividad1 = new Actividad(1, "Aquagym", "gimnasia", 10, "2019-2020", 50.0);
+    Actividad actividad2 = new Actividad("2", "Patinaje", 15, "cancha", "2019-2020", 15.0);
+    Actividad actividad3 = new Actividad("3", "Padel", 10, "pista", "2019-2020", 35.50);
+    Actividad actividad4 = new Actividad("4", "Aerobic", 10, "sala2", "2019-2020", 26.50);
 
     Empleado empleado1 = new Empleado("72737475", "Pablo", "Lopez", "Garcia", "01/02/1980", "02/03/2014", "oficial de control", "venezolana");
     Empleado empleado2 = new Empleado("72737476", "Idoia", "Martinez", "Guinea", "12/06/1990", "06/10/2018", "socorrista", "española");
-    Empleado empleado3  = new Empleado("72737477", "Marta", "Basterra", "Imaz", "15/08/1983", "15/07/2013", "conserje", "española");
-    Empleado empleado4  = new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española");
+    Empleado empleado3 = new Empleado("72737477", "Marta", "Basterra", "Imaz", "15/08/1983", "15/07/2013", "conserje", "española");
+    Empleado empleado4 = new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española");
 
     Usuario usuario1 = new Usuario("73245456", "Pedro", "Uriondo", "Rodriguez", 40, "profesor");
     Usuario usuario2 = new Usuario("71239390", "Lucas", "Delgado", "Mendez", 30, "camarero");
@@ -43,11 +44,24 @@ public class DB4O {
 
 
     /**
-     * Obtener actividad
+     * Insertar actividad
      *
-     * @param eleccion para realizar la busqueda
-     * @return la actividad que se ha elegido
+     * @param eleccion insertar actividad
      */
+    public void insertarActividad(Actividad eleccion) {
+        //Abrir la conexión
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
+
+
+        //Guardar actividad
+        baseDatos.store(eleccion);
+
+        //Cerrar conexión
+        baseDatos.close();
+
+    }
+
+
     public static Actividad obtenerActividad(Actividad eleccion) {
         //Abrimos la conexion
         ObjectContainer baseDatos = obtenerDb4o();
@@ -69,12 +83,8 @@ public class DB4O {
         return actividad;
     }
 
-    /**
-     * Obtener actividades
-     *
-     * @param eleccion para realizar la busqueda
-     * @return array de actividades
-     */
+
+
     public static ArrayList<Actividad> obtenerActividades(Actividad eleccion) {
         //Abrir la conexión
         ObjectContainer baseDatos = obtenerDb4o();
@@ -97,23 +107,6 @@ public class DB4O {
         baseDatos.close();
 
         return arrayActividades;
-    }
-
-    /**
-     * Insertar actividad
-     *
-     * @param eleccion insertar actividad
-     */
-    public static void insertarActividad(Actividad eleccion) {
-        //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
-
-        //Guardar actividad
-        baseDatos.store(eleccion);
-
-        //Cerrar conexión
-        baseDatos.close();
-
     }
 
 
@@ -208,7 +201,7 @@ public class DB4O {
      * @param eleccion para realizar la busqueda
      * @return array de empleados
      */
-    public static ArrayList<Empleado> obtenerEmpleados(Empleado eleccion) {
+    public ArrayList<Empleado> obtenerEmpleados(Empleado eleccion) {
         //Abrir la conexión
         ObjectContainer baseDatos = obtenerDb4o();
 
@@ -275,7 +268,7 @@ public class DB4O {
             emp.setApellido1(nuevosDatos.getApellido1() != null ? nuevosDatos.getApellido1() : emp.getApellido1());
             emp.setApellido2(nuevosDatos.getApellido2() != null ? nuevosDatos.getApellido2() : emp.getApellido2());
             emp.setFechanac(nuevosDatos.getFechanac() != null ? nuevosDatos.getFechanac() : emp.getFechanac());
-            emp.setFechacontract(nuevosDatos.getFechacontract()  != null ? nuevosDatos.getFechacontract() : emp.getFechacontract());
+            emp.setFechacontract(nuevosDatos.getFechacontract() != null ? nuevosDatos.getFechacontract() : emp.getFechacontract());
             emp.setCargo(nuevosDatos.getCargo() != null ? nuevosDatos.getCargo() : emp.getCargo());
             emp.setNacionalidad(nuevosDatos.getNacionalidad() != null ? nuevosDatos.getNacionalidad() : emp.getNacionalidad());
 
@@ -387,7 +380,6 @@ public class DB4O {
 
     }
 
-
     /**
      * Modificar el usuario
      *
@@ -448,7 +440,6 @@ public class DB4O {
         baseDatos.close();
     }
 
-
     /**
      * Obtener sesion
      *
@@ -473,7 +464,6 @@ public class DB4O {
 
         return sesion;
     }
-
 
     /**
      * Obtener sesiones
@@ -522,7 +512,6 @@ public class DB4O {
         baseDatos.close();
 
     }
-
 
     /**
      * Modificar la sesion
@@ -578,11 +567,6 @@ public class DB4O {
         //Cerrar la conexión
         baseDatos.close();
     }
-
-
-
-
-
 
 
 }
