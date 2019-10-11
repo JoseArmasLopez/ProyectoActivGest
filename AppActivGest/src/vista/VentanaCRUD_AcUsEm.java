@@ -96,66 +96,81 @@ public class VentanaCRUD_AcUsEm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                switch (tipo) {
+                switch (cc){
 
-                    case ("Actividades"):
+                    case("Hegoalde"):
+                        switch (tipo) {
 
-                        if (textField1.getText().equalsIgnoreCase("")) {
+                            case ("Actividades"):
 
-                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+                                if (textField1.getText().equalsIgnoreCase("")) {
 
-                            vaciarTextFields();
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                                    vaciarTextFields();
 
 
-                        } else {
+                                } else {
 
 
-                            sqliteConsulta.eliminarActividad(textField1.getText());
+                                    sqliteConsulta.eliminarActividad(textField1.getText());
 
-                            vaciarTextFields();
+                                    vaciarTextFields();
+                                }
+
+
+                                break;
+                            case ("Usuarios"):
+
+                                if (textField1.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    sqliteConsulta.eliminarUsuario(textField1.getText());
+
+                                    vaciarTextFields();
+                                }
+
+
+                                break;
+
+                            case ("Empleados"):
+
+                                if (textField1.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    sqliteConsulta.eliminarEmpleado(textField1.getText());
+
+                                    vaciarTextFields();
+                                }
+
+                                break;
+
                         }
 
+                        break;
+                    case("Iparralde"):
 
                         break;
-                    case ("Usuarios"):
-
-                        if (textField1.getText().equalsIgnoreCase("")) {
-
-                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
-
-                            vaciarTextFields();
-
-
-                        } else {
-
-
-                            sqliteConsulta.eliminarUsuario(textField1.getText());
-
-                            vaciarTextFields();
-                        }
-
+                    case("Arriaga"):
 
                         break;
-
-                    case ("Empleados"):
-
-                        if (textField1.getText().equalsIgnoreCase("")) {
-
-                            JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
-
-                            vaciarTextFields();
-
-
-                        } else {
-
-
-                            sqliteConsulta.eliminarEmpleado(textField1.getText());
-
-                            vaciarTextFields();
-                        }
+                    case("Ibaiondo"):
 
                         break;
-
                 }
 
 
