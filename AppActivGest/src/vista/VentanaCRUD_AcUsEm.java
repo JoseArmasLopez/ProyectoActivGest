@@ -56,7 +56,7 @@ public class VentanaCRUD_AcUsEm {
         SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
 
-
+        // aqui se pone texto en los labels
         switch (tipo.toLowerCase()) {
             case "actividades":
                 jLabel1.setText("Nº Actividad");
@@ -90,8 +90,7 @@ public class VentanaCRUD_AcUsEm {
 
         }
 
-
-
+        // evento que acontece en eliminar button
         eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -177,7 +176,7 @@ public class VentanaCRUD_AcUsEm {
             }
         });
 
-
+        // evento que acontece en guardar button
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -304,7 +303,7 @@ public class VentanaCRUD_AcUsEm {
 
         });
 
-
+        // evento que acontece en volver atrás button
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
