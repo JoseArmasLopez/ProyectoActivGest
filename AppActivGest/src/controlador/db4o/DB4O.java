@@ -55,12 +55,13 @@ public class DB4O {
         return actividad;
     }
 
-    public ArrayList<Actividad> obtenerActividades(Actividad eleccion) {
+    public ArrayList<Actividad> obtenerActividades() {
         //Abrir la conexión
         ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de empleados
         ArrayList<Actividad> arrayActividades = new ArrayList<>();
+        Actividad eleccion = new Actividad();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
