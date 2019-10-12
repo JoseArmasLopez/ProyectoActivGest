@@ -175,8 +175,8 @@ public class VentanaTablesAcUsEm {
 
         DB4O db4O = new DB4O();
         this.actividades = db4O.obtenerActividades();
-        //this.usuarios = db4O.obtenerUsuarios();
-        //this.empleados = db4O.obtenerEmpleados();
+        this.usuarios = db4O.obtenerUsuarios();
+        this.empleados = db4O.obtenerEmpleados();
 
 
     }
