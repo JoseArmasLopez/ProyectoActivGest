@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
 import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
@@ -51,8 +52,6 @@ public class VentanaTablesAcUsEm {
         frame.setVisible(true);
 
 
-        cargarDatosEjemplo(tipo);
-
         switch (cc) {
 
             case ("Hegoalde"):
@@ -63,8 +62,7 @@ public class VentanaTablesAcUsEm {
                 break;
             case ("Iparralde"):
 
-                //Crear una función dentro de esta clase para cargar los datos desde DB4O (Sheila)
-                // -> Ver ejemplo más arriba en Hegoalde (Jose)
+                iparraldeDbo4CargarUsuariosActividades();
                 cargarDatosEnTabla(tipo);
                 break;
 
@@ -84,7 +82,6 @@ public class VentanaTablesAcUsEm {
         }
 
 
-
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -99,10 +96,6 @@ public class VentanaTablesAcUsEm {
                 frame.dispose();
             }
         });
-
-
-
-
 
     }
 
@@ -157,34 +150,6 @@ public class VentanaTablesAcUsEm {
 
     }
 
-    private void cargarDatosEjemplo(String tipo) {
-        switch (tipo) {
-            case "Actividades":
-                actividades = new ArrayList<>();
-                actividades.add(new Actividad("1", "Aquagym", 10, "gimnasia", "2019-2020", 50.0));
-                actividades.add(new Actividad("2", "Patinaje", 15, "cancha", "2019-2020", 15.0));
-                actividades.add(new Actividad("3", "Padel", 10, "pista", "2019-2020", 35.50));
-                actividades.add(new Actividad("4", "Aerobic", 10, "sala2", "2019-2020", 26.50));
-                break;
-            case "Usuarios":
-                usuarios = new ArrayList<>();
-                usuarios.add(new Usuario("73245456", "Pedro", "Uriondo", "Rodriguez", 40, "profesor"));
-                usuarios.add(new Usuario("71239390", "Lucas", "Delgado", "Mendez", 30, "camarero"));
-                usuarios.add(new Usuario("72459880", "Jokin", "Urkiza", "Echebarria", 52, "mecanico"));
-                usuarios.add(new Usuario("73245486", "Alvaro", "Garcia", "Martinez", 25, "informatico"));
-
-                break;
-            case "Empleados":
-                empleados = new ArrayList<>();
-                empleados.add(new Empleado("72737475", "Pablo", "Lopez", "Garcia", "01/02/1980", "02/03/2014", "oficial de control", "venezolana"));
-                empleados.add(new Empleado("72737476", "Idoia", "Martinez", "Guinea", "12/06/1990", "06/10/2018", "socorrista", "española"));
-                empleados.add(new Empleado("72737477", "Marta", "Basterra", "Imaz", "15/08/1983", "15/07/2013", "conserje", "española"));
-                empleados.add(new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española"));
-                break;
-        }
-
-    }
-
 
     public void CargarUsuariosActividadesEmpleadosMySQLArriaga() {
 
@@ -202,6 +167,17 @@ public class VentanaTablesAcUsEm {
         empleados = mysqlConsultas.LeerEmpleadosArriaga();
         usuarios = mysqlConsultas.LeerUsuariosArriaga();
         actividades = mysqlConsultas.LeerActividadesArriaga();
+
+    }
+
+
+    public void iparraldeDbo4CargarUsuariosActividades(){
+
+        DB4O db4O = new DB4O();
+        this.actividades = db4O.obtenerActividades();
+        //this.usuarios = db4O.obtenerUsuarios();
+        //this.empleados = db4O.obtenerEmpleados();
+
 
     }
 }
