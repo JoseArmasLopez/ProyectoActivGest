@@ -522,15 +522,26 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+",nombre = "
-                    +actividad.getNombre()+",numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + ",nombresala = "+
-             actividad.getNombresala() +",cursoacademico = "+actividad.getCurosAcademico() + ",coste = "+actividad.getCoste()+
-                    ",dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+            String query = "UPDATE actividades set nombre = ?,numeromaximoinvitado = ?,nombresala = ?" +
+                    ",cursoacademico = ? ,coste = ? where numactividad = ?" + actividad.getNumactividad();
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
+            // set the corresponding param
+            ps.setString(1, actividad.getNombre());
+            ps.setInt(2, actividad.getNumeromaxinvitado());
+            ps.setString(3, actividad.getNombresala());
+            ps.setString(4, actividad.getCurosAcademico());
+            ps.setDouble(5, actividad.getCoste());
+            ps.setString(6,actividad.getNumactividad());
+
+            // update
             int r = ps.executeUpdate();
+
+
+
+
             ps.close();
 
             if (r==0){
