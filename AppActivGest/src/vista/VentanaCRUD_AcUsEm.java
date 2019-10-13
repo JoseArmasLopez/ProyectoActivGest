@@ -1,6 +1,5 @@
 package vista;
 
-import com.db4o.Db4o;
 import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
 import controlador.sqlite.SqliteConsulta;
@@ -269,8 +268,6 @@ public class VentanaCRUD_AcUsEm {
                                             , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
 
 
-
-
                                     sqliteConsulta.altaNuevaActividad(nuevaActividad);
 
                                     vaciarTextFields();
@@ -357,9 +354,6 @@ public class VentanaCRUD_AcUsEm {
                                     Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
                                             , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
 
-
-
-
                                     DB4O db4O = new DB4O();
                                     db4O.insertarActividad(nuevaActividad);
 
@@ -424,14 +418,6 @@ public class VentanaCRUD_AcUsEm {
 
                                 break;
                         }
-
-
-
-
-
-
-
-
 
                         break;
                     case("Ibaiondo"):
