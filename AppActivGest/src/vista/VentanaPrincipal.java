@@ -49,7 +49,7 @@ public class VentanaPrincipal {
 
                     if (textField1.getText().equals(usuario) && password.equals(contrasena)) {
                         // TODO Ventana CC
-                        
+
 
                     } else {
 
