@@ -44,5 +44,5 @@ public class VentanaTablasBBDD {
     public void cargarDatosEnTabla(){
         tableTablasBD.setModel(new TablasBDTableModel(tablasBD));
     }
-    
+
 }

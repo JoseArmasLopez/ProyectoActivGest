@@ -92,9 +92,9 @@ public class VentanaCRUD_AcUsEm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                switch (cc){
+                switch (cc) {
 
-                    case("Hegoalde"):
+                    case ("Hegoalde"):
                         switch (tipo) {
 
                             case ("Actividades"):
@@ -156,9 +156,15 @@ public class VentanaCRUD_AcUsEm {
                                 break;
 
                         }
+                        break;
+                    case ("Iparralde"):
 
                         break;
-                    case("Iparralde"):
+                    case ("Arriaga"):
+
+                        break;
+                    case ("Ibaiondo"):
+
                         switch (tipo) {
 
                             case ("Actividades"):
@@ -220,13 +226,6 @@ public class VentanaCRUD_AcUsEm {
                                 break;
 
                         }
-
-
-                        break;
-                    case("Arriaga"):
-
-                        break;
-                    case("Ibaiondo"):
 
                         break;
                 }
@@ -242,9 +241,9 @@ public class VentanaCRUD_AcUsEm {
 
                 System.out.println(tipo);
 
-                switch (cc){
+                switch (cc) {
 
-                    case("Hegoalde"):
+                    case ("Hegoalde"):
 
                         switch (tipo) {
                             case "Actividades":
@@ -331,7 +330,7 @@ public class VentanaCRUD_AcUsEm {
                         }
 
                         break;
-                    case("Iparralde"):
+                    case ("Iparralde"):
 
                         switch (tipo) {
                             case "Actividades":
@@ -376,7 +375,7 @@ public class VentanaCRUD_AcUsEm {
 
                                     // creo una nueva actividad
                                     Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
-                                            ,textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
+                                            , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
 
                                     DB4O db4O = new DB4O();
                                     db4O.insertarUsuario(nuevoUsuario);
@@ -419,7 +418,7 @@ public class VentanaCRUD_AcUsEm {
                         }
 
                         break;
-                    case("Ibaiondo"):
+                    case ("Ibaiondo"):
 
                         switch (tipo) {
                             case "Actividades":
@@ -506,7 +505,7 @@ public class VentanaCRUD_AcUsEm {
                         }
 
                         break;
-                    case("Arriaga"):
+                    case ("Arriaga"):
 
                         break;
 
@@ -514,13 +513,11 @@ public class VentanaCRUD_AcUsEm {
                 }
 
 
-
-
             }
 
         });
 
-        // evento que acontece en volver atrás button
+        // evento que acontece en volver a la ventana anterior
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -531,6 +528,277 @@ public class VentanaCRUD_AcUsEm {
         actualizarButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                switch (cc) {
+
+                    case ("Hegoalde"):
+
+                        switch (tipo) {
+                            case "Actividades":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
+                                            , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+
+
+                                    sqliteConsulta.actualizarActividad(nuevaActividad);
+
+                                    vaciarTextFields();
+
+                                }
+                                break;
+
+                            case "Usuarios":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
+
+
+                                    sqliteConsulta.actualizarUsuario(nuevoUsuario);
+
+                                    vaciarTextFields();
+                                }
+                                break;
+                            case "Empleados":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Empleado nuevoEmpleado = new Empleado();
+                                    nuevoEmpleado.setDni(textField1.getText());
+                                    nuevoEmpleado.setNombre(textField2.getText());
+                                    nuevoEmpleado.setApellido1(textField3.getText());
+                                    nuevoEmpleado.setFechanac(textField4.getText());
+                                    nuevoEmpleado.setFechacontract(textField5.getText());
+                                    nuevoEmpleado.setCargo(textField6.getText());
+
+
+                                    sqliteConsulta.actualizarEmpleado(nuevoEmpleado);
+
+                                    vaciarTextFields();
+                                }
+
+
+                                break;
+                        }
+
+                        break;
+                    case ("Iparralde"):
+
+                        switch (tipo) {
+                            case "Actividades":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
+                                            , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.insertarActividad(nuevaActividad);
+
+                                    vaciarTextFields();
+
+                                }
+                                break;
+
+                            case "Usuarios":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.insertarUsuario(nuevoUsuario);
+
+                                    vaciarTextFields();
+                                }
+                                break;
+                            case "Empleados":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Empleado nuevoEmpleado = new Empleado();
+                                    nuevoEmpleado.setDni(textField1.getText());
+                                    nuevoEmpleado.setNombre(textField2.getText());
+                                    nuevoEmpleado.setApellido1(textField3.getText());
+                                    nuevoEmpleado.setFechanac(textField4.getText());
+                                    nuevoEmpleado.setFechacontract(textField5.getText());
+                                    nuevoEmpleado.setCargo(textField6.getText());
+
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.insertarEmpleado(nuevoEmpleado);
+
+                                    vaciarTextFields();
+                                }
+
+
+                                break;
+                        }
+
+                        break;
+                    case ("Ibaiondo"):
+
+                        switch (tipo) {
+                            case "Actividades":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
+                                            , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+
+
+                                    sqliteConsulta.actualizarActividad(nuevaActividad);
+
+                                    vaciarTextFields();
+
+                                }
+                                break;
+
+                            case "Usuarios":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
+
+
+                                    sqliteConsulta.actualizarUsuario(nuevoUsuario);
+
+                                    vaciarTextFields();
+                                }
+                                break;
+                            case "Empleados":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Empleado nuevoEmpleado = new Empleado();
+                                    nuevoEmpleado.setDni(textField1.getText());
+                                    nuevoEmpleado.setNombre(textField2.getText());
+                                    nuevoEmpleado.setApellido1(textField3.getText());
+                                    nuevoEmpleado.setFechanac(textField4.getText());
+                                    nuevoEmpleado.setFechacontract(textField5.getText());
+                                    nuevoEmpleado.setCargo(textField6.getText());
+
+
+                                    sqliteConsulta.actualizarEmpleado(nuevoEmpleado);
+
+                                    vaciarTextFields();
+                                }
+
+
+                                break;
+                        }
+
+                        break;
+                    case ("Arriaga"):
+
+                        break;
+
+
+                }
 
             }
         });
@@ -549,7 +817,7 @@ public class VentanaCRUD_AcUsEm {
     }
 
     //funcion para preparar la consulta hegoalde/ibaiondo
-    public void conexionBdPrepararConsulta(){
+    public void conexionBdPrepararConsulta() {
 
 
     }

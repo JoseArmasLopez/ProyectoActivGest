@@ -530,17 +530,23 @@ public class SqliteConsulta {
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Actividad actualizada correctamente");
-            JOptionPane.showInputDialog("Actividad actualizada correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizada actividad correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -560,17 +566,21 @@ public class SqliteConsulta {
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Usuario actualizado correctamente");
-            JOptionPane.showInputDialog("Usuario actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado usuario correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -590,17 +600,21 @@ public class SqliteConsulta {
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Empleado actualizado correctamente");
-            JOptionPane.showInputDialog("Empleado actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado empleado correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
