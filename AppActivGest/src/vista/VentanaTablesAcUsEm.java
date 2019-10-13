@@ -81,7 +81,7 @@ public class VentanaTablesAcUsEm {
                 break;
         }
 
-
+        // editar button
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -98,7 +98,6 @@ public class VentanaTablesAcUsEm {
         });
 
     }
-
 
     private void cargarDatosEnTabla(String tipo) {
         switch (tipo) {
@@ -150,7 +149,6 @@ public class VentanaTablesAcUsEm {
 
     }
 
-
     public void CargarUsuariosActividadesEmpleadosMySQLArriaga() {
 
         Connection con = null;
@@ -169,7 +167,6 @@ public class VentanaTablesAcUsEm {
         actividades = mysqlConsultas.LeerActividadesArriaga();
 
     }
-
 
     public void iparraldeDbo4CargarUsuariosActividades(){
 

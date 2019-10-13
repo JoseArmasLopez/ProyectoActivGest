@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class VentanaTablasBBDD {
+    
     private JPanel ventanaTablasBBDDJpanel;
     private JLabel tablasLabel;
     private JTable tableTablasBD;

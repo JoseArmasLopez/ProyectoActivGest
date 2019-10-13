@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CentroCivicoIparralde.yap" beforeDir="false" afterPath="$PROJECT_DIR$/CentroCivicoIparralde.yap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Empleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Empleado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/db4o/DB4O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/db4o/DB4O.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Actividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Actividad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hegoalde.db" beforeDir="false" afterPath="$PROJECT_DIR$/hegoalde.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Actividad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Actividad.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablesAcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,16 +149,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controlador/db4o/DB4O.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
