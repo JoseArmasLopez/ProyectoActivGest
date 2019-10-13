@@ -1,4 +1,4 @@
-package controlador.db4o;
+package db4o;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -9,14 +9,12 @@ import modelo.Empleado;
 import modelo.Sesion;
 import modelo.Usuario;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
 public class DB4O {
 
-    //---------------------------------------------------------------------DATOS-----------------------------------------------------------------------
+
     final static String BDIparralde = "CentroCivicoIparralde.yap";
 
     public DB4O() {
@@ -147,12 +145,13 @@ public class DB4O {
         return empleado;
     }
 
-    public ArrayList<Empleado> obtenerEmpleados(Empleado eleccion) {
+    public ArrayList<Empleado> obtenerEmpleados() {
         //Abrir la conexión
         ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de empleados
         ArrayList<Empleado> arrayEmpleados = new ArrayList<>();
+        Empleado eleccion = new Empleado();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -171,6 +170,7 @@ public class DB4O {
 
         return arrayEmpleados;
     }
+
 
     public void insertarEmpleado(Empleado eleccion) {
         //Abrir la conexión
@@ -253,12 +253,13 @@ public class DB4O {
         return usuario;
     }
 
-    public ArrayList<Usuario> obtenerUsuarios(Usuario eleccion) {
+    public ArrayList<Usuario> obtenerUsuarios() {
         //Abrir la conexión
         ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de usuarios
         ArrayList<Usuario> arrayUsuarios = new ArrayList<>();
+        Usuario eleccion = new Usuario();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -358,12 +359,13 @@ public class DB4O {
         return sesion;
     }
 
-    public ArrayList<Sesion> obtenerSesiones(Sesion eleccion) {
+    public ArrayList<Sesion> obtenerSesiones() {
         //Abrir la conexión
         ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de sesiones
         ArrayList<Sesion> arraySesiones = new ArrayList<>();
+        Sesion eleccion = new Sesion();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
