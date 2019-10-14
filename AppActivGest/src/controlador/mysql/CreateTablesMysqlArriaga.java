@@ -208,8 +208,8 @@ public class CreateTablesMysqlArriaga {
             preparedStatement.setString(2, "Pepito");
             preparedStatement.setString(3, "Rodriguez");
             preparedStatement.setString(4, "Escuela");
-            preparedStatement.setString(5,"2005-03-19");
-            preparedStatement.setString(6,"1985-05-14");
+            preparedStatement.setString(5,"03-19-2005");
+            preparedStatement.setString(6,"05-14-1985");
             preparedStatement.setString(7, "Española");
             preparedStatement.setString(8, "Monitor de esgrima");
             preparedStatement.execute();
