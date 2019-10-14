@@ -52,6 +52,8 @@ public class Empleado {
             case "db4o":
                 DB4O.insertarEmpleado(this);
                 break;
+
+
         }
 
         }

@@ -1,4 +1,4 @@
-package db4o;
+package controlador.db4o;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
