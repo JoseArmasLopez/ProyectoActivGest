@@ -492,6 +492,37 @@ public class MysqlConsultas {
         }
     }
 
+    public void InsertarActividadesArriagaPROVISIONAL(Actividad actividad){
+        PreparedStatement preparedStatement;
+
+
+        try {
+
+            String query = " INSERT INTO ACTIVIDADES (NUMACTIVIDAD, NOMBRE, NUMEROMAXIMOINVITADO, NOMBRESALA, CURSOACADEMICO, COSTE)"
+                    + " VALUES (?, ?, ?, ?, ?, ?)";
+
+            preparedStatement = con.prepareStatement(query);
+
+            preparedStatement.setString(1, actividad.getNumactividad());
+            preparedStatement.setString(2, actividad.getNombre());
+            preparedStatement.setInt(3, actividad.getNumeromaxinvitado());
+            preparedStatement.setString(4, actividad.getNombresala());
+            preparedStatement.setString(5,actividad.getCurosAcademico());
+            preparedStatement.setDouble(6,actividad.getCoste());
+
+            preparedStatement.execute();
+            preparedStatement.close();
+
+            System.out.println("Actividad insertada correctamente en Arriaga.");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error al insertar la actividad en Arriaga.");
+            e.printStackTrace();
+        }
+    }
+
     public void InsertarUsuarioArriaga(Usuario usuario){
         PreparedStatement preparedStatement;
 
@@ -558,13 +589,13 @@ public class MysqlConsultas {
 
     //Eliminar.
 
-    public void EliminarEmpleadoArriaga(Empleado empleadoAEliminar){
+    public void EliminarEmpleadoArriaga(String DNIEmpleado){
         PreparedStatement preparedStatement;
 
 
         try {
 
-            String query =  "DELETE FROM EMPLEADOS WHERE DNI = '" + empleadoAEliminar.getDni() + "'";
+            String query =  "DELETE FROM EMPLEADOS WHERE DNI = '" + DNIEmpleado + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -583,13 +614,13 @@ public class MysqlConsultas {
 
     }
 
-    public void EliminarActividadArriaga(Actividad actividadAEliminar){
+    public void EliminarActividadArriaga(String numActividad){
 
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM ACTIVIDADES WHERE NUMACTIVIDAD = '" + actividadAEliminar.getNumactividad() + "'";
+            String query =  "DELETE FROM ACTIVIDADES WHERE NUMACTIVIDAD = '" + numActividad + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -608,13 +639,13 @@ public class MysqlConsultas {
 
     }
 
-    public void EliminarUsuarioArriaga(Usuario usuarioAEliminar){
+    public void EliminarUsuarioArriaga(String DNIUsuario){
 
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM USUARIOS WHERE DNI = '" + usuarioAEliminar.getDni() + "'";
+            String query =  "DELETE FROM USUARIOS WHERE DNI = '" + DNIUsuario + "'";
 
             preparedStatement = con.prepareStatement(query);
 

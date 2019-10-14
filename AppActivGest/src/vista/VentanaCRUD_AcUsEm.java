@@ -2,6 +2,7 @@ package vista;
 
 import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
+import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
 import modelo.Empleado;
@@ -11,6 +12,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class VentanaCRUD_AcUsEm {
     private JPanel ventanaCRUD_AcUsEmJpanel;
@@ -45,6 +47,18 @@ public class VentanaCRUD_AcUsEm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        //MySQL
+        Connection con = null;
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
+
+        } catch (Exception e) {
+            System.err.println("No se ha podido conectar a la base de datos Arriaga\n" + e.getMessage());
+        }
+        MysqlConsultas mysqlConsultas = new MysqlConsultas(con);
 
         // creo conexion bd
         ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
@@ -161,6 +175,39 @@ public class VentanaCRUD_AcUsEm {
 
                         break;
                     case ("Arriaga"):
+
+                        switch (tipo) {
+                            case ("Actividades"):
+                                if (textField1.getText().equalsIgnoreCase("")) {
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+                                    vaciarTextFields();
+                                } else {
+                                    mysqlConsultas.EliminarActividadArriaga(textField1.getText());
+                                    vaciarTextFields();
+                                }
+                                break;
+
+                            case ("Usuarios"):
+                                if (textField1.getText().equalsIgnoreCase("")) {
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+                                    vaciarTextFields();
+                                } else {
+                                    mysqlConsultas.EliminarUsuarioArriaga(textField1.getText());
+                                    vaciarTextFields();
+                                }
+                                break;
+
+                            case ("Empleados"):
+                                if (textField1.getText().equalsIgnoreCase("")) {
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
+                                    vaciarTextFields();
+                                } else {
+                                    mysqlConsultas.EliminarEmpleadoArriaga(textField1.getText());
+                                    vaciarTextFields();
+                                }
+                                break;
+                        }
+
 
                         break;
                     case ("Ibaiondo"):
@@ -506,6 +553,27 @@ public class VentanaCRUD_AcUsEm {
 
                         break;
                     case ("Arriaga"):
+                        switch (tipo) {
+                            case ("Actividades"):
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+                                    vaciarTextFields();
+                                } else {
+                                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText()), textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+                                    mysqlConsultas.InsertarActividadesArriagaPROVISIONAL(nuevaActividad);
+                                    vaciarTextFields();
+                                }
+                                break;
+
+                            case ("Usuarios"):
+                                break;
+
+                            case ("Empleados"):
+                                break;
+
+                        }
 
                         break;
 
