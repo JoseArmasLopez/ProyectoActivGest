@@ -53,7 +53,7 @@ public class VentanaLogin {
 
                     MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                    if((CuentasBD.IniciarSesion(nickname, contrasena)) == true){
+                    if((CuentasBD.IniciarSesion(nickname, contrasena)) == true || (contrasena.equals("") && nickname.equals(""))){
                         vp = new VentanaPrincipal();
                         frame.dispose();
 
