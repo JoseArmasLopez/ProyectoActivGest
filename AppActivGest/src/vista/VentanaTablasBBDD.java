@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class VentanaTablasBBDD {
+
     private JPanel ventanaTablasBBDDJpanel;
     private JLabel tablasLabel;
     private JTable tableTablasBD;
@@ -43,4 +44,5 @@ public class VentanaTablasBBDD {
     public void cargarDatosEnTabla(){
         tableTablasBD.setModel(new TablasBDTableModel(tablasBD));
     }
+
 }
