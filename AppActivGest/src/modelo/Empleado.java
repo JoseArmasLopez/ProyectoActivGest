@@ -50,8 +50,11 @@ public class Empleado {
                 break;
             case "db4o":
 
+
+                DB4O.insertarEmpleado(this);
                 break;
         }
+
 
     }
 

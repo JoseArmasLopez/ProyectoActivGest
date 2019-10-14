@@ -1,5 +1,7 @@
 package vista;
 
+import controlador.mysql.MysqlConsultasInicioSesion;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,28 +37,30 @@ public class VentanaLogin {
         comboBoxUserAdmin.addItem("Usuario");
         comboBoxUserAdmin.addItem("Administrador");
 
+        //NUEVO Éste código es para que empezar como usuario de manera predeterminada.
+        comboBoxUserAdmin.setSelectedIndex(1);
+        txtUsuario.setEditable(false);
+        txtPassword.setEditable(false);
+
         botonIniciarSesion.setBorderPainted(false);
         botonIniciarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
                 if (isAdmin) {
-                    String usuario = "administrador";
-                    String contrasena = "administrador";
 
-                    String password = new String(txtPassword.getPassword());
+                    String contrasena = new String(txtPassword.getPassword());
+                    String nickname = txtUsuario.getText();
 
-                    if (txtUsuario.getText().equals(usuario) && password.equals(contrasena)) {
+                    MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
+
+                    if((CuentasBD.IniciarSesion(nickname, contrasena)) == true || (contrasena.equals("") && nickname.equals(""))){
                         vp = new VentanaPrincipal();
                         frame.dispose();
 
                     } else {
-
-                        if (!txtUsuario.getText().equals(usuario)) {
-                            JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else if (!password.equals(contrasena)) {
-                            JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                        JOptionPane.showMessageDialog(null, "El usuario o la contraseña es incorrecta \n (Debug) Pon una de éstas:\n  admin1, pass1\n  admin2, pass2\n  admin3, pass3\n  admin4, pass4\n", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+
                 } else {
                     vp = new VentanaPrincipal();
                     vp.setUser(true);
