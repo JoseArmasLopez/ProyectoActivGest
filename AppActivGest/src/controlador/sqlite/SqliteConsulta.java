@@ -522,25 +522,39 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+",nombre = "
-                    +actividad.getNombre()+",numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + ",nombresala = "+
-             actividad.getNombresala() +",cursoacademico = "+actividad.getCurosAcademico() + ",coste = "+actividad.getCoste()+
-                    ",dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+            String query = "UPDATE actividades set nombre = ?,numeromaximoinvitado = ?,nombresala = ?" +
+                    ",cursoacademico = ? ,coste = ? where numactividad = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, actividad.getNombre());
+            ps.setInt(2, actividad.getNumeromaxinvitado());
+            ps.setString(3, actividad.getNombresala());
+            ps.setString(4, actividad.getCurosAcademico());
+            ps.setDouble(5, actividad.getCoste());
+            ps.setString(6,actividad.getNumactividad());
+
+            // update
+            int r = ps.executeUpdate();
+
             ps.close();
 
-            System.out.println("Actividad actualizada correctamente");
-            JOptionPane.showInputDialog("Actividad actualizada correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizada actividad correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -552,25 +566,35 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE usuarios set dni = "+ usuario.getDni()+",nombre = "
-                    +usuario.getNombre()+",apellido1 = "+ usuario.getApellido1() + ",apellido2 = "+
-                    usuario.getApellido2() +",edad = "+usuario.getEdad() + ",profesion = "+usuario.getProfesion()+
-                    "where dni = "+usuario.getDni();
+            String query = "UPDATE usuarios set nombre = ? ,apellido1 = ?, apellido2 = ?" +
+                    ",edad = ?, profesion = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, usuario.getNombre());
+            ps.setString(2, usuario.getApellido1());
+            ps.setString(3, usuario.getApellido2());
+            ps.setInt(4, usuario.getEdad());
+            ps.setString(5, usuario.getProfesion());
+            ps.setString(6,usuario.getDni());
+
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Usuario actualizado correctamente");
-            JOptionPane.showInputDialog("Usuario actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado usuario correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -582,25 +606,35 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE empleados set dni = "+ empleado.getDni()+",nombre = "
-                    +empleado.getNombre()+",apellido1 = "+ empleado.getApellido1() + ",apellido2 = "+
-                    empleado.getApellido2() +" ,fechacontract = "+empleado.getFechacontract() + ",fechanac = "+empleado.getFechanac()+
-                    ",nacionalidad = " + empleado.getNacionalidad()+" ,cargo = "+empleado.getCargo() +" where dni = " + empleado.getDni();
+            String query = "UPDATE empleados set nombre = ? ,apellido1 = ?, fechacontract = ?, fechanac = ?,cargo = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, empleado.getNombre());
+            ps.setString(2, empleado.getApellido1());
+            ps.setString(3, empleado.getFechacontract());
+            ps.setString(4, empleado.getFechanac());
+            ps.setString(5,empleado.getCargo());
+            ps.setString(6,empleado.getDni());
+
+
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Empleado actualizado correctamente");
-            JOptionPane.showInputDialog("Empleado actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado empleado correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 

@@ -65,18 +65,21 @@ public class VentanaCentroCivico {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Empleados", centroCivico);
             }
         });
+
         usersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Usuarios", centroCivico);
             }
         });
+
         activButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Actividades", centroCivico);
             }
         });
+
         metadatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -95,12 +98,14 @@ public class VentanaCentroCivico {
                 vmtd = new VentanaMetadata(nomBBDD, centroCivico);
             }
         });
+
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 frame.dispose();
             }
         });
+
         sesionesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

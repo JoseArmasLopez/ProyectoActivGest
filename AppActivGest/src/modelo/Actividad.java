@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Actividad {
 
@@ -94,4 +95,6 @@ public class Actividad {
     public void setUsuarioArrayList(ArrayList<Usuario> usuarioArrayList) {
         this.usuarioArrayList = usuarioArrayList;
     }
+
+
 }

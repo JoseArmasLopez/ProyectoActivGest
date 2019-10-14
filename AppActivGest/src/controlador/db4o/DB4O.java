@@ -1,4 +1,4 @@
-package db4o;
+package controlador.db4o;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -11,9 +11,7 @@ import modelo.Usuario;
 
 import java.util.ArrayList;
 
-
 public class DB4O {
-
 
     final static String BDIparralde = "CentroCivicoIparralde.yap";
 
@@ -21,6 +19,9 @@ public class DB4O {
     }
 
     public void insertarActividad(Actividad eleccion) {
+
+        Actividad actividadRecuperada = null;
+
         //Abrir la conexión
         ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
@@ -170,7 +171,6 @@ public class DB4O {
 
         return arrayEmpleados;
     }
-
 
     public void insertarEmpleado(Empleado eleccion) {
         //Abrir la conexión

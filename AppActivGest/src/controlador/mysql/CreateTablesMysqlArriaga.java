@@ -1,5 +1,7 @@
 package controlador.mysql;
 
+import modelo.Sesion;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,6 +19,8 @@ public class CreateTablesMysqlArriaga {
         InsertarActividad(con);
         InsertarUsuarios(con);
         InsertarSesiones(con);
+
+
     }
 
     private static Connection Conexion(){
@@ -94,43 +98,6 @@ public class CreateTablesMysqlArriaga {
 
         PreparedStatement preparedStatement = null;
 
-        /*
-        String createEmpleados = "CREATE TABLE EMPLEADOS(" +
-                "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "APELLIDO1 VARCHAR(255)," +
-                "APELLIDO2 VARCHAR(255)," +
-                "FECHANAC VARCHAR(10)," +
-                "CARGO VARCHAR(255));";
-
-
-        String createActividades = "CREATE TABLE ACTIVIDADES(" +
-                "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "NUMEROMAXIMOINVITADO INT NOT NULL," +
-                "COSTE DOUBLE," +
-                "DNIEMPLEADO VARCHAR(255)," +
-                "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
-        //PROBLEMA CON TABLAS DNI Usuario sin tabla creada
-
-
-        String createUsuarios = "CREATE TABLE USUARIOS(" +
-                "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "APELLIDO1 VARCHAR(255)," +
-                "APELLIDO2 VARCHAR(255)," +
-                "EDAD INT);";
-
-        String createSesion = "CREATE TABLE SESION(" +
-                "IDSESION INT PRIMARY KEY NOT NULL AUTO_INCREMENT," +
-                "HORA VARCHAR(5)," +
-                "DIASEMANA VARCHAR(255)," +
-                "NUMACTIVIDAD VARCHAR(255)," +
-                "DNIUSUARIO VARCHAR(9)," +
-                "FOREIGN KEY (NUMACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD)," +
-                "FOREIGN KEY (DNIUSUARIO) REFERENCES  USUARIOS(DNI));";
-
- */
 
         String createEmpleados = "CREATE TABLE EMPLEADOS(" +
                 "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
@@ -228,21 +195,9 @@ public class CreateTablesMysqlArriaga {
 
         PreparedStatement preparedStatement;
 
-
         try {
 
-            /*
-            String createEmpleados = "CREATE TABLE EMPLEADOS(" +
-                    "DNI VARCHAR(255) PRIMARY KEY NOT NULL," +
-                    "NOMBRE VARCHAR(255) NOT NULL," +
-                    "APELLIDO1 VARCHAR(255)," +
-                    "APELLIDO2 VARCHAR(255)," +
-                    "FECHACONTRACT VARCHAR(10)," +
-                    "FECHANAC VARCHAR(10)," +
-                    "NACIONALIDAD VARCHAR(20)," +
-                    "CARGO VARCHAR(255));";
 
-             */
 
             String query = " INSERT INTO EMPLEADOS (DNI, NOMBRE, APELLIDO1, APELLIDO2,FECHACONTRACT, FECHANAC, NACIONALIDAD, CARGO)"
                     + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -253,8 +208,8 @@ public class CreateTablesMysqlArriaga {
             preparedStatement.setString(2, "Pepito");
             preparedStatement.setString(3, "Rodriguez");
             preparedStatement.setString(4, "Escuela");
-            preparedStatement.setString(5,"2005-03-19");
-            preparedStatement.setString(6,"1985-05-14");
+            preparedStatement.setString(5,"03-19-2005");
+            preparedStatement.setString(6,"05-14-1985");
             preparedStatement.setString(7, "Española");
             preparedStatement.setString(8, "Monitor de esgrima");
             preparedStatement.execute();
@@ -316,18 +271,6 @@ public class CreateTablesMysqlArriaga {
     private static void InsertarActividad(Connection con){
 
         PreparedStatement preparedStatement;
-
-        /*String createActividades = "CREATE TABLE ACTIVIDADES(" +
-                "NUMACTIVIDAD VARCHAR(255) PRIMARY KEY NOT NULL," +
-                "NOMBRE VARCHAR(255) NOT NULL," +
-                "NUMEROMAXIMOINVITADO INT NOT NULL," +
-                "NOMBRESALA VARCHAR(20)," +
-                "CURSOACADEMICO VARCHAR (20)," +
-                "COSTE DOUBLE," +
-                "DNIEMPLEADO VARCHAR(255)," +
-                "FOREIGN  KEY (DNIEMPLEADO) REFERENCES  EMPLEADOS(DNI));";
-
-         */
 
 
         try {
@@ -394,15 +337,6 @@ public class CreateTablesMysqlArriaga {
 
         try {
 
-            /*String createUsuarios = "CREATE TABLE USUARIOS(" +
-                    "DNI VARCHAR(9) PRIMARY KEY NOT NULL," +
-                    "NOMBRE VARCHAR(255) NOT NULL," +
-                    "APELLIDO1 VARCHAR(255)," +
-                    "APELLIDO2 VARCHAR(255)," +
-                    "EDAD INT," +
-                    "PROFESION VARCHAR (20));";
-
-             */
 
             String query = " INSERT INTO USUARIOS (DNI, NOMBRE, APELLIDO1, APELLIDO2, EDAD, PROFESION)"
                     + " VALUES (?, ?, ?, ?, ?, ?)";
@@ -462,16 +396,7 @@ public class CreateTablesMysqlArriaga {
 
         try {
 
-            /*String createSesion = "CREATE TABLE SESION(" +
-                "IDSESION INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT," +
-                "HORA VARCHAR(5)," +
-                "DIASEMANA VARCHAR(255)," +
-                "NUMACTIVIDAD VARCHAR(255)," +
-                "DNIUSUARIO VARCHAR(9)," +
-                "FOREIGN KEY (NUMACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD)," +
-                "FOREIGN KEY (DNIUSUARIO) REFERENCES  USUARIOS(DNI));";
 
-             */
 
             String query = " INSERT INTO SESION (HORA, DIASEMANA, NUMACTIVIDAD, DNIUSUARIO)"
                     + " VALUES (?, ?, ?, ?)";
