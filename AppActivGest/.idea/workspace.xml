@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/librerias/commons-logging-api-1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librerias/log4j-1.2-api-2.12.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librerias/pdfbox-2.0.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librerias/pdfbox-tools-2.0.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/recursos/Impresor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/CreateTablesMysqlArriaga.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/CreateTablesMysqlArriaga.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/MysqlConsultas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/mysql/MysqlConsultas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Empleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Empleado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Sesion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Sesion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Empleado.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,10 +32,15 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="204" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/db4o-8.0.276.16149-java (1)/db4o-8.0.276.16149-java/db4o-8.0/lib/db4o-8.0.276.16149-all-java5.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/librerias" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\librerias" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -50,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.VentanaLogin">
+  <component name="RunManager" selected="Application.CreateTablesMysqlArriaga">
     <configuration name="CreateTablesMysqlArriaga" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="controlador.mysql.CreateTablesMysqlArriaga" />
       <module name="AppActivGest" />
@@ -118,11 +122,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CreateTablesMysqlArriaga" />
         <item itemvalue="Application.VentanaLogin" />
         <item itemvalue="Application.VentanaPrincipal" />
         <item itemvalue="Application.CreateTablesPostgreIbaiondo" />
         <item itemvalue="Application.CreateTablesSqliteHegoalde" />
-        <item itemvalue="Application.CreateTablesMysqlArriaga" />
       </list>
     </recent_temporary>
   </component>
