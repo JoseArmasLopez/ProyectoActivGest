@@ -15,6 +15,14 @@ public class Sesion {
         this.IDActividad = IDActividad;
     }
 
+    public Sesion( int ID, String hora, String diaSemana, String DNIUsuario, String IDActividad) {
+        this.hora = hora;
+        this.diaSemana = diaSemana;
+        this.DNIUsuario = DNIUsuario;
+        this.IDActividad = IDActividad;
+        this.ID = ID;
+    }
+
     private Actividad actividad;
     private Usuario usuario;
 
