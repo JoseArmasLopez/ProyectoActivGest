@@ -523,7 +523,7 @@ public class SqliteConsulta {
         try {
 
             String query = "UPDATE actividades set nombre = ?,numeromaximoinvitado = ?,nombresala = ?" +
-                    ",cursoacademico = ? ,coste = ? where numactividad = ?" + actividad.getNumactividad();
+                    ",cursoacademico = ? ,coste = ? where numactividad = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
@@ -538,9 +538,6 @@ public class SqliteConsulta {
 
             // update
             int r = ps.executeUpdate();
-
-
-
 
             ps.close();
 
@@ -569,13 +566,19 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE usuarios set dni = "+ usuario.getDni()+",nombre = "
-                    +usuario.getNombre()+",apellido1 = "+ usuario.getApellido1() + ",apellido2 = "+
-                    usuario.getApellido2() +",edad = "+usuario.getEdad() + ",profesion = "+usuario.getProfesion()+
-                    "where dni = "+usuario.getDni();
+            String query = "UPDATE usuarios set nombre = ? ,apellido1 = ?, apellido2 = ?" +
+                    ",edad = ?, profesion = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+
+            // set the corresponding param
+            ps.setString(1, usuario.getNombre());
+            ps.setString(2, usuario.getApellido1());
+            ps.setString(3, usuario.getApellido2());
+            ps.setInt(4, usuario.getEdad());
+            ps.setString(5, usuario.getProfesion());
+            ps.setString(6,usuario.getDni());
 
             int r = ps.executeUpdate();
             ps.close();
@@ -603,13 +606,19 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE empleados set dni = "+ empleado.getDni()+",nombre = "
-                    +empleado.getNombre()+",apellido1 = "+ empleado.getApellido1() + ",apellido2 = "+
-                    empleado.getApellido2() +" ,fechacontract = "+empleado.getFechacontract() + ",fechanac = "+empleado.getFechanac()+
-                    ",nacionalidad = " + empleado.getNacionalidad()+" ,cargo = "+empleado.getCargo() +" where dni = " + empleado.getDni();
+            String query = "UPDATE empleados set nombre = ? ,apellido1 = ?, fechacontract = ?, fechanac = ?,cargo = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+
+            // set the corresponding param
+            ps.setString(1, empleado.getNombre());
+            ps.setString(2, empleado.getApellido1());
+            ps.setString(3, empleado.getFechacontract());
+            ps.setString(4, empleado.getFechanac());
+            ps.setString(5,empleado.getCargo());
+            ps.setString(6,empleado.getDni());
+
 
             int r = ps.executeUpdate();
             ps.close();
