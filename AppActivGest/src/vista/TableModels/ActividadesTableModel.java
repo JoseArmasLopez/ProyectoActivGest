@@ -12,6 +12,10 @@ public class ActividadesTableModel extends AbstractTableModel {
 
     public ActividadesTableModel(List<Actividad> actividades) {
         this.actividades = actividades;
+
+        System.out.println(actividades.size());
+
+        System.out.println("Numero de actividades ...");
     }
 
     @Override

@@ -15,8 +15,6 @@ public class Sesion {
         this.IDActividad = IDActividad;
     }
 
-
-
     private Actividad actividad;
     private Usuario usuario;
 
@@ -59,7 +57,6 @@ public class Sesion {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 
     public String getDNIUsuario() {
         return DNIUsuario;
