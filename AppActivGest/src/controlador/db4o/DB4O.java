@@ -9,48 +9,33 @@ import modelo.Empleado;
 import modelo.Sesion;
 import modelo.Usuario;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-
-import static controlador.ControladorBbDd.obtenerDb4o;
 
 public class DB4O {
 
-    //---------------------------------------------------------------------DATOS-----------------------------------------------------------------------
+    final static String BDIparralde = "CentroCivicoIparralde.yap";
 
+    public DB4O() {
+    }
 
+    public void insertarActividad(Actividad eleccion) {
 
-    Actividad actividad1 = new Actividad(1,"Aquagym","gimnasia",10,"2019-2020",50.0);
-    Actividad actividad2 = new Actividad("2","Patinaje",15,"cancha","2019-2020",15.0);
-    Actividad actividad3 = new Actividad("3","Padel",10,"pista","2019-2020",35.50);
-    Actividad actividad4 = new Actividad("4","Aerobic",10,"sala2","2019-2020",26.50);
+        Actividad actividadRecuperada = null;
 
-    Empleado empleado1 = new Empleado("72737475", "Pablo", "Lopez", "Garcia", "01/02/1980", "02/03/2014", "oficial de control", "venezolana");
-    Empleado empleado2 = new Empleado("72737476", "Idoia", "Martinez", "Guinea", "12/06/1990", "06/10/2018", "socorrista", "española");
-    Empleado empleado3  = new Empleado("72737477", "Marta", "Basterra", "Imaz", "15/08/1983", "15/07/2013", "conserje", "española");
-    Empleado empleado4  = new Empleado("72737478", "Mikel", "Insagurbe", "Perez", "18/10/1975", "05/01/2000", "monitor", "española");
+        //Abrir la conexión
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
-    Usuario usuario1 = new Usuario("73245456", "Pedro", "Uriondo", "Rodriguez", 40, "profesor");
-    Usuario usuario2 = new Usuario("71239390", "Lucas", "Delgado", "Mendez", 30, "camarero");
-    Usuario usuario3 = new Usuario("72459880", "Jokin", "Urkiza", "Echebarria", 52, "mecanico");
-    Usuario usuario4 = new Usuario("73245456", "Alvaro", "Garcia", "Martinez", 25, "informatico");
+        //Guardar actividad
+        baseDatos.store(eleccion);
 
-    Sesion sesion1 = new Sesion("15:30", "Lunes");
-    Sesion sesion2 = new Sesion("10:00", "Jueves");
-    Sesion sesion3 = new Sesion("18:00", "Miercoles");
-    Sesion sesion4 = new Sesion("9:00", "Sabado");
+        //Cerrar conexión
+        baseDatos.close();
 
+    }
 
-    /**
-     * Obtener actividad
-     *
-     * @param eleccion para realizar la busqueda
-     * @return la actividad que se ha elegido
-     */
-    public static Actividad obtenerActividad(Actividad eleccion) {
+    public Actividad obtenerActividad(Actividad eleccion) {
         //Abrimos la conexion
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         Actividad actividad = null;
 
@@ -69,18 +54,13 @@ public class DB4O {
         return actividad;
     }
 
-    /**
-     * Obtener actividades
-     *
-     * @param eleccion para realizar la busqueda
-     * @return array de actividades
-     */
-    public static ArrayList<Actividad> obtenerActividades(Actividad eleccion) {
+    public ArrayList<Actividad> obtenerActividades() {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de empleados
         ArrayList<Actividad> arrayActividades = new ArrayList<>();
+        Actividad eleccion = new Actividad();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -99,33 +79,9 @@ public class DB4O {
         return arrayActividades;
     }
 
-    /**
-     * Insertar actividad
-     *
-     * @param eleccion insertar actividad
-     */
-    public static void insertarActividad(Actividad eleccion) {
+    public void modificarActividad(Actividad eleccion, Actividad nuevosDatos) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
-
-        //Guardar actividad
-        baseDatos.store(eleccion);
-
-        //Cerrar conexión
-        baseDatos.close();
-
-    }
-
-
-    /**
-     * Modificar la actividad
-     *
-     * @param eleccion    la actividad a modificar
-     * @param nuevosDatos cambios
-     */
-    public static void modificarActividad(Actividad eleccion, Actividad nuevosDatos) {
-        //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener eleccion
         ObjectSet result = baseDatos.queryByExample(eleccion);
@@ -151,14 +107,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-    /**
-     * Borrar actividad
-     *
-     * @param eleccion actividad a eliminar
-     */
-    public static void borrarActividad(Actividad eleccion) {
+    public void borrarActividad(Actividad eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener resultado
         ObjectSet result = baseDatos.queryByExample(eleccion);
@@ -176,15 +127,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-    /**
-     * Obtener empleado
-     *
-     * @param eleccion para realizar la busqueda
-     * @return el empleado que se ha elegido
-     */
-    public static Empleado obtenerEmpleado(Empleado eleccion) {
+    public Empleado obtenerEmpleado(Empleado eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         Empleado empleado = null;
 
@@ -201,19 +146,13 @@ public class DB4O {
         return empleado;
     }
 
-
-    /**
-     * Obtener Empleados
-     *
-     * @param eleccion para realizar la busqueda
-     * @return array de empleados
-     */
-    public static ArrayList<Empleado> obtenerEmpleados(Empleado eleccion) {
+    public ArrayList<Empleado> obtenerEmpleados() {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de empleados
         ArrayList<Empleado> arrayEmpleados = new ArrayList<>();
+        Empleado eleccion = new Empleado();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -233,14 +172,9 @@ public class DB4O {
         return arrayEmpleados;
     }
 
-    /**
-     * Insertar empleado
-     *
-     * @param eleccion insertar empleado
-     */
-    public static void insertarEmpleado(Empleado eleccion) {
+    public void insertarEmpleado(Empleado eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Guardar empleado
         baseDatos.store(eleccion);
@@ -250,16 +184,9 @@ public class DB4O {
 
     }
 
-
-    /**
-     * Modificar el empleado
-     *
-     * @param eleccion    el empleado a modificar
-     * @param nuevosDatos cambios
-     */
-    public static void modificarEmpleado(Empleado eleccion, Empleado nuevosDatos) {
+    public void modificarEmpleado(Empleado eleccion, Empleado nuevosDatos) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener eleccion
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -275,7 +202,7 @@ public class DB4O {
             emp.setApellido1(nuevosDatos.getApellido1() != null ? nuevosDatos.getApellido1() : emp.getApellido1());
             emp.setApellido2(nuevosDatos.getApellido2() != null ? nuevosDatos.getApellido2() : emp.getApellido2());
             emp.setFechanac(nuevosDatos.getFechanac() != null ? nuevosDatos.getFechanac() : emp.getFechanac());
-            emp.setFechacontract(nuevosDatos.getFechacontract()  != null ? nuevosDatos.getFechacontract() : emp.getFechacontract());
+            emp.setFechacontract(nuevosDatos.getFechacontract() != null ? nuevosDatos.getFechacontract() : emp.getFechacontract());
             emp.setCargo(nuevosDatos.getCargo() != null ? nuevosDatos.getCargo() : emp.getCargo());
             emp.setNacionalidad(nuevosDatos.getNacionalidad() != null ? nuevosDatos.getNacionalidad() : emp.getNacionalidad());
 
@@ -287,14 +214,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-    /**
-     * Borrar modificar
-     *
-     * @param eleccion empleado a eliminar
-     */
-    public static void borrarEmpleado(Empleado eleccion) {
+    public void borrarEmpleado(Empleado eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -312,16 +234,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-
-    /**
-     * Obtener Usuario
-     *
-     * @param eleccion para realizar la busqueda
-     * @return el usuario
-     */
-    public static Usuario obtenerUsuario(Usuario eleccion) {
+    public Usuario obtenerUsuario(Usuario eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         Usuario usuario = null;
 
@@ -338,19 +253,13 @@ public class DB4O {
         return usuario;
     }
 
-
-    /**
-     * Obtener usuarios
-     *
-     * @param eleccion para realizar la busqueda
-     * @return array de usuarios
-     */
-    public static ArrayList<Usuario> obtenerUsuarios(Usuario eleccion) {
+    public ArrayList<Usuario> obtenerUsuarios() {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de usuarios
         ArrayList<Usuario> arrayUsuarios = new ArrayList<>();
+        Usuario eleccion = new Usuario();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -370,14 +279,9 @@ public class DB4O {
         return arrayUsuarios;
     }
 
-    /**
-     * Insertar usuario
-     *
-     * @param eleccion insertar usuario
-     */
-    public static void insertarUsuario(Usuario eleccion) {
+    public void insertarUsuario(Usuario eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Guardar usuario
         baseDatos.store(eleccion);
@@ -387,16 +291,9 @@ public class DB4O {
 
     }
 
-
-    /**
-     * Modificar el usuario
-     *
-     * @param eleccion    el usuario a modificar
-     * @param nuevosDatos cambios
-     */
-    public static void modificarUsuario(Usuario eleccion, Usuario nuevosDatos) {
+    public void modificarUsuario(Usuario eleccion, Usuario nuevosDatos) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener eleccion
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -423,14 +320,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-    /**
-     * Borrar usuario
-     *
-     * @param eleccion usuario a eliminar
-     */
-    public static void borrarUsuario(Usuario eleccion) {
+    public void borrarUsuario(Usuario eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -448,16 +340,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-
-    /**
-     * Obtener sesion
-     *
-     * @param eleccion para realizar la busqueda
-     * @return la sesion
-     */
-    public static Sesion obtenerSesion(Sesion eleccion) {
+    public Sesion obtenerSesion(Sesion eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         Sesion sesion = null;
 
@@ -474,19 +359,13 @@ public class DB4O {
         return sesion;
     }
 
-
-    /**
-     * Obtener sesiones
-     *
-     * @param eleccion para realizar la busqueda
-     * @return array de sesiones
-     */
-    public static ArrayList<Sesion> obtenerSesiones(Sesion eleccion) {
+    public ArrayList<Sesion> obtenerSesiones() {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Crear arraylist de sesiones
         ArrayList<Sesion> arraySesiones = new ArrayList<>();
+        Sesion eleccion = new Sesion();
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -506,14 +385,9 @@ public class DB4O {
         return arraySesiones;
     }
 
-    /**
-     * Insertar sesion
-     *
-     * @param eleccion insertar sesion
-     */
-    public static void insertarSesion(Sesion eleccion) {
+    public void insertarSesion(Sesion eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Guardar sesion
         baseDatos.store(eleccion);
@@ -523,16 +397,9 @@ public class DB4O {
 
     }
 
-
-    /**
-     * Modificar la sesion
-     *
-     * @param eleccion    la sesion a modificar
-     * @param nuevosDatos cambios
-     */
-    public static void modificarSesion(Sesion eleccion, Sesion nuevosDatos) {
+    public void modificarSesion(Sesion eleccion, Sesion nuevosDatos) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener eleccion
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -554,14 +421,9 @@ public class DB4O {
         baseDatos.close();
     }
 
-    /**
-     * Borrar sesion
-     *
-     * @param eleccion sesion a eliminar
-     */
     public static void borrarSesion(Sesion eleccion) {
         //Abrir la conexión
-        ObjectContainer baseDatos = obtenerDb4o();
+        ObjectContainer baseDatos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDIparralde);
 
         //Obtener resultado
         ObjectSet consulta = baseDatos.queryByExample(eleccion);
@@ -578,11 +440,6 @@ public class DB4O {
         //Cerrar la conexión
         baseDatos.close();
     }
-
-
-
-
-
 
 
 }

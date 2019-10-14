@@ -15,9 +15,12 @@ public class VentanaCentroCivico {
     private JLabel telfJlabel;
     private JLabel munipJlabel;
     private JButton atrasButton;
+    private JButton sesionesButton;
 
     private VentanaTablesAcUsEm tablesAcUsEm;
     private VentanaMetadata vmtd;
+
+    private VentanaSesiones ventanaSesiones;
 
     public VentanaCentroCivico(String centroCivico) {
 
@@ -48,6 +51,12 @@ public class VentanaCentroCivico {
                 telfJlabel.setText("945 16 18 80");
                 munipJlabel.setText("Vitoria - Gasteiz");
                 break;
+            case "ibaiondo":
+                nombreCCJlabel.setText("CC. Ibaiondo");
+                direJlabel.setText("Calle Ibaiondo 10");
+                telfJlabel.setText("945 16 18 80");
+                munipJlabel.setText("Vitoria - Gasteiz");
+                break;
         }
 
         empleButton.addActionListener(new ActionListener() {
@@ -56,18 +65,21 @@ public class VentanaCentroCivico {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Empleados", centroCivico);
             }
         });
+
         usersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Usuarios", centroCivico);
             }
         });
+
         activButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 tablesAcUsEm = new VentanaTablesAcUsEm("Actividades", centroCivico);
             }
         });
+
         metadatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -86,10 +98,18 @@ public class VentanaCentroCivico {
                 vmtd = new VentanaMetadata(nomBBDD, centroCivico);
             }
         });
+
         atrasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 frame.dispose();
+            }
+        });
+
+        sesionesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ventanaSesiones = new VentanaSesiones(centroCivico);
             }
         });
     }

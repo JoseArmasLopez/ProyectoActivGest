@@ -1,5 +1,8 @@
 package modelo;
 
+import controlador.ControladorBbDd;
+import controlador.db4o.*;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ public class Empleado {
     private String cargo;
     private String nacionalidad;
 
-    private ArrayList<Actividad>actividadArrayList;
+    private ArrayList<Actividad> actividadArrayList;
 
     public Empleado() {
     }
@@ -30,6 +33,29 @@ public class Empleado {
         this.fechacontract = fechacontract;
         this.cargo = cargo;
         this.nacionalidad = nacionalidad;
+    }
+
+    public void guardarEmpleado(String bbdd) {
+        ControladorBbDd cbd = new ControladorBbDd(bbdd);
+
+        switch (bbdd) {
+            case "postgre":
+
+                break;
+            case "sqlite":
+
+                break;
+            case "mysql":
+
+                break;
+            case "db4o":
+
+
+                //DB4O.insertarEmpleado(this);
+                break;
+        }
+
+
     }
 
     public String getDni() {
@@ -103,4 +129,5 @@ public class Empleado {
     public void setActividadArrayList(ArrayList<Actividad> actividadArrayList) {
         this.actividadArrayList = actividadArrayList;
     }
+
 }

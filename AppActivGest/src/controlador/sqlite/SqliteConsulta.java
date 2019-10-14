@@ -16,6 +16,7 @@ public class SqliteConsulta {
     private ArrayList<Empleado> empleados;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Sesion> sesionesUsuario;
+    private ArrayList<Sesion> sesiones = new ArrayList<Sesion>();
     private Statement stmt = null;
 
     // Seccion constructor
@@ -27,17 +28,18 @@ public class SqliteConsulta {
     public ArrayList<Actividad> getActividades() {
         return actividades;
     }
-
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
-
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
+    public ArrayList<Sesion> getSesiones() {
+        return sesiones;
+    }
 
 
-    // *****************   seccion funciones de consultas *********************************************
+// *****************   seccion funciones de consultas  **********************************************
 
     // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
     public void actividadesHegoaldeSqlite() {
@@ -48,7 +50,7 @@ public class SqliteConsulta {
 
             // preparo la conexion y la ejecucion de la consulta
             stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT numactividad, nombre,numeromaximoinvitado," +
+            ResultSet rs = stmt.executeQuery("SELECT numactividad,nombre,numeromaximoinvitado," +
                     "nombresala,cursoacademico,coste FROM actividades");
 
             // accedo a las columnas de la tabla
@@ -117,6 +119,50 @@ public class SqliteConsulta {
             JOptionPane.showMessageDialog(null,e.getMessage());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        }
+        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
+
+    }
+
+    // funcion que devuelve las sesiones del cc
+    public void sesionesdeHegoalde(){
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+
+            System.out.println();
+            ResultSet rs = stmt.executeQuery("SELECT idsesion, hora, diasemana, numactividad,dniusuario  FROM sesion");
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                Integer id = rs.getInt("idsesion");
+                String hora = rs.getString("hora");
+                String dia = rs.getString("diasemana");
+                String num = rs.getString("numactividad");
+                String dni = rs.getString("dniusuario");
+
+                Sesion sesion = new Sesion();
+                sesion.setHora(hora);
+                sesion.setDiaSemana(dia);
+                sesion.setIDActividad(num);
+
+                this.sesiones.add(sesion);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
         }
         System.out.println("Operación realizada con éxito");
         //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
@@ -383,10 +429,12 @@ public class SqliteConsulta {
     public void eliminarActividad(String id) {
         try {
 
-            String query = "DELETE FROM ACTIVIDADES where numactividad = " + id;
+            String query = "DELETE FROM ACTIVIDADES where numactividad = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+
+            ps.setString(1,id);
 
             int row = ps.executeUpdate();
             ps.close();
@@ -409,10 +457,11 @@ public class SqliteConsulta {
     public void eliminarEmpleado(String id) {
         try {
 
-            String query = "DELETE FROM empleados where dni = " + id;
+            String query = "DELETE FROM empleados where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+            ps.setString(1,id);
 
             int r = ps.executeUpdate();
             ps.close();
@@ -439,10 +488,11 @@ public class SqliteConsulta {
     public void eliminarUsuario(String id) {
         try {
 
-            String query = "DELETE  FROM usuarios where DNI = " + id;
+            String query = "DELETE  FROM usuarios where DNI = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
+            ps.setString(1,id);
 
             int r = ps.executeUpdate();
             ps.close();
@@ -472,25 +522,39 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE actividades set numactividad = "+ actividad.getNumactividad()+",nombre = "
-                    +actividad.getNombre()+",numeromaximoinvitado = "+ actividad.getNumeromaxinvitado() + ",nombresala = "+
-             actividad.getNombresala() +",cursoacademico = "+actividad.getCurosAcademico() + ",coste = "+actividad.getCoste()+
-                    ",dniempleado = " + actividad.getEmpleado().getDni() +" where dniempleado = " + actividad.getNumactividad();
+            String query = "UPDATE actividades set nombre = ?,numeromaximoinvitado = ?,nombresala = ?" +
+                    ",cursoacademico = ? ,coste = ? where numactividad = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, actividad.getNombre());
+            ps.setInt(2, actividad.getNumeromaxinvitado());
+            ps.setString(3, actividad.getNombresala());
+            ps.setString(4, actividad.getCurosAcademico());
+            ps.setDouble(5, actividad.getCoste());
+            ps.setString(6,actividad.getNumactividad());
+
+            // update
+            int r = ps.executeUpdate();
+
             ps.close();
 
-            System.out.println("Actividad actualizada correctamente");
-            JOptionPane.showInputDialog("Actividad actualizada correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizada actividad correctamente");
+            }
+
+
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -502,25 +566,35 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE usuarios set dni = "+ usuario.getDni()+",nombre = "
-                    +usuario.getNombre()+",apellido1 = "+ usuario.getApellido1() + ",apellido2 = "+
-                    usuario.getApellido2() +",edad = "+usuario.getEdad() + ",profesion = "+usuario.getProfesion()+
-                    "where dni = "+usuario.getDni();
+            String query = "UPDATE usuarios set nombre = ? ,apellido1 = ?, apellido2 = ?" +
+                    ",edad = ?, profesion = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, usuario.getNombre());
+            ps.setString(2, usuario.getApellido1());
+            ps.setString(3, usuario.getApellido2());
+            ps.setInt(4, usuario.getEdad());
+            ps.setString(5, usuario.getProfesion());
+            ps.setString(6,usuario.getDni());
+
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Usuario actualizado correctamente");
-            JOptionPane.showInputDialog("Usuario actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado usuario correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 
@@ -532,25 +606,35 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE empleados set dni = "+ empleado.getDni()+",nombre = "
-                    +empleado.getNombre()+",apellido1 = "+ empleado.getApellido1() + ",apellido2 = "+
-                    empleado.getApellido2() +" ,fechacontract = "+empleado.getFechacontract() + ",fechanac = "+empleado.getFechanac()+
-                    ",nacionalidad = " + empleado.getNacionalidad()+" ,cargo = "+empleado.getCargo() +" where dni = " + empleado.getDni();
+            String query = "UPDATE empleados set nombre = ? ,apellido1 = ?, fechacontract = ?, fechanac = ?,cargo = ? where dni = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
 
-            ps.execute();
+            // set the corresponding param
+            ps.setString(1, empleado.getNombre());
+            ps.setString(2, empleado.getApellido1());
+            ps.setString(3, empleado.getFechacontract());
+            ps.setString(4, empleado.getFechanac());
+            ps.setString(5,empleado.getCargo());
+            ps.setString(6,empleado.getDni());
+
+
+            int r = ps.executeUpdate();
             ps.close();
 
-            System.out.println("Empleado actualizado correctamente");
-            JOptionPane.showInputDialog("Empleado actualizado correctamente");
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado empleado correctamente");
+            }
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error ...");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 

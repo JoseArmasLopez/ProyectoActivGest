@@ -632,33 +632,30 @@ public class MysqlConsultas {
 
     }
 
-    //NECESITAMOS ID SESION EN LA CLASE.
-
-    /*
     public void EliminarSesionArriaga(Sesion sesion){
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM SESION WHERE ID = '" + sesion.id + "'";
+            String query =  "DELETE FROM SESION WHERE IDSESION = '" + sesion.getID() + "'";
 
             preparedStatement = con.prepareStatement(query);
 
             preparedStatement.execute();
             preparedStatement.close();
 
-            System.out.println("Usuario eliminado correctamente de Arriaga y sesiones canceladas.");
+            System.out.println("Sesión eliminada correctamente de Arriaga.");
 
 
         } catch (SQLException e) {
 
-            System.out.println("Error al eliminar el usuario de Arriaga.");
+            System.out.println("Error al eliminar la sesión de Arriaga.");
             e.printStackTrace();
         }
 
     }
     
-     */
+
 
 
 
@@ -713,6 +710,56 @@ public class MysqlConsultas {
 
         }catch (Exception e) {
             System.err.println("Error al modificar al empleado.");
+            e.getMessage();
+        }
+    }
+
+    public void ActualizarUsuario(Usuario usuario){
+        try{
+
+            String query = "UPDATE usuarios" +
+                    "set DNI = '"+usuario.getDni()+"'"+
+                    ",NOMBRE = '" +usuario.getNombre()+"'"+
+                    ",APELLIDO1 = '"+ usuario.getApellido1()+"'"+
+                    ",APELLIDO2 = '"+ usuario.getApellido2()+"'"+
+                    ",EDAD = '"+usuario.getEdad()+"'"+
+                    ",PROFESION = '"+usuario.getProfesion()+"'"+
+                    " where DNI = '" + usuario.getDni()+"'";
+
+            PreparedStatement preparedStatement;
+            preparedStatement = this.con.prepareStatement(query);
+
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+
+        }catch (Exception e) {
+            System.err.println("Error al modificar al usuario.");
+            e.getMessage();
+        }
+    }
+
+    public void ActualizarSesion(Sesion sesion){
+        try{
+
+
+            String query = "UPDATE sesion" +
+                    "set IDSESION = '"+sesion.getID()+"'"+
+                    ",HORA = '" +sesion.getHora()+"'"+
+                    ",DIASEMANA = '"+ sesion.getDiaSemana()+"'"+
+                    ",NUMACTIVIDAD = '"+ sesion.getIDActividad()+"'"+
+                    ",DNIUSUARIO = '"+sesion.getDNIUsuario()+"'"+
+                    " where IDSESION = '" + sesion.getID()+"'";
+
+            PreparedStatement preparedStatement;
+            preparedStatement = this.con.prepareStatement(query);
+
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+
+        }catch (Exception e) {
+            System.err.println("Error al modificar la sesión.");
             e.getMessage();
         }
     }
