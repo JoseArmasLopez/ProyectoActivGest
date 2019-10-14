@@ -1,4 +1,4 @@
-package recursos;
+/*package recursos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,3 +50,5 @@ public class Impresor {
 
 
 }
+
+ */
