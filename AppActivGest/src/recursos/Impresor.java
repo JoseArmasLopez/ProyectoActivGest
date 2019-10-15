@@ -27,7 +27,7 @@ public class Impresor {
 
     public void imprimir() throws PrinterException, IOException {
         // Indicamos el nombre del archivo Pdf que deseamos imprimir
-        PDDocument document = PDDocument.load(new File("FormularioInscripcion.pdf"));
+        //PDDocument document = PDDocument.load(new File("FormularioInscripcion.pdf"));
 
         //muestro en pdf el documento generado
         try {
@@ -41,7 +41,7 @@ public class Impresor {
 
         LOGGER.log(Level.INFO, "Mostrando el dialogo de impresion");
         if (job.printDialog() == true) {
-            job.setPageable(new PDFPageable(document));
+            //job.setPageable(new PDFPageable(document));
 
             LOGGER.log(Level.INFO, "Imprimiendo documento");
             job.print();
