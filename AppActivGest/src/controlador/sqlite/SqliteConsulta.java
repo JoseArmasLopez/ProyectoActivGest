@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SqliteConsulta {
 
@@ -354,7 +353,7 @@ public class SqliteConsulta {
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
-            ps.setString(5, nuevaActividad.getCurosAcademico());
+            ps.setString(5, nuevaActividad.getcursoacademico());
             ps.setDouble(6,nuevaActividad.getCoste());
 
 
@@ -532,7 +531,7 @@ public class SqliteConsulta {
             ps.setString(1, actividad.getNombre());
             ps.setInt(2, actividad.getNumeromaxinvitado());
             ps.setString(3, actividad.getNombresala());
-            ps.setString(4, actividad.getCurosAcademico());
+            ps.setString(4, actividad.getcursoacademico());
             ps.setDouble(5, actividad.getCoste());
             ps.setString(6,actividad.getNumactividad());
 

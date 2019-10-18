@@ -1,5 +1,8 @@
 package recursos;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.print.PrinterException;

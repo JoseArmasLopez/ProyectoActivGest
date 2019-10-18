@@ -3,7 +3,6 @@ package controlador.db4o;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
-import controlador.ControladorBbDd;
 import modelo.Actividad;
 import modelo.Empleado;
 import modelo.Sesion;
@@ -96,7 +95,7 @@ public class DB4O {
             ac.setNombre(nuevosDatos.getNombre() != null ? nuevosDatos.getNombre() : ac.getNombre());
             ac.setNumeromaxinvitado(nuevosDatos.getNumeromaxinvitado() != 0 ? nuevosDatos.getNumeromaxinvitado() : ac.getNumeromaxinvitado());
             ac.setNombresala(nuevosDatos.getNombresala() != null ? nuevosDatos.getNombresala() : nuevosDatos.getNombresala());
-            ac.setCurosAcademico(nuevosDatos.getCurosAcademico() != null ? nuevosDatos.getCurosAcademico() : nuevosDatos.getCurosAcademico());
+            ac.setCurosAcademico(nuevosDatos.getcursoacademico() != null ? nuevosDatos.getcursoacademico() : nuevosDatos.getcursoacademico());
             ac.setCoste(nuevosDatos.getCoste() != null ? nuevosDatos.getCoste() : nuevosDatos.getCoste());
 
             baseDatos.store(ac);
