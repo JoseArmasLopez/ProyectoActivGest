@@ -41,7 +41,7 @@ public class ActividadesTableModel extends AbstractTableModel {
             case 3:
                 return a.getNombresala();
             case 4:
-                return a.getCurosAcademico();
+                return a.getcursoacademico();
             case 5:
                 return a.getCoste();
         }

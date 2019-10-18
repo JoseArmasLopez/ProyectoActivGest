@@ -1,7 +1,6 @@
 package modelo;
 
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.util.List;
 
@@ -90,7 +89,7 @@ public class TablaModelo implements TableModel {
                 titulo = act.getNombresala();
                 break;
             case 4:
-                titulo = act.getCurosAcademico();
+                titulo = act.getcursoacademico();
                 break;
             case 5:
                 titulo = Double.toString(act.getCoste());
