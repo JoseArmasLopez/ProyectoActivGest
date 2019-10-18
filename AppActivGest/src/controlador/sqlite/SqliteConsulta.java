@@ -147,9 +147,11 @@ public class SqliteConsulta {
                 String dni = rs.getString("dniusuario");
 
                 Sesion sesion = new Sesion();
+                sesion.setID(id);
                 sesion.setHora(hora);
                 sesion.setDiaSemana(dia);
                 sesion.setIDActividad(num);
+                sesion.setDNIUsuario(dni);
 
                 this.sesiones.add(sesion);
 
@@ -647,7 +649,7 @@ public class SqliteConsulta {
 
         try {
 
-            String query = "UPDATE sesion set hora = ? ,diasemana = ?, numactividad = ?, dniusuario = ? where idsesion = ?";
+            String query = "UPDATE sesion set hora = ? ,diasemana = ?,numactividad = ?,dniusuario = ? where idsesion = ?";
 
             PreparedStatement ps;
             ps = this.connection.prepareStatement(query);
@@ -658,7 +660,6 @@ public class SqliteConsulta {
             ps.setString(3, sesion.getIDActividad());
             ps.setString(4, sesion.getDNIUsuario());
             ps.setInt(5,sesion.getID());
-
 
 
             int r = ps.executeUpdate();
