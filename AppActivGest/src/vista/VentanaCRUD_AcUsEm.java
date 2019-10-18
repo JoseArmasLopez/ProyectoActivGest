@@ -6,6 +6,7 @@ import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Actividad;
 import modelo.Empleado;
+import modelo.Sesion;
 import modelo.Usuario;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class VentanaCRUD_AcUsEm {
+
     private JPanel ventanaCRUD_AcUsEmJpanel;
     private JTextField textField1;
     private JTextField textField2;
@@ -96,6 +98,17 @@ public class VentanaCRUD_AcUsEm {
                 jLabel4.setText("Fecha nacimiento");
                 jLabel5.setText("Fecha contratación");
                 jLabel6.setText("Cargo");
+
+                break;
+
+            case "sesiones":
+
+                jLabel1.setText("Id Sesión");
+                jLabel2.setText("Hora");
+                jLabel3.setText("Día semana");
+                jLabel4.setText("Nº Actividad");
+                jLabel5.setText("Dni Usuario");
+                jLabel6.setText("Observaciones");
 
                 break;
 
@@ -373,6 +386,33 @@ public class VentanaCRUD_AcUsEm {
 
 
                                 break;
+
+                            case "sesiones":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva sesion
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), textField5.getText());
+
+
+
+                                    vaciarTextFields();
+
+                                }
+
+
+                                break;
                         }
 
                         break;
@@ -457,6 +497,32 @@ public class VentanaCRUD_AcUsEm {
                                     db4O.insertarEmpleado(nuevoEmpleado);
 
                                     vaciarTextFields();
+                                }
+
+                                break;
+
+                            case "sesiones":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva sesion
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), textField5.getText());
+
+
+
+                                    vaciarTextFields();
+
                                 }
 
 
@@ -544,6 +610,33 @@ public class VentanaCRUD_AcUsEm {
                                     sqliteConsulta.altaNuevoEmpleado(nuevoEmpleado);
 
                                     vaciarTextFields();
+                                }
+
+
+                                break;
+
+                            case "sesiones":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva sesion
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), textField5.getText());
+
+
+
+                                    vaciarTextFields();
+
                                 }
 
 
