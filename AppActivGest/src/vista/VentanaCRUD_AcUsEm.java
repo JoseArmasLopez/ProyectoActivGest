@@ -69,6 +69,8 @@ public class VentanaCRUD_AcUsEm {
         // procedo a hacer la consulta
         SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
+        System.out.println("------------->"+tipo);
+
         // aqui se pone texto en los labels
         switch (tipo.toLowerCase()) {
             case "actividades":
@@ -916,8 +918,14 @@ public class VentanaCRUD_AcUsEm {
 
 
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
+                                            textField5.getText(), textField4.getText());
+
+                                    System.out.println("11111");
+
+                                    nuevaSesion.toString();
+
+                                    sqliteConsulta.actualizarSesion(nuevaSesion);
 
 
                                     vaciarTextFields();

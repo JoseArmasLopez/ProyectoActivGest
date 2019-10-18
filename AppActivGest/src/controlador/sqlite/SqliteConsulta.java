@@ -643,6 +643,8 @@ public class SqliteConsulta {
     // funcion que actualiza una sesion
     public void actualizarSesion ( Sesion sesion){
 
+        System.out.println(sesion.toString());
+
         try {
 
             String query = "UPDATE sesion set hora = ? ,diasemana = ?, numactividad = ?, dniusuario = ? where idsesion = ?";
@@ -655,7 +657,7 @@ public class SqliteConsulta {
             ps.setString(2, sesion.getDiaSemana());
             ps.setString(3, sesion.getIDActividad());
             ps.setString(4, sesion.getDNIUsuario());
-            ps.setString(5,sesion.getDNIUsuario());
+            ps.setInt(5,sesion.getID());
 
 
 

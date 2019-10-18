@@ -89,4 +89,17 @@ public class Sesion {
     public void setID(int ID) {
         this.ID = ID;
     }
+
+    @Override
+    public String toString() {
+        return "Sesion{" +
+                "hora='" + hora + '\'' +
+                ", diaSemana='" + diaSemana + '\'' +
+                ", DNIUsuario='" + DNIUsuario + '\'' +
+                ", IDActividad='" + IDActividad + '\'' +
+                ", ID=" + ID +
+                ", actividad=" + actividad +
+                ", usuario=" + usuario +
+                '}';
+    }
 }
