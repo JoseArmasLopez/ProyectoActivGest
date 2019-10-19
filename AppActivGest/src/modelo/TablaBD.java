@@ -48,4 +48,14 @@ public class TablaBD {
     public void setNumCols(int numCols) {
         this.numCols = numCols;
     }
+
+    @Override
+    public String toString() {
+        return "TablaBD{" +
+                "esquema='" + esquema + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", pk='" + pk + '\'' +
+                ", numCols=" + numCols +
+                '}';
+    }
 }

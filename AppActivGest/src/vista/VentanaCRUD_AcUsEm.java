@@ -39,7 +39,10 @@ public class VentanaCRUD_AcUsEm {
     private TablaModelo modelo;
 
 
+
     public VentanaCRUD_AcUsEm(String tipo, String cc) {
+
+
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaCRUD_AcUsEmJpanel);
@@ -48,6 +51,8 @@ public class VentanaCRUD_AcUsEm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+
 
         //MySQL
         Connection con = null;
@@ -1257,6 +1262,8 @@ public class VentanaCRUD_AcUsEm {
 
             }
         });
+
+
     }
 
     // funcion para vaciar los Jlabels

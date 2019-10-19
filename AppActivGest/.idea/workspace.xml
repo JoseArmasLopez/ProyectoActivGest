@@ -3,13 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hegoalde.db" beforeDir="false" afterPath="$PROJECT_DIR$/hegoalde.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/SqliteConsulta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Sesion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/modelo/Sesion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/SqliteConsulta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Sesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Sesion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/MetadatoBd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/sqlite/MetadatoBd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/sqlite/MetadatoBd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/sqlite/MetadatoBd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/TablaBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/TablaBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/TableModels/TablasBDTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/TableModels/TablasBDTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaMetadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablasBBDD.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablasBBDD.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaTablasBBDD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaTablasBBDD.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +37,7 @@
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="204" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="288" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />

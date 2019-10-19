@@ -76,12 +76,13 @@ public class VentanaSesiones {
 
             }
         });
+
     }
 
 
     public void cargarDatosEnTabla(List<Sesion>sesionList){
         table1.setModel(new SesionesTableModel(sesionList));
-        
+
 
     }
 
