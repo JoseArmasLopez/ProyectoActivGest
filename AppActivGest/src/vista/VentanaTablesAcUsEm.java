@@ -128,7 +128,7 @@ public class VentanaTablesAcUsEm {
         }
     }
 
-    // funcion que devuelve los datos de la bd a usuarios, actividades, empleados
+    // funcion que devuelve los datos de la bd a usuarios, actividades, empleados tanto de hegoalde como de ibaiondo
     public void cargarUsuariosActividadesEmpleadosSqliteHegoalde(String cc) {
 
 
@@ -175,4 +175,6 @@ public class VentanaTablesAcUsEm {
 
 
     }
+
+
 }

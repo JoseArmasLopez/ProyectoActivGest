@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SqliteConsulta {
 
@@ -354,7 +353,7 @@ public class SqliteConsulta {
             ps.setString(2, nuevaActividad.getNombre());
             ps.setInt(3, nuevaActividad.getNumeromaxinvitado());
             ps.setString(4, nuevaActividad.getNombresala());
-            ps.setString(5, nuevaActividad.getCurosAcademico());
+            ps.setString(5, nuevaActividad.getcursoacademico());
             ps.setDouble(6,nuevaActividad.getCoste());
 
 
@@ -532,7 +531,7 @@ public class SqliteConsulta {
             ps.setString(1, actividad.getNombre());
             ps.setInt(2, actividad.getNumeromaxinvitado());
             ps.setString(3, actividad.getNombresala());
-            ps.setString(4, actividad.getCurosAcademico());
+            ps.setString(4, actividad.getcursoacademico());
             ps.setDouble(5, actividad.getCoste());
             ps.setString(6,actividad.getNumactividad());
 
@@ -641,27 +640,47 @@ public class SqliteConsulta {
 
     }
 
-    //************* seccion funciones de tablas *************************************************
+    // funcion que actualiza una sesion
+    public void actualizarSesion ( Sesion sesion){
 
-    // funcion para mostrar en una tabla(javaswing) los datos
-    public  void tablaMostrarActividades(ArrayList<Actividad> acti, JTable tabla){
+        try {
+
+            String query = "UPDATE sesion set hora = ? ,diasemana = ?, numactividad = ?, dniusuario = ? where idsesion = ?";
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            // set the corresponding param
+            ps.setString(1, sesion.getHora());
+            ps.setString(2, sesion.getDiaSemana());
+            ps.setString(3, sesion.getIDActividad());
+            ps.setString(4, sesion.getDNIUsuario());
+            ps.setString(5,sesion.getDNIUsuario());
 
 
 
+            int r = ps.executeUpdate();
+            ps.close();
+
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Actualizado empleado correctamente");
+            }
 
 
+        } catch (SQLException e) {
 
-
-
-
-
-
-
-
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
 
 
 
     }
+
+    //************* seccion funciones de tablas *************************************************
 
     // funcion para mostrar en una tabla(javaswing) los datos
     public  void tablaActividadesDeUnUsuario(ArrayList<Usuario> usuarios){

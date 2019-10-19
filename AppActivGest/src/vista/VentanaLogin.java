@@ -47,6 +47,7 @@ public class VentanaLogin {
         txtPassword.setEditable(false);
 
         botonIniciarSesion.setBorderPainted(false);
+
         botonIniciarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
@@ -73,10 +74,8 @@ public class VentanaLogin {
             }
         });
 
-
         // TODO diseño botones (iconos)
         // botonInicioSesion.setIcon(new ImagenIcon(getClass().getResource("../");
-
 
         comboBoxUserAdmin.addActionListener(new ActionListener() {
             @Override
@@ -96,6 +95,7 @@ public class VentanaLogin {
                 }
             }
         });
+
         botonCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -130,6 +130,7 @@ public class VentanaLogin {
             }
         });
     }
+
 
 
 }

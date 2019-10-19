@@ -64,7 +64,7 @@ public class Actividad {
         this.nombresala = nombresala;
     }
 
-    public String getCurosAcademico() {
+    public String getcursoacademico() {
         return curosAcademico;
     }
 

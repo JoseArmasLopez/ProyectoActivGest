@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SesionesTableModel extends AbstractTableModel {
 
-    private String[] columnas = {"Hora", "Día semana", "Nº Actividad"};
+    private String[] columnas = {"Id", "Hora", "Día semana", "Nº Actividad","Dni Usuario"};
     private List<Sesion> sesiones;
 
     public SesionesTableModel(List<Sesion> sesiones) {
@@ -31,11 +31,15 @@ public class SesionesTableModel extends AbstractTableModel {
         Sesion s = sesiones.get(rowIndex);
         switch (columnIndex){
             case 0:
-                return s.getHora();
+                return s.getID();
             case 1:
-                return s.getDiaSemana() ;
+                return s.getHora() ;
             case 2:
+                return s.getDiaSemana();
+            case 3:
                 return s.getIDActividad();
+            case 4:
+                return s.getDNIUsuario();
 
         }
         return null;

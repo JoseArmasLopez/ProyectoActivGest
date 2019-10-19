@@ -475,9 +475,40 @@ public class MysqlConsultas {
             preparedStatement.setString(2, actividad.getNombre());
             preparedStatement.setInt(3, actividad.getNumeromaxinvitado());
             preparedStatement.setString(4, actividad.getNombresala());
-            preparedStatement.setString(5,actividad.getCurosAcademico());
+            preparedStatement.setString(5,actividad.getcursoacademico());
             preparedStatement.setDouble(6,actividad.getCoste());
             preparedStatement.setString(7, empleadoResponsable.getDni());
+
+            preparedStatement.execute();
+            preparedStatement.close();
+
+            System.out.println("Actividad insertada correctamente en Arriaga.");
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Error al insertar la actividad en Arriaga.");
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarActividadesArriagaPROVISIONAL(Actividad actividad){
+        PreparedStatement preparedStatement;
+
+
+        try {
+
+            String query = " INSERT INTO ACTIVIDADES (NUMACTIVIDAD, NOMBRE, NUMEROMAXIMOINVITADO, NOMBRESALA, CURSOACADEMICO, COSTE)"
+                    + " VALUES (?, ?, ?, ?, ?, ?)";
+
+            preparedStatement = con.prepareStatement(query);
+
+            preparedStatement.setString(1, actividad.getNumactividad());
+            preparedStatement.setString(2, actividad.getNombre());
+            preparedStatement.setInt(3, actividad.getNumeromaxinvitado());
+            preparedStatement.setString(4, actividad.getNombresala());
+            preparedStatement.setString(5,actividad.getcursoacademico());
+            preparedStatement.setDouble(6,actividad.getCoste());
 
             preparedStatement.execute();
             preparedStatement.close();
@@ -558,13 +589,13 @@ public class MysqlConsultas {
 
     //Eliminar.
 
-    public void EliminarEmpleadoArriaga(Empleado empleadoAEliminar){
+    public void EliminarEmpleadoArriaga(String DNIEmpleado){
         PreparedStatement preparedStatement;
 
 
         try {
 
-            String query =  "DELETE FROM EMPLEADOS WHERE DNI = '" + empleadoAEliminar.getDni() + "'";
+            String query =  "DELETE FROM EMPLEADOS WHERE DNI = '" + DNIEmpleado + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -583,13 +614,13 @@ public class MysqlConsultas {
 
     }
 
-    public void EliminarActividadArriaga(Actividad actividadAEliminar){
+    public void EliminarActividadArriaga(String numActividad){
 
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM ACTIVIDADES WHERE NUMACTIVIDAD = '" + actividadAEliminar.getNumactividad() + "'";
+            String query =  "DELETE FROM ACTIVIDADES WHERE NUMACTIVIDAD = '" + numActividad + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -608,13 +639,13 @@ public class MysqlConsultas {
 
     }
 
-    public void EliminarUsuarioArriaga(Usuario usuarioAEliminar){
+    public void EliminarUsuarioArriaga(String DNIUsuario){
 
         PreparedStatement preparedStatement;
 
         try {
 
-            String query =  "DELETE FROM USUARIOS WHERE DNI = '" + usuarioAEliminar.getDni() + "'";
+            String query =  "DELETE FROM USUARIOS WHERE DNI = '" + DNIUsuario + "'";
 
             preparedStatement = con.prepareStatement(query);
 
@@ -665,8 +696,7 @@ public class MysqlConsultas {
     public void ActualizarEmpleadoArriaga(Empleado empleado){
         try{
             String query = "UPDATE EMPLEADOS" +
-                    " set DNI = '"+ empleado.getDni()+"'"+
-                    ",NOMBRE = '" +empleado.getNombre()+"'"+
+                    " SET NOMBRE = '" +empleado.getNombre()+"'"+
                     ",APELLIDO1 = '"+ empleado.getApellido1()+"'"+
                     ",APELLIDO2 = '"+ empleado.getApellido2()+"'"+
                     ",FECHACONTRACT = '"+empleado.getFechacontract()+"'"+
@@ -691,15 +721,18 @@ public class MysqlConsultas {
 
     public void ActualizarActividad(Actividad actividad){
         try{
-            String query = "UPDATE actividades" +
-                    "set NUMACTIVIDAD = '"+actividad.getNumactividad()+"'"+
-                    ",NOMBRE = '" +actividad.getNombre()+"'"+
-                    ",NUMEROMAXIMOINVITADO = '"+ actividad.getNumeromaxinvitado()+"'"+
-                    ",NOMBRESALA = '"+ actividad.getNombresala()+"'"+
-                    ",CURSOACADEMICO = '"+actividad.getCurosAcademico()+"'"+
-                    ",COSTE = '"+actividad.getCoste()+"'"+
-                    ",DNIEMPLEADO = '"+actividad.getEmpleado().getDni()+"'"+
-                    " where NUMACTIVIDAD = '" + actividad.getNumactividad()+"'";
+
+
+             String query = "UPDATE ACTIVIDADES" +
+                    " SET NUMACTIVIDAD = '"+actividad.getNumactividad()+"'"+
+                     ",NOMBRE = '" +actividad.getNombre()+"'"+
+                     ",NUMEROMAXIMOINVITADO = '"+ actividad.getNumeromaxinvitado()+"'"+
+                     ",NOMBRESALA = '"+ actividad.getNombresala()+"'"+
+                     ",CURSOACADEMICO = '"+actividad.getcursoacademico()+"'"+
+                     ",COSTE = '"+actividad.getCoste()+"'"+
+                     " WHERE NUMACTIVIDAD = '" + actividad.getNumactividad()+"'";
+
+
 
             PreparedStatement preparedStatement;
             preparedStatement = this.con.prepareStatement(query);
@@ -708,8 +741,12 @@ public class MysqlConsultas {
             preparedStatement.close();
 
 
+
+
+
+
         }catch (Exception e) {
-            System.err.println("Error al modificar al empleado.");
+            System.err.println("Error al modificar la actividad.");
             e.getMessage();
         }
     }
@@ -717,14 +754,14 @@ public class MysqlConsultas {
     public void ActualizarUsuario(Usuario usuario){
         try{
 
-            String query = "UPDATE usuarios" +
-                    "set DNI = '"+usuario.getDni()+"'"+
+            String query = "UPDATE USUARIOS" +
                     ",NOMBRE = '" +usuario.getNombre()+"'"+
                     ",APELLIDO1 = '"+ usuario.getApellido1()+"'"+
                     ",APELLIDO2 = '"+ usuario.getApellido2()+"'"+
                     ",EDAD = '"+usuario.getEdad()+"'"+
                     ",PROFESION = '"+usuario.getProfesion()+"'"+
-                    " where DNI = '" + usuario.getDni()+"'";
+                    " WHERE DNI = '" + usuario.getDni()+"'";
+
 
             PreparedStatement preparedStatement;
             preparedStatement = this.con.prepareStatement(query);
