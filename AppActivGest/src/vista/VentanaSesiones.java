@@ -33,21 +33,11 @@ public class VentanaSesiones {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
-
         switch (cc){
-
 
             case "Hegoalde":
 
-
-                ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
-
-                sqliteConsulta.sesionesdeHegoalde();
-                this.sesiones = sqliteConsulta.getSesiones();
-
+                cargarSesiones(cc);
                 cargarDatosEnTabla(this.sesiones);
 
                 break;
@@ -57,6 +47,8 @@ public class VentanaSesiones {
                 break;
             case "Ibaiondo":
 
+                cargarSesiones(cc);
+                cargarDatosEnTabla(this.sesiones);
 
                 break;
 
@@ -76,8 +68,6 @@ public class VentanaSesiones {
             }
         });
 
-
-
         buttonEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -86,12 +76,28 @@ public class VentanaSesiones {
 
             }
         });
+
     }
 
 
     public void cargarDatosEnTabla(List<Sesion>sesionList){
         table1.setModel(new SesionesTableModel(sesionList));
+
+
     }
 
+    // funcion que devuelve los datos de la bd a usuarios, actividades, empleados tanto de hegoalde como de ibaiondo
+    public void cargarSesiones(String cc) {
+
+
+        ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+        SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
+
+        sqliteConsulta.sesionesdeHegoalde();
+
+        this.sesiones = sqliteConsulta.getSesiones();
+
+
+    }
 
 }

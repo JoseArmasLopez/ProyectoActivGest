@@ -4,10 +4,7 @@ import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
 import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
-import modelo.Actividad;
-import modelo.Empleado;
-import modelo.Sesion;
-import modelo.Usuario;
+import modelo.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,8 +36,13 @@ public class VentanaCRUD_AcUsEm {
 
     private VentanaSesiones ventanaSesiones;
 
+    private TablaModelo modelo;
+
+
 
     public VentanaCRUD_AcUsEm(String tipo, String cc) {
+
+
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaCRUD_AcUsEmJpanel);
@@ -49,6 +51,8 @@ public class VentanaCRUD_AcUsEm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+
 
         //MySQL
         Connection con = null;
@@ -68,6 +72,8 @@ public class VentanaCRUD_AcUsEm {
         Connection conexion = controladorBbDd.getConexion();
         // procedo a hacer la consulta
         SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
+
+        System.out.println("------------->" + tipo);
 
         // aqui se pone texto en los labels
         switch (tipo.toLowerCase()) {
@@ -200,6 +206,10 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    System.out.println(nuevaSesion.toString());
+
+                                    sqliteConsulta.eliminarSesion(Integer.toString(nuevaSesion.getID()));
+
 
                                     vaciarTextFields();
 
@@ -211,6 +221,116 @@ public class VentanaCRUD_AcUsEm {
                         }
                         break;
                     case ("Iparralde"):
+
+                        switch (tipo) {
+                            case "Actividades":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Actividad nuevaActividad = new Actividad(textField1.getText(), textField2.getText(), Integer.parseInt(textField3.getText())
+                                            , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.borrarActividad(nuevaActividad);
+
+                                    vaciarTextFields();
+
+                                }
+                                break;
+
+                            case "Usuarios":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Usuario nuevoUsuario = new Usuario(textField1.getText(), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.borrarUsuario(nuevoUsuario);
+
+                                    vaciarTextFields();
+                                }
+                                break;
+                            case "Empleados":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva actividad
+                                    Empleado nuevoEmpleado = new Empleado();
+                                    nuevoEmpleado.setDni(textField1.getText());
+                                    nuevoEmpleado.setNombre(textField2.getText());
+                                    nuevoEmpleado.setApellido1(textField3.getText());
+                                    nuevoEmpleado.setFechanac(textField4.getText());
+                                    nuevoEmpleado.setFechacontract(textField5.getText());
+                                    nuevoEmpleado.setCargo(textField6.getText());
+
+
+                                    DB4O db4O = new DB4O();
+                                    db4O.borrarEmpleado(nuevoEmpleado);
+
+                                    vaciarTextFields();
+                                }
+
+                                break;
+
+                            case "sesiones":
+
+                                if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
+                                        textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
+                                        textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
+
+                                    JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
+
+                                    vaciarTextFields();
+
+
+                                } else {
+
+
+                                    // creo una nueva sesion
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
+                                            , textField4.getText(), textField5.getText());
+
+
+                                    vaciarTextFields();
+
+                                }
+
+
+                                break;
+                        }
 
                         break;
                     case ("Arriaga"):
@@ -352,6 +472,10 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    sqliteConsulta.eliminarSesion(Integer.toString(nuevaSesion.getID()));
+
+
+
 
                                     vaciarTextFields();
 
@@ -481,6 +605,12 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    Sesion sesion = new Sesion();
+
+                                    System.out.println(nuevaSesion.toString());
+
+                                    sqliteConsulta.altaNuevaSesion(nuevaSesion);
+
 
                                     vaciarTextFields();
 
@@ -492,7 +622,6 @@ public class VentanaCRUD_AcUsEm {
 
                         break;
                     case ("Iparralde"):
-
                         switch (tipo) {
                             case "Actividades":
 
@@ -707,6 +836,8 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    sqliteConsulta.altaNuevaSesion(nuevaSesion);
+
 
                                     vaciarTextFields();
 
@@ -779,8 +910,8 @@ public class VentanaCRUD_AcUsEm {
 
 
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
+                                            textField4.getText(), textField5.getText());
 
 
                                     vaciarTextFields();
@@ -793,12 +924,8 @@ public class VentanaCRUD_AcUsEm {
 
                         break;
 
-
                 }
-
-
             }
-
         });
 
         // evento que acontece en volver a la ventana anterior
@@ -916,8 +1043,14 @@ public class VentanaCRUD_AcUsEm {
 
 
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
+                                            textField4.getText(), textField5.getText());
+
+                                    System.out.println("11111");
+
+                                    nuevaSesion.toString();
+
+                                    sqliteConsulta.actualizarSesion(nuevaSesion);
 
 
                                     vaciarTextFields();
@@ -951,7 +1084,7 @@ public class VentanaCRUD_AcUsEm {
                                             , textField4.getText(), textField5.getText(), Double.parseDouble(textField6.getText()));
 
                                     DB4O db4O = new DB4O();
-                                    db4O.insertarActividad(nuevaActividad);
+                                    db4O.modificarActividad(nuevaActividad,nuevaActividad);
 
                                     vaciarTextFields();
 
@@ -977,7 +1110,7 @@ public class VentanaCRUD_AcUsEm {
                                             , textField4.getText(), Integer.parseInt(textField5.getText()), textField6.getText());
 
                                     DB4O db4O = new DB4O();
-                                    db4O.insertarUsuario(nuevoUsuario);
+                                    db4O.modificarUsuario(nuevoUsuario,nuevoUsuario);
 
                                     vaciarTextFields();
                                 }
@@ -1007,7 +1140,7 @@ public class VentanaCRUD_AcUsEm {
 
 
                                     DB4O db4O = new DB4O();
-                                    db4O.insertarEmpleado(nuevoEmpleado);
+                                    db4O.modificarEmpleado(nuevoEmpleado,nuevoEmpleado);
 
                                     vaciarTextFields();
                                 }
@@ -1147,6 +1280,8 @@ public class VentanaCRUD_AcUsEm {
                                             , textField4.getText(), textField5.getText());
 
 
+                                    sqliteConsulta.actualizarSesion(nuevaSesion);
+
                                     vaciarTextFields();
 
                                 }
@@ -1236,6 +1371,8 @@ public class VentanaCRUD_AcUsEm {
 
             }
         });
+
+
     }
 
     // funcion para vaciar los Jlabels
