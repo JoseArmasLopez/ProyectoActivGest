@@ -4,10 +4,7 @@ import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
 import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
-import modelo.Actividad;
-import modelo.Empleado;
-import modelo.Sesion;
-import modelo.Usuario;
+import modelo.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,6 +36,8 @@ public class VentanaCRUD_AcUsEm {
 
     private VentanaSesiones ventanaSesiones;
 
+    private TablaModelo modelo;
+
 
     public VentanaCRUD_AcUsEm(String tipo, String cc) {
 
@@ -69,7 +68,7 @@ public class VentanaCRUD_AcUsEm {
         // procedo a hacer la consulta
         SqliteConsulta sqliteConsulta = new SqliteConsulta(conexion);
 
-        System.out.println("------------->"+tipo);
+        System.out.println("------------->" + tipo);
 
         // aqui se pone texto en los labels
         switch (tipo.toLowerCase()) {
@@ -201,6 +200,10 @@ public class VentanaCRUD_AcUsEm {
                                     // creo una nueva sesion
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
+
+                                    System.out.println(nuevaSesion.toString());
+
+                                    sqliteConsulta.eliminarSesion(Integer.toString(nuevaSesion.getID()));
 
 
                                     vaciarTextFields();
@@ -354,6 +357,10 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    sqliteConsulta.eliminarSesion(Integer.toString(nuevaSesion.getID()));
+
+
+
 
                                     vaciarTextFields();
 
@@ -482,6 +489,12 @@ public class VentanaCRUD_AcUsEm {
                                     // creo una nueva sesion
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
+
+                                    Sesion sesion = new Sesion();
+
+                                    System.out.println(nuevaSesion.toString());
+
+                                    sqliteConsulta.altaNuevaSesion(nuevaSesion);
 
 
                                     vaciarTextFields();
@@ -709,6 +722,8 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+                                    sqliteConsulta.altaNuevaSesion(nuevaSesion);
+
 
                                     vaciarTextFields();
 
@@ -781,8 +796,8 @@ public class VentanaCRUD_AcUsEm {
 
 
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
+                                            textField4.getText(), textField5.getText());
 
 
                                     vaciarTextFields();
@@ -795,12 +810,8 @@ public class VentanaCRUD_AcUsEm {
 
                         break;
 
-
                 }
-
-
             }
-
         });
 
         // evento que acontece en volver a la ventana anterior
@@ -919,7 +930,7 @@ public class VentanaCRUD_AcUsEm {
 
                                     // creo una nueva sesion
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
-                                            textField5.getText(), textField4.getText());
+                                            textField4.getText(), textField5.getText());
 
                                     System.out.println("11111");
 
@@ -1154,6 +1165,8 @@ public class VentanaCRUD_AcUsEm {
                                     Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
                                             , textField4.getText(), textField5.getText());
 
+
+                                    sqliteConsulta.actualizarSesion(nuevaSesion);
 
                                     vaciarTextFields();
 

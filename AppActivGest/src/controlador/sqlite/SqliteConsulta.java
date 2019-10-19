@@ -426,6 +426,49 @@ public class SqliteConsulta {
 
     }
 
+    public void altaNuevaSesion(Sesion sesion){
+
+        try {
+
+            String query = "INSERT INTO sesion VALUES(?,?,?,?,?)";
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+
+            ps.setInt(1,sesion.getID());
+            ps.setString(2, sesion.getHora());
+            ps.setString(3, sesion.getDiaSemana());
+            ps.setString(4, sesion.getIDActividad());
+            ps.setString(5, sesion.getDNIUsuario());
+
+            int row = ps.executeUpdate();
+            ps.close();
+
+            if (row == 0){
+
+                JOptionPane.showMessageDialog(null, "No se ha insertado ningún dato");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Sesión dada de alta correctamente");
+            }
+
+
+
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
+            System.out.println("Error en la insercción de datos...");
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    // ***** ******************************************************************* deletes
+
     // funcion para eliminar una actividad
     public void eliminarActividad(String id) {
         try {
@@ -516,7 +559,40 @@ public class SqliteConsulta {
         }
     }
 
-    // ***** update table *************
+    public void eliminarSesion(String id){
+
+        try {
+
+            String query = "DELETE  FROM sesion where idsesion = ?";
+
+            PreparedStatement ps;
+            ps = this.connection.prepareStatement(query);
+            ps.setInt(1,Integer.parseInt(id));
+
+            int r = ps.executeUpdate();
+            ps.close();
+
+            if (r==0){
+
+                JOptionPane.showMessageDialog(null, " No se ha modificado la bd");
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Eliminada sesión correctamente");
+            }
+
+
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+
+        }
+
+
+    }
+
+    // ***** *******************************************************************update table
 
     // funcion que actualiza una actividad
     public void actualizarActividad ( Actividad actividad){

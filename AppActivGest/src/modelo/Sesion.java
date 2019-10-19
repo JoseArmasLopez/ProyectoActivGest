@@ -15,7 +15,7 @@ public class Sesion {
         this.IDActividad = IDActividad;
     }
 
-    public Sesion( int ID, String hora, String diaSemana, String DNIUsuario, String IDActividad) {
+    public Sesion( int ID, String hora, String diaSemana, String IDActividad, String DNIUsuario) {
         this.hora = hora;
         this.diaSemana = diaSemana;
         this.DNIUsuario = DNIUsuario;
