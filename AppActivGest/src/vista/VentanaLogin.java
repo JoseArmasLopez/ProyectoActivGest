@@ -68,7 +68,6 @@ public class VentanaLogin {
 
                 } else {
                     vp = new VentanaPrincipal();
-                    vp.setUser(true);
                     frame.dispose();
                 }
             }
@@ -123,7 +122,6 @@ public class VentanaLogin {
 
                     } else {
                         vp = new VentanaPrincipal();
-                        vp.setUser(true);
                         frame.dispose();
                     }
                 }
