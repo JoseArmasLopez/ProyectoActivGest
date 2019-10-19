@@ -1,1 +1,3 @@
+
+![](Imagenes/icono.jpg)
 # ProyectoActivGest
