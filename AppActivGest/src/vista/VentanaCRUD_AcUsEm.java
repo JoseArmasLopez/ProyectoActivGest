@@ -8,6 +8,7 @@ import controlador.sqlite.SqliteConsulta;
 import modelo.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -55,6 +56,7 @@ public class VentanaCRUD_AcUsEm {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        ventanaCRUD_AcUsEmJpanel.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
 
