@@ -53,6 +53,7 @@ public class VistaActividadesUsuario {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        panelPrincipal.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
         switch (cc) {

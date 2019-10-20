@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,6 +33,7 @@ public class VentanaCentroCivico {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        ventanaCCJpanel.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
         switch (centroCivico.toLowerCase()){

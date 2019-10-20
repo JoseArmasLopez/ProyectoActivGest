@@ -8,6 +8,7 @@ import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -37,6 +38,7 @@ public class VentanaSesiones {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        ventanaSesionesJpanel.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
         switch (cc){
