@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
@@ -55,6 +56,8 @@ public class VentanaSesiones {
             case "Iparralde":
 
 
+                cargarSesionesIparralde();
+                cargarDatosEnTabla(this.sesiones);
 
                 break;
 
@@ -100,4 +103,11 @@ public class VentanaSesiones {
 
     }
 
+    public void cargarSesionesIparralde(){
+
+        DB4O db4o = new DB4O();
+
+        sesiones = db4o.obtenerSesiones();
+
+    }
 }
