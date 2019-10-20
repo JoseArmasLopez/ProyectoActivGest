@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/icono.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaCRUD_AcUsEm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +37,10 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\Images" />
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest" />
       <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\librerias" />
