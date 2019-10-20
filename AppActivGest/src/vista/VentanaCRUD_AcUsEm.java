@@ -33,6 +33,8 @@ public class VentanaCRUD_AcUsEm {
     private JLabel jLabel2;
     private JLabel jLabel1;
     private JButton actualizarButon;
+    private JButton buttonFactura;
+    private JTextField textFieldSeleccionUsuario;
     private JButton buscarButton;
 
     private VentanaSesiones ventanaSesiones;
@@ -1360,7 +1362,21 @@ public class VentanaCRUD_AcUsEm {
             }
         });
 
+        // facturar
+        buttonFactura.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Factura factura = new Factura();
+            }
+        });
 
+        //
+        textFieldSeleccionUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
     }
 
     // funcion para vaciar los Jlabels
