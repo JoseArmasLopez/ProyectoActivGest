@@ -43,7 +43,6 @@ public class VentanaCRUD_AcUsEm {
     public VentanaCRUD_AcUsEm(String tipo, String cc) {
 
 
-
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaCRUD_AcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +50,6 @@ public class VentanaCRUD_AcUsEm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
 
 
         //MySQL
