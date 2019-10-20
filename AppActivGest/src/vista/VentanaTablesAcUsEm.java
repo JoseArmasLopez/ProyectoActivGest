@@ -13,6 +13,7 @@ import vista.TableModels.EmpleadosTableModel;
 import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -47,6 +48,7 @@ public class VentanaTablesAcUsEm {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        ventanaTablesAcUsEmJpanel.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
         if(isUser){

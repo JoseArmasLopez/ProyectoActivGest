@@ -6,6 +6,7 @@ import modelo.TablaBD;
 import vista.TableModels.TablasBDTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -31,6 +32,7 @@ public class VentanaTablasBBDD {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        ventanaTablasBBDDJpanel.setBackground(new Color(135, 206, 235));
         frame.setVisible(true);
 
         ControladorBbDd controladorBbDd = new ControladorBbDd(cc);

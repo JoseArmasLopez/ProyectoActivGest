@@ -63,8 +63,6 @@ public class VentanaPrincipal {
 
         frame.getRootPane().setDefaultButton(adminButton);
 
-        //ImageIcon image = new ImageIcon(getClass().getResource("icono.jpg"));
-        //appNameLabel.setIcon(image);
         appNameLabel.setText("");
 
         adminButton.setEnabled(false);

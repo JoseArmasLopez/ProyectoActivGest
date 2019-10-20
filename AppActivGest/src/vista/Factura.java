@@ -44,6 +44,7 @@ public class Factura {
         frame.setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
         frame.setIconImage(img.getImage());
+        frame.setBackground(new Color(0, 206, 209));
         frame.setVisible(true);
 
         ArrayList<Usuario> arrayListUsuarios = new ArrayList<>();
