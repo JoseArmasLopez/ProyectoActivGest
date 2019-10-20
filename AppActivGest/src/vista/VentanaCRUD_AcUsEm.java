@@ -1370,7 +1370,15 @@ public class VentanaCRUD_AcUsEm {
         buttonFactura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Factura factura = new Factura(cc,textFieldSeleccionUsuario.getText());
+
+                if(textFieldSeleccionUsuario.getText().equalsIgnoreCase("")){
+
+                    JOptionPane.showMessageDialog(null,"Introduzca el dni del usuario");
+                }else{
+
+                    Factura factura = new Factura(cc,textFieldSeleccionUsuario.getText());
+                }
+
             }
         });
 

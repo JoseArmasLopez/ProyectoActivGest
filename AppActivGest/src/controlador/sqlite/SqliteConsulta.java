@@ -482,6 +482,7 @@ public class SqliteConsulta {
 
     // funcion para dar de alta una actividad
     public void altaNuevaActividad(Actividad nuevaActividad){
+
         try {
 
             String query = "INSERT INTO actividades (numactividad,nombre,numeromaximoinvitado,"
