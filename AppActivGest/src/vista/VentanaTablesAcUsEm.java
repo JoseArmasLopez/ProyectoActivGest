@@ -15,13 +15,8 @@ import vista.TableModels.UsuariosTableModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import java.util.List;
 
 public class VentanaTablesAcUsEm {
@@ -33,6 +28,7 @@ public class VentanaTablesAcUsEm {
     private JScrollPane scrollPane; //importante tener un scrollPane para ver bien las tablas
 
     private VentanaCRUD_AcUsEm crud_acUsEm;
+    private VentanaSesiones sesiones;
 
     private List<Actividad> actividades;    // -> ¡CARGAR DESDE BASES DE DATOS!
     private List<Usuario> usuarios;     // -> ¡CARGAR DESDE BASES DE DATOS!
@@ -41,15 +37,19 @@ public class VentanaTablesAcUsEm {
     private TablaModelo tablaModelo;
 
 
-    public VentanaTablesAcUsEm(String tipo, String cc) {
+    public VentanaTablesAcUsEm(String tipo, String cc, boolean isUser) {
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaTablesAcUsEmJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        if(isUser){
+            nuevaButton.setText("Sesiones");
+        }
 
         switch (cc) {
 
@@ -68,7 +68,6 @@ public class VentanaTablesAcUsEm {
             case ("Arriaga"):
 
                 CargarUsuariosActividadesEmpleadosMySQLArriaga();
-
                 cargarDatosEnTabla(tipo);
 
                 break;
@@ -84,8 +83,13 @@ public class VentanaTablesAcUsEm {
         nuevaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc);
-
+                if(!isUser){
+                    //atrasButton.setEnabled(false);
+                    crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc);
+                } else {
+                    //atrasButton.setEnabled(false);
+                    sesiones = new VentanaSesiones(cc);
+                }
             }
         });
         atrasButton.addActionListener(new ActionListener() {
@@ -101,7 +105,6 @@ public class VentanaTablesAcUsEm {
         switch (tipo) {
             case "Actividades":
                 if (actividades != null) {
-
                     tableAcUsEm.setModel(new ActividadesTableModel(actividades));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
@@ -110,7 +113,6 @@ public class VentanaTablesAcUsEm {
             case "Usuarios":
 
                 if (usuarios != null) {
-
                     tableAcUsEm.setModel(new UsuariosTableModel(usuarios));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List usuario vacío!");
@@ -119,7 +121,6 @@ public class VentanaTablesAcUsEm {
             case "Empleados":
 
                 if (empleados != null) {
-
                     tableAcUsEm.setModel(new EmpleadosTableModel(empleados));
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "List empleados vacío!");
@@ -175,6 +176,4 @@ public class VentanaTablesAcUsEm {
 
 
     }
-
-
 }

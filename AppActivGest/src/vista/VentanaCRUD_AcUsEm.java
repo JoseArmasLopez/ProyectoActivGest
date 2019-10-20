@@ -32,9 +32,12 @@ public class VentanaCRUD_AcUsEm {
     private JLabel jLabel2;
     private JLabel jLabel1;
     private JButton actualizarButon;
+    private JButton buttonFactura;
+    private JTextField textFieldFactura;
     private JButton buscarButton;
 
     private VentanaSesiones ventanaSesiones;
+    private Factura factura;
 
     private TablaModelo modelo;
 
@@ -45,12 +48,20 @@ public class VentanaCRUD_AcUsEm {
 
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaCRUD_AcUsEmJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        buttonFactura.setVisible(false);
+        textFieldFactura.setVisible(false);
+
+
+        if(tipo.equalsIgnoreCase("sesiones")){
+            buttonFactura.setVisible(true);
+            textFieldFactura.setVisible(true);
+        }
 
         //MySQL
         Connection con = null;
@@ -1369,8 +1380,12 @@ public class VentanaCRUD_AcUsEm {
 
             }
         });
-
-
+        buttonFactura.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                factura = new Factura();
+            }
+        });
     }
 
     // funcion para vaciar los Jlabels
