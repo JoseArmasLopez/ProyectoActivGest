@@ -139,7 +139,7 @@
           <text value="Atras"/>
         </properties>
       </component>
-      <component id="7bbc0" class="javax.swing.JButton" binding="buttonFactura">
+      <component id="cd72c" class="javax.swing.JButton" binding="buttonFactura">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -147,9 +147,9 @@
           <text value="Factura"/>
         </properties>
       </component>
-      <component id="d7952" class="javax.swing.JTextField" binding="textFieldFactura">
+      <component id="a7849" class="javax.swing.JTextField" binding="textFieldSeleccionUsuario">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>

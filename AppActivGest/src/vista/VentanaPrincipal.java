@@ -1,9 +1,23 @@
 package vista;
 
+import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
+import controlador.mysql.MysqlConsultas;
 import controlador.mysql.MysqlConsultasInicioSesion;
+import controlador.sqlite.SqliteConsulta;
+import modelo.Actividad;
+import modelo.Empleado;
+import modelo.TablaModelo;
+import modelo.Usuario;
+import vista.TableModels.ActividadesTableModel;
+import vista.TableModels.EmpleadosTableModel;
+import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.List;
 
 public class VentanaPrincipal {
 
@@ -21,6 +35,12 @@ public class VentanaPrincipal {
 
     private static JFrame frame;
     private String opcionElegida;
+
+    private VistaActividadesUsuario vistaActividadesUsuario;
+
+
+
+
 
     public static void main(String[] args) {
 
@@ -115,12 +135,19 @@ public class VentanaPrincipal {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (opcionElegida != null && !opcionElegida.equals("")) {
-                    vta = new VentanaTablesAcUsEm("Actividades", opcionElegida, true);
+
+                    vistaActividadesUsuario = new VistaActividadesUsuario(opcionElegida);
+
+                    //vta = new VentanaTablesAcUsEm("Actividades", opcionElegida, true);
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
             }
         });
     }
+
+
+
+
 }
 
