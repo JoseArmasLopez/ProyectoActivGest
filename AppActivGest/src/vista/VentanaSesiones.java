@@ -2,6 +2,7 @@ package vista;
 
 import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
+import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
@@ -9,6 +10,8 @@ import vista.TableModels.SesionesTableModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,22 @@ public class VentanaSesiones {
 
                 break;
             case "Arriaga":
+
+                Connection con = null;
+                try {
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
+
+                } catch (Exception e) {
+                    System.err.println("No se ha podido conectar a la base de datos Arriaga\n" + e.getMessage());
+                }
+                MysqlConsultas mysqlConsultas = new MysqlConsultas(con);
+
+                sesiones = mysqlConsultas.LeerSesionesArriaga();
+
+
+                cargarDatosEnTabla(sesiones);
 
 
                 break;

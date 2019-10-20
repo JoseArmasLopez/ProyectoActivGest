@@ -44,8 +44,8 @@ public class MysqlConsultas {
                 String NACIONALIDAD = resultSet.getString("NACIONALIDAD");
                 String CARGO = resultSet.getString("CARGO");
 
-                Empleado empleado = new Empleado(DNI, NOMBRE, APELLIDO1, APELLIDO2, FECHACONTRACT, FECHANAC, NACIONALIDAD, CARGO);
-                System.out.println(DNI + NOMBRE + APELLIDO1 + APELLIDO2 + FECHACONTRACT + FECHANAC + NACIONALIDAD + CARGO);
+                Empleado empleado = new Empleado(DNI, NOMBRE, APELLIDO1, APELLIDO2, FECHACONTRACT, FECHANAC, CARGO, NACIONALIDAD);
+                System.out.println(DNI + NOMBRE + APELLIDO1 + APELLIDO2 + FECHACONTRACT + FECHANAC + CARGO + NACIONALIDAD);
                 empleados.add(empleado);
             }
 
@@ -161,7 +161,7 @@ public class MysqlConsultas {
                         "DNIUSUARIO VARCHAR(9)," +
                         "FOREIGN KEY (NUMACTIVIDAD) REFERENCES ACTIVIDADES(NUMACTIVIDAD)," +
                         "FOREIGN KEY (DNIUSUARIO) REFERENCES  USUARIOS(DNI));";
-/*
+
                 int IDSESION = resultSet.getInt("IDSESION");
                 String HORA = resultSet.getString("HORA");
                 String DIASEMANA = resultSet.getString("DIASEMANA");
@@ -169,15 +169,17 @@ public class MysqlConsultas {
                 String DNIUSUARIO = resultSet.getString("DNIUSUARIO");
 
                 Sesion sesion = new Sesion(IDSESION, HORA, DIASEMANA, NUMACTIVIDAD, DNIUSUARIO);
-                usuarios.add(sesion);
-                System.out.println(DNI + NOMBRE + APELLIDO1 + APELLIDO2 + EDAD + PROFESION);
+                sesiones.add(sesion);
 
- */
+
+/*
                 String HORA = resultSet.getString("HORA");
                 String DIASEMANA = resultSet.getString("DIASEMANA");
                 Sesion sesion = new Sesion(HORA, DIASEMANA);
                 sesiones.add(sesion);
                 System.out.println(HORA + DIASEMANA);
+
+ */
 
             }
 
@@ -779,13 +781,9 @@ public class MysqlConsultas {
     public void ActualizarSesion(Sesion sesion){
         try{
 
-
-            String query = "UPDATE sesion" +
-                    "set IDSESION = '"+sesion.getID()+"'"+
-                    ",HORA = '" +sesion.getHora()+"'"+
+            String query = "UPDATE SESION" +
+                    " SET HORA = '" +sesion.getHora()+"'"+
                     ",DIASEMANA = '"+ sesion.getDiaSemana()+"'"+
-                    ",NUMACTIVIDAD = '"+ sesion.getIDActividad()+"'"+
-                    ",DNIUSUARIO = '"+sesion.getDNIUsuario()+"'"+
                     " where IDSESION = '" + sesion.getID()+"'";
 
             PreparedStatement preparedStatement;
