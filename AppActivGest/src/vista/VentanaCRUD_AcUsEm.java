@@ -46,7 +46,6 @@ public class VentanaCRUD_AcUsEm {
     public VentanaCRUD_AcUsEm(String tipo, String cc) {
 
 
-
         JFrame frame = new JFrame(tipo + " " + cc);
         frame.setContentPane(ventanaCRUD_AcUsEmJpanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -57,6 +56,7 @@ public class VentanaCRUD_AcUsEm {
 
         buttonFactura.setVisible(false);
         textFieldFactura.setVisible(false);
+
 
         if(tipo.equalsIgnoreCase("sesiones")){
             buttonFactura.setVisible(true);
