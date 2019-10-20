@@ -40,6 +40,7 @@ public class Factura {
 
 
 
+
     private ArrayList<Actividad> actividades = new ArrayList<>();
     private ArrayList<Sesion> sesions = new ArrayList<>();
     private ArrayList<Actividad> actividadesAfacturar = new ArrayList<>();
@@ -50,11 +51,15 @@ public class Factura {
     public Factura(String cc, String dniUsuario) {
 
         JFrame frame = new JFrame("Factura - "+dniUsuario);
+
+     
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
+        frame.setIconImage(img.getImage());
         frame.setVisible(true);
 
         cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc,dniUsuario);
