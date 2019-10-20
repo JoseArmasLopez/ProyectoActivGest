@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
@@ -33,21 +34,11 @@ public class VentanaSesiones {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
-
         switch (cc){
-
 
             case "Hegoalde":
 
-
-                ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
-
-                SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
-
-                sqliteConsulta.sesionesdeHegoalde();
-                this.sesiones = sqliteConsulta.getSesiones();
-
+                cargarSesiones(cc);
                 cargarDatosEnTabla(this.sesiones);
 
                 break;
@@ -57,12 +48,16 @@ public class VentanaSesiones {
                 break;
             case "Ibaiondo":
 
+                cargarSesiones(cc);
+                cargarDatosEnTabla(this.sesiones);
 
                 break;
 
             case "Iparralde":
 
 
+                cargarSesionesIparralde();
+                cargarDatosEnTabla(this.sesiones);
 
                 break;
 
@@ -76,8 +71,6 @@ public class VentanaSesiones {
             }
         });
 
-
-
         buttonEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -86,12 +79,35 @@ public class VentanaSesiones {
 
             }
         });
+
     }
 
 
     public void cargarDatosEnTabla(List<Sesion>sesionList){
         table1.setModel(new SesionesTableModel(sesionList));
+
+
     }
 
+    // funcion que devuelve los datos de la bd a usuarios, actividades, empleados tanto de hegoalde como de ibaiondo
+    public void cargarSesiones(String cc) {
 
+
+        ControladorBbDd controladorBbDd = new ControladorBbDd(cc);
+        SqliteConsulta sqliteConsulta = new SqliteConsulta(controladorBbDd.getConexion());
+
+        sqliteConsulta.sesionesdeHegoalde();
+
+        this.sesiones = sqliteConsulta.getSesiones();
+
+
+    }
+
+    public void cargarSesionesIparralde(){
+
+        DB4O db4o = new DB4O();
+
+        sesiones = db4o.obtenerSesiones();
+
+    }
 }

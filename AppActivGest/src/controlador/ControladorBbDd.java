@@ -1,7 +1,5 @@
 package controlador;
 
-import com.db4o.Db4oEmbedded;
-import com.db4o.ObjectContainer;
 
 import javax.swing.*;
 import java.io.IOException;

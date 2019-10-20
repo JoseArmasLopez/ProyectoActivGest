@@ -15,7 +15,7 @@ public class Sesion {
         this.IDActividad = IDActividad;
     }
 
-    public Sesion( int ID, String hora, String diaSemana, String DNIUsuario, String IDActividad) {
+    public Sesion( int ID, String hora, String diaSemana, String IDActividad, String DNIUsuario) {
         this.hora = hora;
         this.diaSemana = diaSemana;
         this.DNIUsuario = DNIUsuario;
@@ -88,5 +88,18 @@ public class Sesion {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    @Override
+    public String toString() {
+        return "Sesion{" +
+                "hora='" + hora + '\'' +
+                ", diaSemana='" + diaSemana + '\'' +
+                ", DNIUsuario='" + DNIUsuario + '\'' +
+                ", IDActividad='" + IDActividad + '\'' +
+                ", ID=" + ID +
+                ", actividad=" + actividad +
+                ", usuario=" + usuario +
+                '}';
     }
 }
