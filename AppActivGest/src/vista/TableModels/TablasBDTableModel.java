@@ -16,12 +16,12 @@ public class TablasBDTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return columnas.length;
+        return tablasBd.size();
     }
 
     @Override
     public int getColumnCount() {
-        return tablasBd.size();
+        return columnas.length;
     }
 
     @Override

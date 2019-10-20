@@ -46,14 +46,11 @@ public class VentanaMetadata {
             textFieldNombre.setText(metadatoBd.getMetadatos().getDatabaseProductName());
             textFieldDriver.setText(metadatoBd.getMetadatos().getDriverName());
             textFieldURL.setText(metadatoBd.getMetadatos().getDriverVersion());
-            textFieldUsuario.setText(metadatoBd.getMetadatos().getIdentifierQuoteString());
+            textFieldUsuario.setText(metadatoBd.getMetadatos().getSchemaTerm());
 
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-
-
 
 
         buttonTablas.addActionListener(new ActionListener() {
