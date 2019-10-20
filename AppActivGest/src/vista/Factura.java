@@ -36,11 +36,14 @@ public class Factura {
     public Factura() {
 
         JFrame frame = new JFrame("Factura - ");
+
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
+        frame.setIconImage(img.getImage());
         frame.setVisible(true);
 
         ArrayList<Usuario> arrayListUsuarios = new ArrayList<>();

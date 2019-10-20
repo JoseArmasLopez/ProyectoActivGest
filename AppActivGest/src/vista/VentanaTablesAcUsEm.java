@@ -45,6 +45,8 @@ public class VentanaTablesAcUsEm {
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        ImageIcon img = new ImageIcon("../Imagenes/icono.jpg");
+        frame.setIconImage(img.getImage());
         frame.setVisible(true);
 
         if(isUser){
