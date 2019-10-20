@@ -35,7 +35,6 @@ public class Factura {
 
     public Factura() {
 
-
         JFrame frame = new JFrame("Factura - ");
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,8 +45,6 @@ public class Factura {
 
         ArrayList<Usuario> arrayListUsuarios = new ArrayList<>();
 
-
-
         atrásButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -57,38 +54,14 @@ public class Factura {
             }
         });
 
-        
         buttonFacturar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(null,"La factura se ha faturado correctamente");
             }
         });
+
     }
 
 
-    private final static Logger LOGGER = Logger.getLogger("mx.hash.impresionpdf.Impresor");
-
-    public void imprimir() throws PrinterException, IOException {
-        // Indicamos el nombre del archivo Pdf que deseamos imprimir
-        PDDocument document = PDDocument.load(new File("FormularioInscripcion.pdf"));
-
-        //muestro en pdf el documento generado
-        try {
-            File path = new File ("cusoinscripcion.pdf");
-            Desktop.getDesktop().open(path);
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        PrinterJob job = PrinterJob.getPrinterJob();
-
-        LOGGER.log(Level.INFO, "Mostrando el dialogo de impresion");
-        if (job.printDialog() == true) {
-            //job.setPageable(new PDFPageable(document));
-
-            LOGGER.log(Level.INFO, "Imprimiendo documento");
-            job.print();
-        }
-    }
 }
