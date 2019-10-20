@@ -105,9 +105,6 @@ public class Factura {
 
 
 
-
-
-
         atrásButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
