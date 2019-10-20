@@ -96,5 +96,17 @@ public class Actividad {
         this.usuarioArrayList = usuarioArrayList;
     }
 
-
+    @Override
+    public String toString() {
+        return "Actividad{" +
+                "numactividad='" + numactividad + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", numeromaxinvitado=" + numeromaxinvitado +
+                ", nombresala='" + nombresala + '\'' +
+                ", curosAcademico='" + curosAcademico + '\'' +
+                ", coste=" + coste +
+                ", empleado=" + empleado +
+                ", usuarioArrayList=" + usuarioArrayList +
+                '}';
+    }
 }

@@ -85,6 +85,103 @@ public class SqliteConsulta {
 
     }
 
+    // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
+    public void actividadesHegoaldeSqliteDeUnUsuario(String num) {
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT numactividad,nombre,numeromaximoinvitado," +
+                    "nombresala,cursoacademico,coste FROM actividades where numactividad like '%"+num+"%'");
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                String id = rs.getString("numactividad");
+                String name = rs.getString("nombre");
+                int numeromaxinvit = rs.getInt("numeromaximoinvitado");
+                String nombresal = rs.getString("nombresala");
+                String cursoAcademic = rs.getString("cursoacademico");
+                double coste = rs.getDouble("coste");
+
+
+
+                Actividad actividad = new Actividad(id,name,numeromaxinvit,nombresal,cursoAcademic,coste);
+
+
+                this.actividades.add(actividad);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
+
+    }
+
+    // funcion que da valor al atributo actividades con lo que se obtiene todas las actividades
+    public Actividad actividadesHegoaldeSqlitePorNumActividad(String num) {
+
+        Actividad actividad = null;
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT numactividad,nombre,numeromaximoinvitado," +
+                    "nombresala,cursoacademico,coste FROM actividades where numactividad like '%"+num+"%'");
+
+
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                String id = rs.getString("numactividad");
+                String name = rs.getString("nombre");
+                int numeromaxinvit = rs.getInt("numeromaximoinvitado");
+                String nombresal = rs.getString("nombresala");
+                String cursoAcademic = rs.getString("cursoacademico");
+                double coste = rs.getDouble("coste");
+
+
+
+                actividad = new Actividad(id,name,numeromaxinvit,nombresal,cursoAcademic,coste);
+
+
+
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
+
+        return actividad;
+    }
+
     // funcion que da valor al atributo sesionesUsuario (sesiones de un usuario)
     public void sesionesHegoaldeSqliteDeUnUsuario(Usuario usuario){
 
@@ -124,7 +221,6 @@ public class SqliteConsulta {
 
     }
 
-    // funcion que devuelve las sesiones del cc
     public void sesionesdeHegoalde(){
 
         try {
@@ -136,6 +232,52 @@ public class SqliteConsulta {
 
             System.out.println();
             ResultSet rs = stmt.executeQuery("SELECT idsesion, hora, diasemana, numactividad,dniusuario  FROM sesion");
+
+            // accedo a las columnas de la tabla
+            while (rs.next()) {
+
+                Integer id = rs.getInt("idsesion");
+                String hora = rs.getString("hora");
+                String dia = rs.getString("diasemana");
+                String num = rs.getString("numactividad");
+                String dni = rs.getString("dniusuario");
+
+                Sesion sesion = new Sesion();
+                sesion.setID(id);
+                sesion.setHora(hora);
+                sesion.setDiaSemana(dia);
+                sesion.setIDActividad(num);
+                sesion.setDNIUsuario(dni);
+
+                this.sesiones.add(sesion);
+
+            }
+
+            rs.close();
+            stmt.close();
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+
+        }
+        System.out.println("Operación realizada con éxito");
+        //JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
+
+    }
+
+    // funcion que devuelve las sesiones del cc
+    public void sesionesdeHegoaldeDeUnUsuario(String d){
+
+        try {
+
+            System.out.println("Base de datos abierta con éxito");
+
+            // preparo la conexion y la ejecucion de la consulta
+            stmt = this.connection.createStatement();
+
+            System.out.println();
+            ResultSet rs = stmt.executeQuery("SELECT idsesion, hora, diasemana, numactividad,dniusuario  FROM sesion where dniusuario like '%"+d+"%' ");
 
             // accedo a las columnas de la tabla
             while (rs.next()) {
@@ -467,7 +609,9 @@ public class SqliteConsulta {
 
     }
 
-    // ***** ******************************************************************* deletes
+
+
+    // ************************************************************************ deletes
 
     // funcion para eliminar una actividad
     public void eliminarActividad(String id) {
