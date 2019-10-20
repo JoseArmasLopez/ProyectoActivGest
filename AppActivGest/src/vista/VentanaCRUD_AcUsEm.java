@@ -339,7 +339,6 @@ public class VentanaCRUD_AcUsEm {
                             case ("Actividades"):
                                 if (textField1.getText().equalsIgnoreCase("")) {
                                     JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
-                                    vaciarTextFields();
                                 } else {
                                     mysqlConsultas.EliminarActividadArriaga(textField1.getText());
                                     vaciarTextFields();
@@ -349,7 +348,6 @@ public class VentanaCRUD_AcUsEm {
                             case ("Usuarios"):
                                 if (textField1.getText().equalsIgnoreCase("")) {
                                     JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
-                                    vaciarTextFields();
                                 } else {
                                     mysqlConsultas.EliminarUsuarioArriaga(textField1.getText());
                                     vaciarTextFields();
@@ -359,7 +357,6 @@ public class VentanaCRUD_AcUsEm {
                             case ("Empleados"):
                                 if (textField1.getText().equalsIgnoreCase("")) {
                                     JOptionPane.showMessageDialog(null, "Error, introduzca el campo id");
-                                    vaciarTextFields();
                                 } else {
                                     mysqlConsultas.EliminarEmpleadoArriaga(textField1.getText());
                                     vaciarTextFields();
@@ -373,19 +370,12 @@ public class VentanaCRUD_AcUsEm {
 
                                     JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
 
-                                    vaciarTextFields();
-
 
                                 } else {
-
-
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
-
-
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(), textField4.getText(), textField5.getText());
+                                    mysqlConsultas.EliminarSesionArriaga(nuevaSesion);
                                     vaciarTextFields();
-
                                 }
 
 
@@ -903,20 +893,23 @@ public class VentanaCRUD_AcUsEm {
 
                                     JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
 
-                                    vaciarTextFields();
-
 
                                 } else {
 
-
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(),
-                                            textField4.getText(), textField5.getText());
+                                    Sesion sesion = new Sesion(textField2.getText(), textField3.getText(), textField5.getText(), textField4.getText());
 
+                                    Usuario usuario = new Usuario();
+                                    usuario.setDni(textField5.getText());
+                                    Actividad actividad = new Actividad();
+                                    actividad.setNumactividad(textField4.getText());
+
+                                    mysqlConsultas.InsertarSesion(usuario, actividad, sesion);
 
                                     vaciarTextFields();
 
                                 }
+
 
 
                                 break;
@@ -1341,19 +1334,13 @@ public class VentanaCRUD_AcUsEm {
                                 if (textField1.getText().equalsIgnoreCase("") || textField2.getText().equalsIgnoreCase("") ||
                                         textField3.getText().equalsIgnoreCase("") || textField4.getText().equalsIgnoreCase("") ||
                                         textField5.getText().equalsIgnoreCase("") || textField6.getText().equalsIgnoreCase("")) {
-
                                     JOptionPane.showMessageDialog(null, "Error, introduzca todos los campos");
-
-                                    vaciarTextFields();
-
-
                                 } else {
 
 
                                     // creo una nueva sesion
-                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText()
-                                            , textField4.getText(), textField5.getText());
-
+                                    Sesion nuevaSesion = new Sesion(Integer.parseInt(textField1.getText()), textField2.getText(), textField3.getText(), textField4.getText(), textField5.getText());
+                                    mysqlConsultas.ActualizarSesion(nuevaSesion);
 
                                     vaciarTextFields();
 
