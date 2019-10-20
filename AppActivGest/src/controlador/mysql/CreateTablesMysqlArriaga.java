@@ -2,6 +2,7 @@ package controlador.mysql;
 
 import modelo.Actividad;
 import modelo.Sesion;
+import modelo.Usuario;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,13 +15,15 @@ public class CreateTablesMysqlArriaga {
 
         Connection con = Conexion();
 
-        MysqlConsultas mysqlConsultas = new MysqlConsultas(con);
+
         BorrarTablas(con);
         CrearTablas(con);
         InsertarEmpleados(con);
         InsertarActividad(con);
         InsertarUsuarios(con);
         InsertarSesiones(con);
+
+
 
 
 
