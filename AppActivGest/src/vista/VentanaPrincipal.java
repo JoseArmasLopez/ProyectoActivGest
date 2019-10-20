@@ -23,6 +23,7 @@ public class VentanaPrincipal {
     private String opcionElegida;
 
     public static void main(String[] args) {
+
         frame = new JFrame("ActivGest");
         frame.setContentPane(new VentanaPrincipal().ventanaPrincipalPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,14 +31,15 @@ public class VentanaPrincipal {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     public VentanaPrincipal() {
 
         frame.getRootPane().setDefaultButton(adminButton);
 
-        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("icono.jpg"));
-        appNameLabel.setIcon(image);
+        //ImageIcon image = new ImageIcon(getClass().getResource("icono.jpg"));
+        //appNameLabel.setIcon(image);
         appNameLabel.setText("");
 
         adminButton.setEnabled(false);

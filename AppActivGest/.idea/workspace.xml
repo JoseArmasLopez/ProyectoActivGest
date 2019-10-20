@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/icono.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/controlador/ControladorBbDd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppActivGest/vista/VentanaPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaSesiones.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +35,14 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="288" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jar_files (1)/commons-logging-api-1.1.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest" />
       <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\librerias" />
     </key>
   </component>
@@ -52,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Factura">
+  <component name="RunManager" selected="Application.VentanaPrincipal">
     <configuration name="CreateTablesIniciosDeSesion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="controlador.mysql.CreateTablesIniciosDeSesion" />
       <module name="AppActivGest" />
@@ -120,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.VentanaPrincipal" />
         <item itemvalue="Application.Factura" />
         <item itemvalue="Application.VentanaLogin" />
         <item itemvalue="Application.CreateTablesMysqlArriaga" />
         <item itemvalue="Application.CreateTablesIniciosDeSesion" />
-        <item itemvalue="Application.VentanaPrincipal" />
       </list>
     </recent_temporary>
   </component>
