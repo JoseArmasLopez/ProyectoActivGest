@@ -38,10 +38,6 @@ public class VentanaPrincipal {
 
     private VistaActividadesUsuario vistaActividadesUsuario;
 
-
-
-
-
     public static void main(String[] args) {
 
         frame = new JFrame("ActivGest");
@@ -86,7 +82,7 @@ public class VentanaPrincipal {
                 if (opcionElegida != null && !(opcionElegida.equals(""))) {
                     MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                    if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
+                    if ((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))) {
                         vcc = new VentanaCentroCivico(opcionElegida);
                         ventanaPrincipalPanel.revalidate();
 
@@ -98,6 +94,7 @@ public class VentanaPrincipal {
                 }
             }
         });
+
         comboCentrosCivicos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -109,6 +106,7 @@ public class VentanaPrincipal {
                 passwordField1.setEditable(true);
             }
         });
+
         ventanaPrincipalPanel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -121,7 +119,7 @@ public class VentanaPrincipal {
                     if (opcionElegida != null && !(opcionElegida.equals(""))) {
                         MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                        if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
+                        if ((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))) {
                             vcc = new VentanaCentroCivico(opcionElegida);
                             ventanaPrincipalPanel.revalidate();
 
@@ -134,6 +132,7 @@ public class VentanaPrincipal {
                 }
             }
         });
+
         buttonUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -147,10 +146,9 @@ public class VentanaPrincipal {
                 }
             }
         });
+
+
     }
-
-
-
 
 }
 
