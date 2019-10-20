@@ -1,8 +1,23 @@
 package vista;
 
+import controlador.ControladorBbDd;
+import controlador.db4o.DB4O;
+import controlador.mysql.MysqlConsultas;
+import controlador.mysql.MysqlConsultasInicioSesion;
+import controlador.sqlite.SqliteConsulta;
+import modelo.Actividad;
+import modelo.Empleado;
+import modelo.TablaModelo;
+import modelo.Usuario;
+import vista.TableModels.ActividadesTableModel;
+import vista.TableModels.EmpleadosTableModel;
+import vista.TableModels.UsuariosTableModel;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.List;
 
 public class VentanaPrincipal {
 
@@ -10,26 +25,46 @@ public class VentanaPrincipal {
     private JPanel ventanaPrincipalPanel;
     private JLabel appNameLabel;
     private JLabel groupNameLabel;
-    private JButton entrarButton;
+    private JButton adminButton;
     private JPasswordField passwordField1;
-    private JTextField textField1;
-    private VentanaCentroCivico vcc;
+    private JTextField userAdminTextField;
+    private JButton buttonUsuario;
 
-    private boolean isUser;
+    private VentanaCentroCivico vcc;
     private VentanaTablesAcUsEm vta;
 
-    private boolean isAdmin;
+    private static JFrame frame;
+    private String opcionElegida;
 
-    public VentanaPrincipal() {
+    private VistaActividadesUsuario vistaActividadesUsuario;
 
-        isAdmin = false;
-        JFrame frame = new JFrame("ActivGest - Elegir CC");
-        frame.setContentPane(ventanaPrincipalPanel);
+
+
+
+
+    public static void main(String[] args) {
+
+        frame = new JFrame("ActivGest");
+        frame.setContentPane(new VentanaPrincipal().ventanaPrincipalPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+    }
+
+    public VentanaPrincipal() {
+
+        frame.getRootPane().setDefaultButton(adminButton);
+
+        //ImageIcon image = new ImageIcon(getClass().getResource("icono.jpg"));
+        //appNameLabel.setIcon(image);
+        appNameLabel.setText("");
+
+        adminButton.setEnabled(false);
+        userAdminTextField.setEditable(false);
+        passwordField1.setEditable(false);
 
         comboCentrosCivicos.addItem("");
         comboCentrosCivicos.addItem("Ibaiondo");
@@ -37,58 +72,82 @@ public class VentanaPrincipal {
         comboCentrosCivicos.addItem("Iparralde");
         comboCentrosCivicos.addItem("Hegoalde");
 
-        entrarButton.setBorderPainted(false);
-        entrarButton.addActionListener(new ActionListener() {
+        adminButton.setBorderPainted(false);
+        adminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
-                if (isAdmin) {
-                    String usuario = "administrador";
-                    String contrasena = "administrador";
+                String contrasena = new String(passwordField1.getPassword());
+                String nickname = userAdminTextField.getText();
+                opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
 
-                    String password = new String(passwordField1.getPassword());
+                if (opcionElegida != null && !(opcionElegida.equals(""))) {
+                    MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                    if (textField1.getText().equals(usuario) && password.equals(contrasena)) {
-                        // TODO Ventana CC
-
+                    if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
+                        vcc = new VentanaCentroCivico(opcionElegida);
+                        ventanaPrincipalPanel.revalidate();
 
                     } else {
-
-                        if (!textField1.getText().equals(usuario)) {
-                            JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else if (!password.equals(contrasena)) {
-                            JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                        JOptionPane.showMessageDialog(null, "El usuario o la contraseña es incorrecta \n (Debug) Pon una de éstas:\n  admin1, pass1\n  admin2, pass2\n  admin3, pass3\n  admin4, pass4\n", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-
+                    JOptionPane.showMessageDialog(null, "¡Elija Centro Cívico!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         comboCentrosCivicos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
+                opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
                 System.out.println(opcionElegida);
-                if(opcionElegida != null){
-                    if(!isUser){
-                        vcc = new VentanaCentroCivico(opcionElegida); //TODO: IMPLEMENTAR CON LOGIN USUARIO
+
+                adminButton.setEnabled(true);
+                userAdminTextField.setEditable(true);
+                passwordField1.setEditable(true);
+            }
+        });
+        ventanaPrincipalPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+                    String contrasena = new String(passwordField1.getPassword());
+                    String nickname = userAdminTextField.getText();
+                    opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
+
+                    if (opcionElegida != null && !(opcionElegida.equals(""))) {
+                        MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
+
+                        if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
+                            vcc = new VentanaCentroCivico(opcionElegida);
+                            ventanaPrincipalPanel.revalidate();
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El usuario o la contraseña es incorrecta \n (Debug) Pon una de éstas:\n  admin1, pass1\n  admin2, pass2\n  admin3, pass3\n  admin4, pass4\n", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        vta = new VentanaTablesAcUsEm("Actividades", opcionElegida);
+                        JOptionPane.showMessageDialog(null, "¡Elija Centro Cívico!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                }
+            }
+        });
+        buttonUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (opcionElegida != null && !opcionElegida.equals("")) {
+
+                    vistaActividadesUsuario = new VistaActividadesUsuario(opcionElegida);
+
+                    //vta = new VentanaTablesAcUsEm("Actividades", opcionElegida, true);
                 } else {
                     ventanaPrincipalPanel.revalidate();
                 }
             }
         });
-
-        }
-
-    public boolean isUser() {
-        return isUser;
     }
 
-    public void setUser(boolean user) {
-        isUser = user;
-    }
+
+
+
 }
 

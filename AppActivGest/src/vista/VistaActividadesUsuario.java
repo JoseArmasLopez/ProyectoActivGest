@@ -8,125 +8,137 @@ import modelo.Actividad;
 import modelo.Empleado;
 import modelo.TablaModelo;
 import modelo.Usuario;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 import vista.TableModels.ActividadesTableModel;
 import vista.TableModels.EmpleadosTableModel;
 import vista.TableModels.UsuariosTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class VentanaTablesAcUsEm {
+public class VistaActividadesUsuario {
+    private JPanel panelPrincipal;
+    private JButton buttonAtrás;
+    private JButton buttonImprimirImpreso;
+    private JScrollPane scrollPane;
+    private JTable table1;
+    private final static Logger LOGGER = Logger.getLogger("mx.hash.impresionpdf.Impresor");
 
-    private JPanel ventanaTablesAcUsEmJpanel;
-    private JTable tableAcUsEm;
-    private JButton nuevaButton;
-    private JButton atrasButton;
-    private JScrollPane scrollPane; //importante tener un scrollPane para ver bien las tablas
-
-    private VentanaCRUD_AcUsEm crud_acUsEm;
-    private VentanaSesiones sesiones;
-
-    private List<Actividad> actividades;    // -> ¡CARGAR DESDE BASES DE DATOS!
-    private List<Usuario> usuarios;     // -> ¡CARGAR DESDE BASES DE DATOS!
+    private java.util.List<Actividad> actividades;    // -> ¡CARGAR DESDE BASES DE DATOS!
+    private java.util.List<Usuario> usuarios;     // -> ¡CARGAR DESDE BASES DE DATOS!
     private List<Empleado> empleados;   // -> ¡CARGAR DESDE BASES DE DATOS!
 
     private TablaModelo tablaModelo;
 
 
-    public VentanaTablesAcUsEm(String tipo, String cc, boolean isUser) {
+    public VistaActividadesUsuario(String cc) {
 
-        JFrame frame = new JFrame(tipo + " " + cc);
-        frame.setContentPane(ventanaTablesAcUsEmJpanel);
+        JFrame frame = new JFrame("ActivGest - Actividades " + cc);
+        frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        if(isUser){
-            nuevaButton.setText("Sesiones");
-        }
-
         switch (cc) {
 
             case ("Hegoalde"):
 
                 cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
-                cargarDatosEnTabla(tipo);
+                cargarDatosEnTabla();
 
                 break;
             case ("Iparralde"):
 
                 iparraldeDbo4CargarUsuariosActividades();
-                cargarDatosEnTabla(tipo);
+                cargarDatosEnTabla();
                 break;
 
             case ("Arriaga"):
 
                 CargarUsuariosActividadesEmpleadosMySQLArriaga();
-                cargarDatosEnTabla(tipo);
+                cargarDatosEnTabla();
 
                 break;
 
             case ("Ibaiondo"):
 
                 cargarUsuariosActividadesEmpleadosSqliteHegoalde(cc);
-                cargarDatosEnTabla(tipo);
+                cargarDatosEnTabla();
                 break;
         }
 
-        // editar button
-        nuevaButton.addActionListener(new ActionListener() {
+        buttonAtrás.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(!isUser){
-                    //atrasButton.setEnabled(false);
-                    crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc);
-                } else {
-                    //atrasButton.setEnabled(false);
-                    sesiones = new VentanaSesiones(cc);
-                }
-            }
-        });
-        atrasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                frame.dispose();
-            }
-        });
 
+                frame.dispose();
+
+            }
+        });
+        buttonImprimirImpreso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                try {
+                    imprimir();
+                } catch (PrinterException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
-    private void cargarDatosEnTabla(String tipo) {
-        switch (tipo) {
-            case "Actividades":
-                if (actividades != null) {
-                    tableAcUsEm.setModel(new ActividadesTableModel(actividades));
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
-                }
-                break;
-            case "Usuarios":
 
-                if (usuarios != null) {
-                    tableAcUsEm.setModel(new UsuariosTableModel(usuarios));
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List usuario vacío!");
-                }
-                break;
-            case "Empleados":
 
-                if (empleados != null) {
-                    tableAcUsEm.setModel(new EmpleadosTableModel(empleados));
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(null, "List empleados vacío!");
-                }
-                break;
+    public void imprimir() throws PrinterException, IOException {
+        // Indicamos el nombre del archivo Pdf que deseamos imprimir
+        PDDocument document = PDDocument.load(new File("FormularioInscripcion.pdf"));
+
+        //muestro en pdf el documento generado
+        try {
+            File path = new File ("FormularioInscripcion.pdf");
+            Desktop.getDesktop().open(path);
+        }catch (IOException ex) {
+            ex.printStackTrace();
         }
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+
+        LOGGER.log(Level.INFO, "Mostrando el dialogo de impresion");
+        if (job.printDialog() == true) {
+            job.setPageable(new PDFPageable(document));
+
+            LOGGER.log(Level.INFO, "Imprimiendo documento");
+            job.print();
+        }
+    }
+
+    private void cargarDatosEnTabla() {
+
+        if (actividades != null) {
+            table1.setModel(new ActividadesTableModel(actividades));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "List actividades vacío!");
+        }
+
+
     }
 
     // funcion que devuelve los datos de la bd a usuarios, actividades, empleados tanto de hegoalde como de ibaiondo

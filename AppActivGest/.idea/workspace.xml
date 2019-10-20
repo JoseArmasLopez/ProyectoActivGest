@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c87eb3bc-d430-45f7-91ef-6f922f14576c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/vista/VistaActividadesUsuario.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vista/VistaActividadesUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/Factura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Factura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +34,18 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="288" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Imagenes/icono.jpg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\Images" />
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest" />
       <recent name="C:\Users\armas\Desktop\AplicacionActivGest\ProyectoActivGest\AppActivGest\src\librerias" />
     </key>
   </component>
@@ -52,7 +61,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.VentanaLogin">
+  <component name="RunManager" selected="Application.VentanaPrincipal">
     <configuration name="CreateTablesIniciosDeSesion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="controlador.mysql.CreateTablesIniciosDeSesion" />
       <module name="AppActivGest" />
@@ -79,12 +88,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateTablesPostgreIbaiondo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="controlador.postgre.CreateTablesPostgreIbaiondo" />
+    <configuration name="Factura" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vista.Factura" />
       <module name="AppActivGest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controlador.postgre.*" />
+          <option name="PATTERN" value="vista.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.VentanaPrincipal" />
+        <item itemvalue="Application.Factura" />
         <item itemvalue="Application.VentanaLogin" />
         <item itemvalue="Application.CreateTablesMysqlArriaga" />
         <item itemvalue="Application.CreateTablesIniciosDeSesion" />
-        <item itemvalue="Application.VentanaPrincipal" />
-        <item itemvalue="Application.CreateTablesPostgreIbaiondo" />
       </list>
     </recent_temporary>
   </component>

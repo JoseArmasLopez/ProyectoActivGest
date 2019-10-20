@@ -2,6 +2,7 @@ package vista;
 
 import controlador.ControladorBbDd;
 import controlador.db4o.DB4O;
+import controlador.mysql.MysqlConsultas;
 import controlador.sqlite.SqliteConsulta;
 import modelo.Sesion;
 import vista.TableModels.SesionesTableModel;
@@ -9,6 +10,8 @@ import vista.TableModels.SesionesTableModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +27,11 @@ public class VentanaSesiones {
 
     private ArrayList<Sesion> sesiones = new ArrayList<Sesion>(); // -> ¡CARGAR DESDE BASES DE DATOS!
 
-    public VentanaSesiones( String cc) {
+    public VentanaSesiones(String cc) {
 
         JFrame frame = new JFrame("Sesiones "  + cc);
         frame.setContentPane(ventanaSesionesJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -43,6 +46,22 @@ public class VentanaSesiones {
 
                 break;
             case "Arriaga":
+
+                Connection con = null;
+                try {
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/actigest", "root", "");
+
+                } catch (Exception e) {
+                    System.err.println("No se ha podido conectar a la base de datos Arriaga\n" + e.getMessage());
+                }
+                MysqlConsultas mysqlConsultas = new MysqlConsultas(con);
+
+                sesiones = mysqlConsultas.LeerSesionesArriaga();
+
+
+                cargarDatosEnTabla(sesiones);
 
 
                 break;
@@ -81,7 +100,6 @@ public class VentanaSesiones {
         });
 
     }
-
 
     public void cargarDatosEnTabla(List<Sesion>sesionList){
         table1.setModel(new SesionesTableModel(sesionList));
