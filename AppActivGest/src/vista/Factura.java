@@ -2,7 +2,6 @@ package vista;
 
 import modelo.Usuario;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +28,7 @@ public class Factura {
     private JTextField textField6;
     private JScrollPane scrollPane;
     private JPanel panelPrincipal;
-    private JButton buttonImprimir;
+    private JButton buttonFacturar;
     private JButton atrásButton;
 
     private ArrayList<Usuario> usuarioArrayList;
@@ -58,21 +57,15 @@ public class Factura {
             }
         });
 
-        buttonImprimir.addActionListener(new ActionListener() {
+        
+        buttonFacturar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
-
-
+                JOptionPane.showMessageDialog(null,"La factura se ha faturado correctamente");
             }
         });
-
-
     }
 
-    public static void main(String[] args) {
-        Factura factura = new Factura();
-    }
 
     private final static Logger LOGGER = Logger.getLogger("mx.hash.impresionpdf.Impresor");
 
