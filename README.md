@@ -18,4 +18,4 @@ apuntado.
 
 ## Manual de usuario
 
-Para el aprendizaje del funcionamiento de ActivGest se recomienda leer el manual de usuario y ver el video tutorial.
+Para el aprendizaje del funcionamiento de ActivGest se recomienda leer el manual de usuario y [ver el video tutorial.](https://youtu.be/BpxULFWUWzY)
