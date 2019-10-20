@@ -23,11 +23,11 @@ public class VentanaSesiones {
 
     private ArrayList<Sesion> sesiones = new ArrayList<Sesion>(); // -> ¡CARGAR DESDE BASES DE DATOS!
 
-    public VentanaSesiones( String cc) {
+    public VentanaSesiones(String cc) {
 
         JFrame frame = new JFrame("Sesiones "  + cc);
         frame.setContentPane(ventanaSesionesJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);

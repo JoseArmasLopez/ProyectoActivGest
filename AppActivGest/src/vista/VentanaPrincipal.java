@@ -14,13 +14,13 @@ public class VentanaPrincipal {
     private JButton adminButton;
     private JPasswordField passwordField1;
     private JTextField userAdminTextField;
+    private JButton buttonUsuario;
 
     private VentanaCentroCivico vcc;
     private VentanaTablesAcUsEm vta;
 
-    private String password;
-
     private static JFrame frame;
+    private String opcionElegida;
 
     public static void main(String[] args) {
         frame = new JFrame("ActivGest");
@@ -30,7 +30,6 @@ public class VentanaPrincipal {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 
     public VentanaPrincipal() {
@@ -42,6 +41,8 @@ public class VentanaPrincipal {
         appNameLabel.setText("");
 
         adminButton.setEnabled(false);
+        userAdminTextField.setEditable(false);
+        passwordField1.setEditable(false);
 
         comboCentrosCivicos.addItem("");
         comboCentrosCivicos.addItem("Ibaiondo");
@@ -49,22 +50,20 @@ public class VentanaPrincipal {
         comboCentrosCivicos.addItem("Iparralde");
         comboCentrosCivicos.addItem("Hegoalde");
 
-        password = "";
-
         adminButton.setBorderPainted(false);
         adminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evento) {
 
                 String contrasena = new String(passwordField1.getPassword());
                 String nickname = userAdminTextField.getText();
-                String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
+                opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
 
-                if (opcionElegida != null || !(opcionElegida.equals(""))) {
+                if (opcionElegida != null && !(opcionElegida.equals(""))) {
                     MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                    if((CuentasBD.IniciarSesion(nickname, contrasena)) == true || (contrasena.equals("") && nickname.equals(""))){
+                    if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
                         vcc = new VentanaCentroCivico(opcionElegida);
-                        frame.dispose();
+                        ventanaPrincipalPanel.revalidate();
 
                     } else {
                         JOptionPane.showMessageDialog(null, "El usuario o la contraseña es incorrecta \n (Debug) Pon una de éstas:\n  admin1, pass1\n  admin2, pass2\n  admin3, pass3\n  admin4, pass4\n", "Error", JOptionPane.ERROR_MESSAGE);
@@ -77,16 +76,12 @@ public class VentanaPrincipal {
         comboCentrosCivicos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
+                opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
                 System.out.println(opcionElegida);
+
                 adminButton.setEnabled(true);
-                if (userAdminTextField.getText().equalsIgnoreCase("") || password.equalsIgnoreCase("")) {
-                    if (opcionElegida != null) {
-                        vta = new VentanaTablesAcUsEm("Actividades", opcionElegida);
-                    }
-                } else {
-                    ventanaPrincipalPanel.revalidate();
-                }
+                userAdminTextField.setEditable(true);
+                passwordField1.setEditable(true);
             }
         });
         ventanaPrincipalPanel.addKeyListener(new KeyAdapter() {
@@ -96,14 +91,14 @@ public class VentanaPrincipal {
 
                     String contrasena = new String(passwordField1.getPassword());
                     String nickname = userAdminTextField.getText();
-                    String opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
+                    opcionElegida = (String) comboCentrosCivicos.getSelectedItem();
 
-                    if (opcionElegida != null || !(opcionElegida.equals(""))) {
+                    if (opcionElegida != null && !(opcionElegida.equals(""))) {
                         MysqlConsultasInicioSesion CuentasBD = new MysqlConsultasInicioSesion();
 
-                        if((CuentasBD.IniciarSesion(nickname, contrasena)) == true || (contrasena.equals("") && nickname.equals(""))){
+                        if((CuentasBD.IniciarSesion(nickname, contrasena)) || (contrasena.equals("") && nickname.equals(""))){
                             vcc = new VentanaCentroCivico(opcionElegida);
-                            frame.dispose();
+                            ventanaPrincipalPanel.revalidate();
 
                         } else {
                             JOptionPane.showMessageDialog(null, "El usuario o la contraseña es incorrecta \n (Debug) Pon una de éstas:\n  admin1, pass1\n  admin2, pass2\n  admin3, pass3\n  admin4, pass4\n", "Error", JOptionPane.ERROR_MESSAGE);
@@ -111,6 +106,16 @@ public class VentanaPrincipal {
                     } else {
                         JOptionPane.showMessageDialog(null, "¡Elija Centro Cívico!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                }
+            }
+        });
+        buttonUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (opcionElegida != null && !opcionElegida.equals("")) {
+                    vta = new VentanaTablesAcUsEm("Actividades", opcionElegida, true);
+                } else {
+                    ventanaPrincipalPanel.revalidate();
                 }
             }
         });
