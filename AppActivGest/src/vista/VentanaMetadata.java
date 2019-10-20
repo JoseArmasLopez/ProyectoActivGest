@@ -29,7 +29,7 @@ public class VentanaMetadata {
 
         JFrame frame = new JFrame(nombBBDD + " " + cc);
         frame.setContentPane(ventanaMetadataJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);

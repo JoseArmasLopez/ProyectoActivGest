@@ -1,4 +1,4 @@
-package recursos;
+/*package recursos;
 
 //import org.apache.pdfbox.pdmodel.PDDocument;
 //import org.apache.pdfbox.printing.PDFPageable;
@@ -53,3 +53,5 @@ public class Impresor {
 
 
 }
+
+ */

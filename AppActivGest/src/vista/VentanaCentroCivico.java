@@ -26,7 +26,7 @@ public class VentanaCentroCivico {
 
         JFrame frame = new JFrame("ActivGest - " + centroCivico);
         frame.setContentPane(ventanaCCJpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -62,21 +62,21 @@ public class VentanaCentroCivico {
         empleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tablesAcUsEm = new VentanaTablesAcUsEm("Empleados", centroCivico);
+                tablesAcUsEm = new VentanaTablesAcUsEm("Empleados", centroCivico, false);
             }
         });
 
         usersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tablesAcUsEm = new VentanaTablesAcUsEm("Usuarios", centroCivico);
+                tablesAcUsEm = new VentanaTablesAcUsEm("Usuarios", centroCivico, false);
             }
         });
 
         activButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tablesAcUsEm = new VentanaTablesAcUsEm("Actividades", centroCivico);
+                tablesAcUsEm = new VentanaTablesAcUsEm("Actividades", centroCivico, false);
             }
         });
 
