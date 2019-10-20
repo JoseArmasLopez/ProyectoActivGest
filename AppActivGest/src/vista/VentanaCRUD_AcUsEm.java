@@ -32,10 +32,12 @@ public class VentanaCRUD_AcUsEm {
     private JLabel jLabel2;
     private JLabel jLabel1;
     private JButton actualizarButon;
-    private JButton buttonCosteAct;
+    private JButton buttonFactura;
+    private JTextField textFieldFactura;
     private JButton buscarButton;
 
     private VentanaSesiones ventanaSesiones;
+    private Factura factura;
 
     private TablaModelo modelo;
 
@@ -53,10 +55,12 @@ public class VentanaCRUD_AcUsEm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        buttonCosteAct.setVisible(false);
+        buttonFactura.setVisible(false);
+        textFieldFactura.setVisible(false);
 
-        if(tipo.equalsIgnoreCase("Usuarios")){
-            buttonCosteAct.setVisible(true);
+        if(tipo.equalsIgnoreCase("sesiones")){
+            buttonFactura.setVisible(true);
+            textFieldFactura.setVisible(true);
         }
 
         //MySQL
@@ -1376,10 +1380,10 @@ public class VentanaCRUD_AcUsEm {
 
             }
         });
-        buttonCosteAct.addActionListener(new ActionListener() {
+        buttonFactura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                factura = new Factura();
             }
         });
     }

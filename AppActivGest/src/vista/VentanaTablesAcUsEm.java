@@ -84,10 +84,10 @@ public class VentanaTablesAcUsEm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if(!isUser){
-                    atrasButton.setEnabled(false);
+                    //atrasButton.setEnabled(false);
                     crud_acUsEm = new VentanaCRUD_AcUsEm(tipo, cc);
                 } else {
-                    atrasButton.setEnabled(false);
+                    //atrasButton.setEnabled(false);
                     sesiones = new VentanaSesiones(cc);
                 }
             }
